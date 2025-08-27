@@ -11,7 +11,7 @@ export default function AppTaskModal({closeModal, setTasks}) {
     function onSubmit(e) {
         e.preventDefault()
         if (!canClick) return
-        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim()}])
+        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), isReady: false}])
         setTaskName('');
         setTaskDescription('');
         closeModal();

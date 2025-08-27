@@ -3,10 +3,11 @@ import { useState } from "react";
 export default function Sidebar({setTasks, openModal}) {
     const [quickTask, setQuickTask] = useState('');
     const canQuickAdd = quickTask.trim().length > 0;
+    const createId = () => Date.now() + Math.floor(Math.random() * 1000);
 
     function addQuickTask() {
         if (!canQuickAdd) return;
-        setTasks(prev=>[...prev, {name: quickTask, description: ''}])
+        setTasks(prev=>[...prev, {id: createId(), name: quickTask, description: '', isReady: false}])
         setQuickTask('');
     }
 
