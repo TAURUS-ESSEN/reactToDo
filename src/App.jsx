@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {Outlet} from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Sidebar from './components/Sidebar'
+import ModalHost from './components/Modal/ModalHost'
 import './App.css'
 
+const DEFAULT_TASKS = [
+  {"name":"task1", "description":"some text1"},
+  {"name":"task2", "description":"some text2"},
+  {"name":"task3", "description":"some text3"},
+  {"name":"task4", "description":"some text4"},
+]
+
+function loadingInitialTasks() {
+  try {
+    const raw = localStorage.getItem('toDoTasks');
+    if (!raw) return DEFAULT_TASKS
+    const data = JSON.parse(raw)
+    return Array.isArray(data) ? data : DEFAULT_TASKS
+  }
+  catch {
+    return DEFAULT_TASKS
+  }
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState(loadingInitialTasks)
+  const [modal, setModal] = useState({isOpen: false, type: null, taskid:null})
+  console.log(tasks)
+
+  const openModal = (typeOfModule, id = null) => setModal({isOpen: true, type: typeOfModule, taskid : id});
+  const closeModal = () => setModal({isOpen: false, type: null, taskid:null});
+   console.log(modal)
+
+  useEffect(() => {
+    localStorage.setItem('toDoTasks', JSON.stringify(tasks))
+  }, [tasks])
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='container'>
+        <Sidebar setTasks={setTasks} openModal={openModal}/>
+        <div className='main' >
+          <Header />
+          <Outlet context={{tasks, setTasks, openModal}}/>
+          <Footer />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ModalHost modal={modal} closeModal={closeModal} tasks={tasks} />
     </>
   )
 }
