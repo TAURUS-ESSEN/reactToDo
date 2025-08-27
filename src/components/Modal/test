@@ -1,0 +1,34 @@
+import { useEffect} from 'react' // импорт хуков: useEffect для побочных эффектов
+import { createPortal } from 'react-dom' // импорт функции портала: рендерим JSX в другой DOM-узел (обычно в body)
+import styles from './modal.module.css'
+
+export default function Modal({title,children,onClose}) { // компонент Modal получает заголовок, содержимое и функцию закрытия
+  const modalRoot = document.getElementById('modal-root') || document.body; // находим контейнер для модалки; если нет — используем <body>
+
+  useEffect(()=>{                                   // эффект запускается при монтировании модалки
+    const prev=document.body.style.overflow;        // запоминаем текущее значение overflow у body
+    document.body.style.overflow='hidden';          // отключаем прокрутку фона, пока модалка открыта
+    const onKey = (e)=>{ if(e.key==='Escape') onClose(); }; // обработчик клавиш: по ESC закрываем модалку
+    document.addEventListener('keydown', onKey);    // вешаем обработчик на весь документ
+    return ()=>{                                    // cleanup: выполнится при размонтировании модалки
+      document.body.style.overflow=prev;            // возвращаем исходный overflow (включаем прокрутку обратно)
+      document.removeEventListener('keydown', onKey); // снимаем обработчик клавиатуры
+    };
+  },[onClose]);                                     // если изменится onClose, эффект перевесит обработчик
+
+  return createPortal(                              // создаём портал: всё ниже будет вставлено в modalRoot
+    <div
+      onClick={(e)=> e.currentTarget===e.target && onClose()} // клик по подложке (именно по ней, а не по диалогу) — закрыть
+      className={styles.overlay}
+    >
+      <div className={styles.box}>
+        <h2 style={{marginTop:0}}>{title}</h2>        
+          {children} {/* тут будет содержимое, переданное в модалку (форма и т.п.) */}                      
+        <div style={{textAlign:'right',marginTop:8}}> 
+          <button onClick={onClose}>Cancel</button>  
+        </div>
+      </div>
+    </div>,
+    modalRoot // второй аргумент: куда именно монтируем (modal-root или body)
+  );
+}

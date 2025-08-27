@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.478);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.content {
+    padding: 2em;
+    background-color: white;
+}
