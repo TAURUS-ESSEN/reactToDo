@@ -2,7 +2,7 @@ import {useOutletContext} from 'react-router-dom'
 import styles from './tasks.module.css'
 
 export default function Tasks() {
-    const {tasks, setTasks, openModal} = useOutletContext();
+    const {tasks, setTasks, categories, openModal} = useOutletContext();
     
     function deleteTask(id) {
         setTasks(prev=>prev.filter(task=>task.id!==id))
@@ -24,7 +24,7 @@ export default function Tasks() {
                 return (
                 <li key={task.id} className={task.isReady ? styles.strike : ''}>
                     <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
-                    {task.id} {task.name} 
+                    {task.id} {task.name} {categories.find(category => category.id === task.category)?.name ?? 'No category'}
                     <button onClick={()=>openModal('editTask', task.id)}>Edit</button>
                     <button onClick={()=>deleteTask(task.id)}>Delete</button>
                 </li>)

@@ -35,7 +35,7 @@ function loadingInitialTasks() {
 
 function loadingInitialCategories() {
   try {
-    const raw = localStorage.getItem('toDoCategorys');
+    const raw = localStorage.getItem('toDoCategories');
     if (!raw) return DEFAULT_CATEGORIES;
     const data = JSON.stringify(raw);
     return Array.isArray(data) ? data : DEFAULT_CATEGORIES;
@@ -54,10 +54,15 @@ function App() {
   const openModal = (typeOfModule, id = null) => setModal({isOpen: true, type: typeOfModule, taskId : id});
   const closeModal = () => setModal({isOpen: false, type: null, taskId:null});
    console.log(modal)
+   console.log(categories)
 
   useEffect(() => {
     localStorage.setItem('toDoTasks', JSON.stringify(tasks))
   }, [tasks])
+
+    useEffect(() => {
+    localStorage.setItem('toDoCategories', JSON.stringify(categories))
+  }, [categories])
 
   return (
     <>
@@ -69,7 +74,7 @@ function App() {
           <Footer />
         </div>
       </div>
-      <ModalHost modal={modal} closeModal={closeModal} tasks={tasks} setTasks={setTasks}/>
+      <ModalHost modal={modal} closeModal={closeModal} tasks={tasks} setTasks={setTasks} categories={categories} setCategories={setCategories}/>
     </>
   )
 }

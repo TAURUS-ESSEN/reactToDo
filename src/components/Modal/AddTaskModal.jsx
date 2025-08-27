@@ -2,16 +2,19 @@ import styles from './modal.module.css'
 import Modal from './Modal';
 import {useState} from 'react';
 
-export default function AppTaskModal({closeModal, setTasks}) {
+export default function AppTaskModal({closeModal, setTasks, categories}) {
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
+    const [categoryId, setCategoryId] = useState(null)
+    console.log('categoryId', categoryId)
+
     const canClick = taskName.trim().length > 0;
     const createId = () => Date.now() + Math.floor(Math.random() * 1000);
 
     function onSubmit(e) {
         e.preventDefault()
         if (!canClick) return
-        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), isReady: false}])
+        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), isReady: false, category: Number(categoryId) }])
         setTaskName('');
         setTaskDescription('');
         closeModal();
@@ -26,6 +29,12 @@ export default function AppTaskModal({closeModal, setTasks}) {
                     onChange={(e)=>setTaskName(e.target.value)} 
                     value={taskName} 
                 />
+                <select onChange={(e)=>{setCategoryId(e.target.value)}}>
+                    <option disabled value='' selected required>Choose Category</option>
+                    {categories.map(category => {
+                        return <option key={category.id} value={category.id}>{category.name}</option>
+                    })}
+                </select>{categoryId}
                 <label>Task Description</label>
                 <textarea 
                     onChange={(e)=>setTaskDescription(e.target.value)} 
