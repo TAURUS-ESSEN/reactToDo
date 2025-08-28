@@ -2,3 +2,15 @@
   text-decoration: line-through;
   color: rgb(140, 140, 140)
 }
+
+.low {
+  background-color: green;
+}
+
+.middle {
+  background-color: yellow;
+}
+
+.high {
+  background-color: red;
+}

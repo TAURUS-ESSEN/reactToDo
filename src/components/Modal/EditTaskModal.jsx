@@ -9,6 +9,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
     const [taskName, setTaskName] = useState(task.name); // это редактируемые поля
     const [taskDescription, setTaskDescription] = useState(task.description);
     const [taskCategory, setTaskCategory] = useState(task.category);
+    const [taskPriority, setTaskPriority] = useState(task.priority);
     const [dueDate, setDueDate] = useState(task.dueDate); 
 
     const canClick = taskName.trim().length > 0; //защита от случайного нажатия
@@ -17,7 +18,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
         e.preventDefault(); // не обновляется страница
         setTasks(prev =>
             prev.map(t =>
-            t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, category: Number(taskCategory), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null  } : t
+            t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, category: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null  } : t
             )
         );
         closeModal()
@@ -36,9 +37,15 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
                 <select onChange={(e)=>{setTaskCategory(e.target.value)}}>
                     <option disabled value='' selected required>Choose Category</option>
                     {categories.map(category => {
-                        return <option key={category.id} value={category.id}>{category.name}</option>
+                        return <option key={category.id} value={category.id} selected={task.category === category.id}>{category.name}</option>
                     })}
-                </select>{taskCategory}
+                </select>
+                  <label>Task Priority</label>
+                <select onChange={(e)=>setTaskPriority(e.target.value)}>
+                    <option value={1} selected={task.priority===1}>Low</option>
+                    <option value={2} selected={task.priority===2}>Middle</option>
+                    <option value={3} selected={task.priority===3}>High</option>
+                </select>
                 <label>Task Description</label>
                 <textarea 
                     onChange={(e)=>setTaskDescription(e.target.value)} 
@@ -53,6 +60,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
                                 weekStartsOn={1}
                                 />
                 <div>
+
                     <button type="button" onClick={closeModal}>Cancel</button>
                     <button type='submit' disabled={!canClick}>Send</button>
                 </div>

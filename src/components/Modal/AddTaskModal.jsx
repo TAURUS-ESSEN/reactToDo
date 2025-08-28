@@ -9,6 +9,7 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
     const [taskDescription, setTaskDescription] = useState('')
     const [categoryId, setCategoryId] = useState(null)
     const [dueDate, setDueDate] = useState(null); 
+    const [priority, setPriority] = useState(2);
     console.log('categoryId', categoryId)
 
     const canClick = taskName.trim().length > 0;
@@ -17,7 +18,7 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
     function onSubmit(e) {
         e.preventDefault()
         if (!canClick) return
-        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), isReady: false, category: Number(categoryId), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null }])
+        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), isReady: false, category: Number(categoryId), priority: priority, dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null }])
         setTaskName('');
         setTaskDescription('');
         closeModal();
@@ -44,13 +45,19 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
                     value={taskDescription}  
                     placeholder='some description'
                 />
+                <label>Priority</label>
+                <select onChange={(e)=>setPriority(e.target.value)}>
+                    <option value={1}>Low</option>
+                    <option value={2} selected>Middle</option>
+                    <option value={3}>High</option>
+                </select>
                 <label>Due date</label>
                 <DayPicker
-                 className={styles.calendar}
-                mode="single"
-                selected={dueDate}
-                onSelect={setDueDate}
-                weekStartsOn={1}
+                    className={styles.calendar}
+                    mode="single"
+                    selected={dueDate}
+                    onSelect={setDueDate}
+                    weekStartsOn={1}
                 />
                 <div>
                     <button type="button" onClick={closeModal}>Cancel</button>
