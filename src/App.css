@@ -7,16 +7,80 @@
 
 .container {
   display: flex;
+  justify-content: center;
+  background-color: rgba(250, 235, 215, 0.641);
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
 }
 
 .main {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap:1em;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
 }
 
 .sidebar {
+  background-color: rgb(225, 226, 227);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.sidebar button {
+  background-color: rgb(219, 93, 4);
+  color: white;
+  width: 10rem;
+  transition: background-color .5s, box-shadow .5s, transform .5s;
+}
+
+.sidebar button:hover {
+  background: rgb(29,13,2);
+  transform: translateY(-1px);         /* без scale — нет мыла */
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+
+header {
+  display: flex;
+  width: 100%;
+  gap: 2em;
+  justify-content: center;
+
+  padding: 1rem;
+  background-color: rgb(228, 232, 232);
+}
+
+  input, select, button  {
+  padding: 0.5em;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.2;
+  box-shadow: 0 0 5px rgb(219, 218, 218);
+  transition: 0.4s ease-in-out;
+}
+
+header select {
+  border-radius: 5px;
+  padding: 0.2em;
+}
+
+input::placeholder {
+  font-size: 0.8em;
+}
+
+header button:hover {
+  background-color: crimson;
+  color: white;
+}
+
+header input:focus, header select:focus {
+  outline: none;
+  border: 1px solid dodgerblue;
+  box-shadow: 0 0 5px dodgerblue;
 }

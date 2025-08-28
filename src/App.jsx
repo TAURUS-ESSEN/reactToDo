@@ -56,12 +56,12 @@ function App() {
     period: 'all',
     search: '',
   })
-  console.log(tasks)
+  // console.log(tasks)
 
   const openModal = (typeOfModule, id = null) => setModal({isOpen: true, type: typeOfModule, taskId : id});
   const closeModal = () => setModal({isOpen: false, type: null, taskId:null});
-   console.log(modal)
-   console.log(categories)
+  //  console.log(modal)
+  //  console.log(categories)
 
   useEffect(() => {
     localStorage.setItem('toDoTasks', JSON.stringify(tasks))
