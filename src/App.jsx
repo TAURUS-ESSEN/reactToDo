@@ -50,6 +50,10 @@ function App() {
   const [tasks, setTasks] = useState(loadingInitialTasks)
   const [categories, setCategories] = useState(loadingInitialCategories)
   const [modal, setModal] = useState({isOpen: false, type: null, taskId:null})
+  const [filters, setFilters] = useState({
+    status: 'all',
+    category: 'all',
+  })
   console.log(tasks)
 
   const openModal = (typeOfModule, id = null) => setModal({isOpen: true, type: typeOfModule, taskId : id});
@@ -70,8 +74,8 @@ function App() {
       <div className='container'>
         <Sidebar setTasks={setTasks} openModal={openModal}/>
         <div className='main' >
-          <Header />
-          <Outlet context={{tasks, setTasks, categories, openModal}}/>
+          <Header filters={filters} setFilters={setFilters} categories={categories}/>
+          <Outlet context={{tasks, setTasks, categories, openModal, filters}}/>
           <Footer />
         </div>
       </div>
