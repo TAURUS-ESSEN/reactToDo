@@ -17,6 +17,12 @@ export default function Tasks() {
         }))
     }
 
+    function pretty(dueDate) {
+        if (!dueDate) return 'без даты';
+        const [y,m,d] = dueDate.split('-');
+        return `${d}.${m}.${y}`;
+    }
+
     return (
         <>
         <ul>
@@ -25,6 +31,7 @@ export default function Tasks() {
                 <li key={task.id} className={task.isReady ? styles.strike : ''}>
                     <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
                     {task.id} {task.name} {categories.find(category => category.id === task.category)?.name ?? 'No category'}
+                     {pretty(task.dueDate)}
                     <button onClick={()=>openModal('editTask', task.id)}>Edit</button>
                     <button onClick={()=>deleteTask(task.id)}>Delete</button>
                 </li>)

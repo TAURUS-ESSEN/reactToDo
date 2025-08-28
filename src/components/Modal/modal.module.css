@@ -17,3 +17,73 @@
     padding: 2em;
     background-color: white;
 }
+
+/* контейнер, чтобы календарь не прилипал */
+.calendarWrap { margin: 12px 0 16px; }
+
+/* корень DayPicker — на него навесили className={styles.calendar} */
+.calendar {
+  /* кастомные css-переменные DayPicker */
+  --rdp-accent-color: #3b82f6;        /* цвет выделенной даты */
+  --rdp-background-color: #eff6ff;    /* фон при hover */
+  --rdp-outline: 2px solid #3b82f6;   /* обводка при focus */
+  --rdp-outline-selected: 2px solid #1d4ed8;
+
+  font-size: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+
+/* шапка месяца */
+.calendar .rdp-caption { 
+  font-weight: 600; 
+}
+
+/* стрелки навигации */
+.calendar .rdp-nav_button {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 32px; 
+  height: 32px;
+}
+
+/* названия дней недели */
+.calendar .rdp-weekday {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* ячейки дней */
+.calendar .rdp-day { 
+  border-radius: 8px; 
+}
+.calendar .rdp-day:hover { 
+  background: var(--rdp-background-color); 
+}
+
+/* выбранный день */
+.calendar .rdp-day_selected {
+  background: var(--rdp-accent-color);
+  color: white;
+}
+
+/* «сегодня» — тонкое кольцо */
+.calendar .rdp-day_today { 
+  outline: 2px solid var(--rdp-accent-color); 
+  outline-offset: 2px; 
+}
+
+/* необязательно: чуть привести форму модалки */
+.form label { margin-top: 8px; font-weight: 600; }
+.form input, .form select, .form textarea {
+  margin-top: 4px; margin-bottom: 8px;
+  padding: 8px; border: 1px solid #d1d5db; border-radius: 8px;
+}
+.form button {
+  padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px;
+}
+.form button[type="submit"]:not(:disabled) {
+  border-color: #3b82f6;
+}
