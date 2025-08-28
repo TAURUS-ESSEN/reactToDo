@@ -53,6 +53,8 @@ function App() {
   const [filters, setFilters] = useState({
     status: 'all',
     category: 'all',
+    period: 'all',
+    search: '',
   })
   console.log(tasks)
 
