@@ -14,3 +14,61 @@
 .high {
   background-color: red;
 }
+
+.tasksListe {
+  width: 100%;
+  background-color: white;
+  margin: 1em 0;
+  padding: 1em;
+}
+
+.tasksListe > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgb(149, 152, 153);
+  border-radius: 5px;
+  margin: 0.3em 0;
+  padding: 0.5em;
+}
+
+.taskInfo {
+  width: 70%;
+  display: flex;
+  gap:1em;
+}
+
+.taskName {
+  width: 50%;
+  display: flex;
+}
+
+.taskName > button {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.5s ease;
+  text-decoration: underline;
+}
+
+.taskName > button:hover {
+  background-color: antiquewhite;
+  transform: scale(1,1);
+}
+
+.taskButtons button {
+  margin: 0 0.5em;
+  transition: 0.5s ease;
+}
+
+.taskButtons button:hover {
+  background-color: rgb(217, 108, 5);
+  color: white;
+}
+
+.headers {
+  padding-left: 2em ;
+}

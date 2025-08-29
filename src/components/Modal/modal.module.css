@@ -87,3 +87,26 @@
 .form button[type="submit"]:not(:disabled) {
   border-color: #3b82f6;
 }
+
+.categoryList {
+  display: flex;
+  gap:1em;
+  align-items: center;
+  margin: 0.3em 0;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+.categoryList:hover {
+  background-color: #e3e4e5;
+} 
+
+.categoryList button {
+  transition: 0.3em;
+}
+
+.categoryList button:hover {
+  background-color: #d75d06;
+  color: white;
+}

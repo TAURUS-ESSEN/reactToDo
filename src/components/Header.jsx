@@ -23,9 +23,15 @@ export default function Header({filters, categories, setFilters}) {
                 <option value='week'>Week</option>
                 <option value='late'>to Late</option>
             </select>
+            <select onChange={(e)=>{setFilters(prev=>({...prev, priority: e.target.value}))}} value={filters.priority}>
+                <option value='all' deselected>Priority</option>
+                <option value='low'>Low</option>
+                <option value='middle'>Middle</option>
+                <option value='high'>High</option>
+            </select>
             <input type='text' onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} value={filters.search} placeholder="search by name"/>
             {/* {filters.status} {filters.category} {filters.period} {filters.search} */}
-            <button onClick={()=>setFilters({status: 'all', category: 'all', period: 'all', search: ''})}>Reset Filters</button>
+            <button onClick={()=>setFilters({status: 'all', category: 'all', period: 'all', search: '', priority: ''})}>Reset Filters</button>
         </header>
         </>
     )

@@ -24,6 +24,7 @@ export default function Sidebar({setTasks, openModal}) {
             <button onClick={addQuickTask} disabled={!canQuickAdd}>Quick Add</button>
             <button onClick={()=>openModal('addCategory')}>Add Categorie</button>
             <button onClick={()=>openModal('addTask')}>Add Task</button>
+            <button onClick={()=>openModal('showCategories')}>Manage Categories</button>
         </div>
         </>
     )

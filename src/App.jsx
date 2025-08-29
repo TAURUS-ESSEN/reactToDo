@@ -55,6 +55,7 @@ function App() {
     category: 'all',
     period: 'all',
     search: '',
+    priority: 'all',
   })
   // console.log(tasks)
 
@@ -77,7 +78,7 @@ function App() {
         <Sidebar setTasks={setTasks} openModal={openModal}/>
         <div className='main' >
           <Header filters={filters} setFilters={setFilters} categories={categories}/>
-          <Outlet context={{tasks, setTasks, categories, openModal, filters}}/>
+          <Outlet context={{tasks, setTasks, categories, openModal, filters, setFilters}}/>
           <Footer />
         </div>
       </div>

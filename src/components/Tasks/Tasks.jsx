@@ -1,12 +1,11 @@
 import {useOutletContext} from 'react-router-dom'
 import styles from './tasks.module.css'
- 
 
 const colors = {
     1: 'low', 2: 'middle', 3: 'high'
 }
 export default function Tasks() {
-    const {tasks, setTasks, categories, openModal, filters} = useOutletContext();
+    const {tasks, setTasks, categories, openModal, filters, setFilters} = useOutletContext();
     
     function deleteTask(id) {
         setTasks(prev=>prev.filter(task=>task.id!==id))
@@ -33,8 +32,17 @@ export default function Tasks() {
         active: (t) => !t.isReady,
         completed: (t) => t.isReady,
     };
-
     const statusPred = filterByStatus[filters?.status] ?? filterByStatus.all;
+
+
+    const filterByPriority = {
+        all: () => true,
+        low: (t) => t.priority === 1,
+        middle: (t) => t.priority === 2,
+        high: (t) => t.priority === 3,
+    };
+    const priorityPred = filterByPriority[filters?.priority] ?? filterByStatus.all;
+
 
     const categoryPred =
         !filters || filters.category === 'all'
@@ -70,20 +78,35 @@ export default function Tasks() {
     };
     const datePred = filterByDate[filters?.period] ?? filterByDate.all;
 
-    const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search));
+    const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred);
 
     return (
         <>
-        <ul> 
+        <ul className={styles.tasksListe}> 
+            <li className={styles.headerss}>
+                <div className={`${styles.taskInfo} ${styles.headers}`}>
+                    <span className={styles.taskName}>Task Name</span><span>Task Category</span><span>Due Date</span><span>Priority</span>
+                </div>
+            </li>
             {visible.map(task => { 
                 const pClass = styles[colors[task.priority ?? 2]];
                 return (
-                <li key={task.id} className={`${task.isReady ? styles.strike : ''} ${pClass}` }>
-                    <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
-                    {task.id} {task.name} {categories.find(category => category.id === task.category)?.name ?? 'No category'}
-                    {pretty(task.dueDate)} {colors[task.priority]}
-                    <button onClick={()=>openModal('editTask', task.id)}>Edit</button>
-                    <button onClick={()=>deleteTask(task.id)}>Delete</button>
+                <li key={task.id} className={`${task.isReady ? styles.strike : ''} ` }>
+                    <div className={styles.taskInfo}>
+                        <div className={pClass}>s</div>
+                        <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
+                        {/* <span>{task.id} </span> */}
+                        <span className={styles.taskName}><button onClick={()=>openModal('editTask', task.id)} >{task.name}</button></span>
+                        <span><button onClick={()=>setFilters(prev=>({...prev, category:  task.category}))}>
+                            {categories.find(category => category.id === task.category)?.name ?? 'No category'}
+                        </button></span>
+                        <span>{pretty(task.dueDate)}</span>
+                        <span>{colors[task.priority]}</span>
+                    </div>
+                    <div className={styles.taskButtons}>
+                        <button onClick={()=>openModal('editTask', task.id)}>Edit</button>
+                        <button onClick={()=>deleteTask(task.id)}>Delete</button>
+                    </div>
                 </li>)
             })}
         </ul>

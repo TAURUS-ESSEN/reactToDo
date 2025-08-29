@@ -8,7 +8,7 @@
 .container {
   display: flex;
   justify-content: center;
-  background-color: rgba(250, 235, 215, 0.641);
+  /* background-color: rgba(250, 235, 215, 0.641); */
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
@@ -18,7 +18,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap:1em;
+  /* gap:1em; */
   /* background-color: antiquewhite; */
 }
 
