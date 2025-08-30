@@ -1,3 +1,4 @@
+import styles from './modal.module.css';
 import Modal from './Modal'
 import {useState} from 'react';
 
@@ -17,13 +18,15 @@ export default function AddCategoryModal({categories, setCategories, closeModal}
 
     return (
         <>
-            <Modal title='create Category' closeModal={closeModal}>
-                <form  onSubmit={onSubmit}>
-                    <label>Category Name</label>
-                    <input type='text' onChange={(e)=>setCategoryName(e.target.value)} value={categoryName}/>
-                    {categoryName}
-                    <button type="button" onClick={closeModal}>Cancel</button>
-                    <button type='submit' disabled={!canClick}>Save</button>
+            <Modal title='Create Category' closeModal={closeModal}>
+                <form  onSubmit={onSubmit} className={styles.createForm}>
+                    <label>Enter category name</label>
+                    <input type='text' onChange={(e)=>setCategoryName(e.target.value)} value={categoryName} autofocus required/>
+                    <div className={styles.buttons}>
+                        <button type="button" onClick={closeModal}>Cancel</button>
+                        <button type='submit' disabled={!canClick}>Save</button>      
+                    </div>
+
                 </form>
             </Modal>
         </>

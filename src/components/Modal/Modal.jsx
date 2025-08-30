@@ -18,7 +18,10 @@ export default function Modal({title, children, closeModal}) {
         <>
             <div className={styles.overlay} onClick={(e)=> {e.currentTarget === e.target && closeModal()}}>
                 <div className={styles.content}>
-                    {title}
+                    <div className={styles.modalHeader}>
+                        <h3 className={styles.title}>{title}</h3>
+                        <button onClick={()=>closeModal()} >&times;</button>
+                    </div>
                     {children}
                 </div>
             </div>

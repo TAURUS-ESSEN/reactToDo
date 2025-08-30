@@ -57,12 +57,10 @@ function App() {
     search: '',
     priority: 'all',
   })
-  // console.log(tasks)
 
   const openModal = (typeOfModule, id = null) => setModal({isOpen: true, type: typeOfModule, taskId : id});
   const closeModal = () => setModal({isOpen: false, type: null, taskId:null});
-  //  console.log(modal)
-  //  console.log(categories)
+
 
   useEffect(() => {
     localStorage.setItem('toDoTasks', JSON.stringify(tasks))
@@ -82,7 +80,7 @@ function App() {
           <Footer />
         </div>
       </div>
-      <ModalHost modal={modal} closeModal={closeModal} tasks={tasks} setTasks={setTasks} categories={categories} setCategories={setCategories}/>
+      <ModalHost modal={modal} openModal={openModal} closeModal={closeModal} tasks={tasks} setTasks={setTasks} categories={categories} setCategories={setCategories}/>
     </>
   )
 }

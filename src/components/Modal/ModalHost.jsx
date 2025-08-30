@@ -3,7 +3,7 @@ import AddCategoryModal from "./AddCategoryModal";
 import EditTaskModal from "./EditTaskModal";
 import ShowCategoriesModal from "./ShowCategoriesModal"
 
-export default function ModalHost({modal, closeModal, tasks, setTasks, categories, setCategories}) {
+export default function ModalHost({modal, closeModal, tasks, setTasks, categories, setCategories, openModal}) {
     
     switch (modal.type) {
             case 'addTask':
@@ -13,7 +13,7 @@ export default function ModalHost({modal, closeModal, tasks, setTasks, categorie
             case 'addCategory':
                 return <AddCategoryModal modal={modal} closeModal={closeModal} categories={categories} setCategories={setCategories}/>
             case 'showCategories':
-                return <ShowCategoriesModal modal={modal} closeModal={closeModal} tasks={tasks} categories={categories} setCategories={setCategories}/>
+                return <ShowCategoriesModal modal={modal} closeModal={closeModal} tasks={tasks} setTasks={setTasks} categories={categories} setCategories={setCategories} openModal={openModal}/>
             default:
                 return null;
         }

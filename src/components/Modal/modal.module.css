@@ -14,8 +14,41 @@
 }
 
 .content {
-    padding: 2em;
+    border-radius: 5px;
+    padding: 0.5em 1em 1em 1em;
     background-color: white;
+}
+
+.modalHeader {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.modalHeader h3 {
+  
+}
+
+.modalHeader button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  font-size: 1.5em;
+  right: -0.5em;
+  top: -0.3em;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  box-shadow: none;
+  transition: 0.5s;
+}
+
+.modalHeader button:hover {
+  color: #d75d06;
 }
 
 /* контейнер, чтобы календарь не прилипал */
@@ -88,14 +121,30 @@
   border-color: #3b82f6;
 }
 
+.categoryContainer {
+  width: 500px;
+}
+
+.currentCategory {
+  list-style: none;
+}
+
 .categoryList {
   display: flex;
   gap:1em;
+  justify-content: space-between;
   align-items: center;
   margin: 0.3em 0;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 0.5em;
+}
+
+.categoryNameButton {
+  border: 0;
+  background: none;
+  width: 200px;
+  min-height: 36px;
 }
 
 .categoryList:hover {
@@ -109,4 +158,63 @@
 .categoryList button:hover {
   background-color: #d75d06;
   color: white;
+}
+
+.title {
+  margin: 0;
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  /* align-items: center; */
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+.buttons button {
+  width: 120px;
+}
+
+.buttons button:hover {
+  background-color: #d75d06;
+  color: white;
+  width: 120px;
+}
+
+.deleteBlock {
+  border: 1px solid gray;
+  padding: 1em;
+}
+
+.addNewButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.addNewButton button {
+  transition: 0.5s;
+}
+
+.addNewButton button:hover {
+  background-color: #d75d06;
+  color: white
+}
+
+.deleteButton {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+}
+
+.deleteButton:hover {
+  background-color: red;
 }
