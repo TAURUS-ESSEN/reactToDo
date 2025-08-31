@@ -38,7 +38,7 @@ function loadingInitialCategories() {
   try {
     const raw = localStorage.getItem('toDoCategories');
     if (!raw) return DEFAULT_CATEGORIES;
-    const data = JSON.stringify(raw);
+    const data = JSON.parse(raw);
     return Array.isArray(data) ? data : DEFAULT_CATEGORIES;
   }
   catch {
@@ -66,7 +66,7 @@ function App() {
     localStorage.setItem('toDoTasks', JSON.stringify(tasks))
   }, [tasks])
 
-    useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('toDoCategories', JSON.stringify(categories))
   }, [categories])
 

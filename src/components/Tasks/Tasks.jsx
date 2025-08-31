@@ -2,7 +2,7 @@ import {useOutletContext} from 'react-router-dom'
 import styles from './tasks.module.css'
 
 const colors = {
-    1: 'low', 2: 'middle', 3: 'high'
+    1: 'low', 2: 'medium', 3: 'high'
 }
 export default function Tasks() {
     const {tasks, setTasks, categories, openModal, filters, setFilters} = useOutletContext();
@@ -38,16 +38,18 @@ export default function Tasks() {
     const filterByPriority = {
         all: () => true,
         low: (t) => t.priority === 1,
-        middle: (t) => t.priority === 2,
+        medium: (t) => t.priority === 2,
         high: (t) => t.priority === 3,
     };
     const priorityPred = filterByPriority[filters?.priority] ?? filterByStatus.all;
 
 
-    const categoryPred =
+    const categoryPred = 
         !filters || filters.category === 'all'
         ? () => true
-        : (t) => t.category === Number(filters.category);
+        : filters.category === 'nocategory'
+            ?  (t) => t.category === 0
+            : (t) => t.category === Number(filters.category);
 
         const pad = (n) => String(n).padStart(2, '0');
         const todayLocalISO = (() => {
@@ -73,7 +75,7 @@ export default function Tasks() {
         return d >= monday && d <= sunday;                         // проверяем: дата задачи внутри интервала недели?
     },
 
-    late: (t) => !!t.dueDate && t.dueDate < todayLocalISO, // если у задачи есть дата (!!t.dueDate) и она меньше чем сегодня → просрочено
+    overdue: (t) => !!t.dueDate && t.dueDate < todayLocalISO, // если у задачи есть дата (!!t.dueDate) и она меньше чем сегодня → просрочено
     none: (t) => !t.dueDate, // если у задачи даты нет вообще → подходит под фильтр "без даты"
     };
     const datePred = filterByDate[filters?.period] ?? filterByDate.all;
@@ -93,7 +95,7 @@ export default function Tasks() {
                 return (
                 <li key={task.id} className={`${task.isReady ? styles.strike : ''} ` }>
                     <div className={styles.taskInfo}>
-                        <div className={pClass}>s</div>
+                        <div className={pClass}>&nbsp;</div>
                         <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
                         {/* <span>{task.id} </span> */}
                         <span className={styles.taskName}><button onClick={()=>openModal('editTask', task.id)} >{task.name}</button></span>

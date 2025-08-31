@@ -8,7 +8,6 @@
 .container {
   display: flex;
   justify-content: center;
-  /* background-color: rgba(250, 235, 215, 0.641); */
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
@@ -18,31 +17,6 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  /* gap:1em; */
-  /* background-color: antiquewhite; */
-}
-
-.sidebar {
-  background-color: rgb(225, 226, 227);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-
-.sidebar button {
-  background-color: rgb(219, 93, 4);
-  color: white;
-  width: 10rem;
-  transition: background-color .5s, box-shadow .5s, transform .5s;
-}
-
-.sidebar button:hover {
-  background: rgb(29,13,2);
-  transform: translateY(-1px);         /* без scale — нет мыла */
-  box-shadow: 0 10px 24px rgba(0,0,0,.25);
 }
 
 header {
@@ -55,9 +29,10 @@ header {
   background-color: rgb(228, 232, 232);
 }
 
-  input, select, button  {
+header > select  {
   padding: 0.5em;
   border: 1px solid lightgray;
+  padding: 0.6em;
   border-radius: 5px;
   font-size: 1rem;
   line-height: 1.2;
@@ -83,4 +58,74 @@ header input:focus, header select:focus {
   outline: none;
   border: 1px solid dodgerblue;
   box-shadow: 0 0 5px dodgerblue;
+}
+
+.sidebar {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background-color: rgb(221, 224, 227);
+  /* margin: 1em 1em; */
+}
+
+.buttonsBlock {
+  display: flex;
+  flex-direction: column;
+  gap:1em;
+}
+
+.buttonsBlock > button {
+  background-color: rgba(213, 212, 211, 0.873);
+  padding: 0.5em;
+  /* background: none; */
+  border: 1px solid rgb(172, 171, 169);
+  border-radius: 5px;
+  transition: 0.5s ease;
+  min-height: 2.2rem;
+}
+
+.buttonsBlock > button:hover {
+  background-color: rgba(255, 136, 0, 0.873);
+  color: white;
+}
+
+.quickAddBlock {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+}
+
+.quickAddInput {
+  border-radius: 5px 0px 0px 5px;
+  border: 1px solid lightgray;
+  padding: 0.5em;
+  font-size: 1rem;
+  width: 150px;
+  min-height: 20px;
+}
+
+.sidebar :focus {
+  outline: none;
+  border: 1px solid rgb(255, 184, 30);
+  box-shadow: 0 0 5px rgba(238, 138, 7, 0.645);
+}
+.quickAddBtn {
+  background-color: rgb(103, 102, 102);
+  font-size: 1rem;
+  border: 0;
+  border-radius: 0px 5px 5px 0px;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.quickAddBtn:enabled {
+  background-color: rgba(255, 136, 0, 0.873);
+}
+
+.quickAddBtn:enabled:hover {
+  background-color: rgba(224, 97, 12, 0.91);
+  cursor: pointer;
 }
