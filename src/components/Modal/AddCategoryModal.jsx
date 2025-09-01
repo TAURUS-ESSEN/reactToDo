@@ -22,11 +22,10 @@ export default function AddCategoryModal({categories, setCategories, closeModal}
         closeModal();
     }
     
- 
     return (
         <>
             <Modal title='Create category' closeModal={closeModal}>
-                <form  onSubmit={onSubmit} className={styles.createForm}>
+                <form onSubmit={onSubmit} className={styles.createForm}>
                     <label>Enter category name</label>
                     <input type='text' 
                         onChange={(e) => setCategoryName(e.target.value.trim())} 

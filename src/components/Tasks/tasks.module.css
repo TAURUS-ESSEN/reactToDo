@@ -18,8 +18,8 @@
 .tasksListe {
   width: 100%;
   background-color: white;
-  margin: 1em 0;
-  padding: 1em;
+  margin: 0 0;
+  padding: 0.2em;
 }
 
 .tasksListe > li {
@@ -71,4 +71,29 @@
 
 .headers {
   padding-left: 2em ;
+}
+
+.chipsContainer {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  /* background-color: rgb(141, 140, 138); */
+}
+
+.chipsBlock {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.chipName {
+  color: rgb(117, 116, 115);
+  position: relative;
+}
+
+.deleteChipBtn {
+  position: absolute;
+  right:-1em;
+  top:-0.2em;
+  background: none;
+  border: 0;
 }

@@ -1,4 +1,6 @@
 import {useOutletContext} from 'react-router-dom'
+import { useState } from 'react';
+import Chips from './Chips'
 import styles from './tasks.module.css'
 
 const colors = {
@@ -6,6 +8,7 @@ const colors = {
 }
 export default function Tasks() {
     const {tasks, setTasks, categories, openModal, filters, setFilters} = useOutletContext();
+    const [sortTasks, setSortTasks] = useState({ by: '', dir: ''})
     
     function deleteTask(id) {
         setTasks(prev=>prev.filter(task=>task.id!==id))
@@ -33,7 +36,6 @@ export default function Tasks() {
         completed: (t) => t.isReady,
     };
     const statusPred = filterByStatus[filters?.status] ?? filterByStatus.all;
-
 
     const filterByPriority = {
         all: () => true,
@@ -82,27 +84,79 @@ export default function Tasks() {
 
     const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred);
 
+    function sortBy(value) {
+        let dirValue = '';
+        value === sortTasks.by 
+            ? dirValue = sortTasks.dir === 'asc' ?  'desc' : 'asc'
+            : dirValue = 'asc';
+        setSortTasks({by: value, dir: dirValue})
+    }
+
+    const sortedVisible = (() => {
+    const arr = [...visible]; // ВАЖНО: копия
+    if (sortTasks.by === 'name') {
+        arr.sort((a, b) =>
+            sortTasks.dir === 'asc'
+            ? a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+            : b.name.localeCompare(a.name, undefined, { sensitivity: 'base' })
+        );
+    }
+    if (sortTasks.by === 'priority') {
+        arr.sort((a, b) =>
+            sortTasks.dir === 'asc'
+            ? b.priority-a.priority
+            : a.priority-b.priority
+        );
+    }
+
+    if (sortTasks.by === 'dueDate') {
+        arr.sort((a, b) => {
+            const A = a.dueDate ?? ''; // '' если нет даты
+            const B = b.dueDate ?? '';
+            if (!A && !B) return 0;
+            if (!A) return 1;      // пустые всегда вниз
+            if (!B) return -1;
+
+            const res = A.localeCompare(B); // ISO 'YYYY-MM-DD' сортируется корректно
+            return sortTasks.dir === 'asc' ? res : -res;
+        });
+    }
+  // тут же можно добавить сортировки по дате/приоритету аналогично
+    return arr;
+    })();
+
     return (
         <>
+            <div className={styles.chipsContainer}>
+                <Chips />
+            </div>
+
         <ul className={styles.tasksListe}> 
+            {/* TASKS TABLE HEADER */}
             <li className={styles.headerss}>
                 <div className={`${styles.taskInfo} ${styles.headers}`}>
-                    <span className={styles.taskName}>Task Name</span><span>Task Category</span><span>Due Date</span><span>Priority</span>
+                    <span className={styles.taskName}><button onClick={()=>sortBy('name')}>
+                        Task Name { sortTasks.by !== 'name'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
+                    </button></span>
+                    <span >Task Category</span>
+                    <span className={styles.taskName}><button onClick={()=>sortBy('dueDate')}>Due Date { sortTasks.by !== 'dueDate'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} </button></span>
+                    <span className={styles.taskName}><button   onClick={()=>sortBy('priority')}>Priority { sortTasks.by !== 'priority'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} </button></span>
                 </div>
             </li>
-            {visible.map(task => { 
+            {/* TASKS BODY CONTAINER  */}
+
+            {sortedVisible.map(task => { 
                 const pClass = styles[colors[task.priority ?? 2]];
                 return (
                 <li key={task.id} className={`${task.isReady ? styles.strike : ''} ` }>
                     <div className={styles.taskInfo}>
                         <div className={pClass}>&nbsp;</div>
                         <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
-                        {/* <span>{task.id} </span> */}
                         <span className={styles.taskName}><button onClick={()=>openModal('editTask', task.id)} >{task.name}</button></span>
                         <span><button onClick={()=>setFilters(prev=>({...prev, category:  task.category}))}>
-                            {categories.find(category => category.id === task.category)?.name ?? 'No category'}
+                            {categories.find(category => category.id === task.category)?.name.slice(0,15) ?? 'No category'}
                         </button></span>
-                        <span>{pretty(task.dueDate)}</span>
+                        <span>{pretty(task.dueDate)} </span>
                         <span>{colors[task.priority]}</span>
                     </div>
                     <div className={styles.taskButtons}>

@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react';
+
 export default function Header({filters, categories, setFilters}) {
+
     return (
         <>
         <header>
@@ -11,7 +14,7 @@ export default function Header({filters, categories, setFilters}) {
                 <option value='all'>All categories</option>
                 <option value="0">No category</option>
                 {categories.map(c=>{
-                    return <option value={c.id}>{c.name}</option>
+                    return <option value={c.id}>{c.name.slice(0,15)}</option>
                 })}
             </select>
             <select onChange={(e)=>setFilters(prev=>({...prev, period:  e.target.value}))} value={filters.period}>
@@ -21,14 +24,14 @@ export default function Header({filters, categories, setFilters}) {
                 <option value='overdue'>Overdue</option>
             </select>
             <select onChange={(e)=>{setFilters(prev=>({...prev, priority: e.target.value}))}} value={filters.priority}>
-                <option value='all' deselected>Priority</option>
+                <option value='all' deselected>Any priority</option>
                 <option value='low'>Low</option>
                 <option value='medium'>Medium</option>
                 <option value='high'>High</option>
             </select>
             <input type='text' onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} value={filters.search} placeholder="search by name"/>
             {/* {filters.status} {filters.category} {filters.period} {filters.search} */}
-            <button onClick={()=>setFilters({status: 'all', category: 'all', period: 'all', search: '', priority: ''})}>Reset Filters</button>
+            <button onClick={()=>setFilters({status: 'all', category: 'all', period: 'all', search: '', priority: ''})}  >Reset Filters</button>
         </header>
         </>
     )
