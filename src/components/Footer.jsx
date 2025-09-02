@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <>
-        <div>footer.jsx</div>
+        <div>ToDoList Projekt 2025</div>
         </>
     )
 }

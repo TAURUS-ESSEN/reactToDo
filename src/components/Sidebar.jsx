@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { downloadJSON } from "../utils/downloadJSON";
 
 export default function Sidebar({setTasks, openModal, tasks, categories}) {
@@ -15,7 +16,7 @@ export default function Sidebar({setTasks, openModal, tasks, categories}) {
     return (
         <>
         <div className="sidebar">
-            <h2>ToDo List</h2>
+            <Link to='/' className="logoLink"><h2>ToDo List</h2></Link>
             <div className="quickAddBlock">
                 <input type='text' 
                     onChange={(e)=>setQuickTask(e.target.value)} 
@@ -26,8 +27,8 @@ export default function Sidebar({setTasks, openModal, tasks, categories}) {
                 />
                 <button onClick={addQuickTask} disabled={!canQuickAdd} className="quickAddBtn">+</button>
             </div>
-            <div className="buttonsBlock">
-                <button onClick={()=>openModal('addTask')}>Add task</button>
+            <div className="sidebarButtonsBlock">
+                {/* <button onClick={()=>openModal('addTask')}>Add task</button> */}
                 <button onClick={()=>openModal('addCategory')}>Add category</button>
                 <button onClick={()=>openModal('showCategories')}>Manage categories</button>
                 <button type='button' 

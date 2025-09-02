@@ -6,7 +6,7 @@ const DEFAULT_FILTERS = {
     priority: 'all',
 }
 
-export default function Header({filters, categories, setFilters}) {
+export default function Header({filters, categories, setFilters, openModal}) {
     const canReset = ()=> Object.entries(DEFAULT_FILTERS).some(([k,v])=>filters[k]!==v)
 
     return (
@@ -38,10 +38,12 @@ export default function Header({filters, categories, setFilters}) {
             </select>
             <input type='text' onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} value={filters.search} placeholder="search by name"/>
             {/* {filters.status} {filters.category} {filters.period} {filters.search} */}
-            <button onClick={()=>setFilters({ ...DEFAULT_FILTERS})}
+            <button onClick={()=>setFilters({ ...DEFAULT_FILTERS})} title = 'Reset filters'
                     disabled={!canReset()}>
-                Reset Filters
+                ↻
             </button>
+            <button onClick={()=>openModal('addTask')} className='addNewBtn'>New Task</button>
+            
         </header>
         </>
     )

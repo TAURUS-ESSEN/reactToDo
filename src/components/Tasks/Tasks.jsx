@@ -125,6 +125,11 @@ export default function Tasks() {
     return arr;
     })();
 
+    function checkAllTasks(e) {
+        const checked = e.target.checked;
+        setTasks(prev => prev.map(t => ({ ...t, isReady: checked })));
+    }
+        
     return (
         <>
             <div className={styles.chipsContainer}>
@@ -134,7 +139,9 @@ export default function Tasks() {
         <table className={styles.tasksListeTable}> 
             <thead>
                 <tr className={`${styles.taskInfo}`}>
-                    <th colSpan={3} className={styles.tasksBlockSorting}>
+                    <th></th>
+                    <th><input type='checkbox' onChange={(e)=>checkAllTasks(e)}/></th>
+                    <th colSpan={1} className={styles.tasksBlockSorting}>
                         <button onClick={()=>sortBy('name')}>
                             Task Name { sortTasks.by !== 'name'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
                         </button>
@@ -165,7 +172,7 @@ export default function Tasks() {
                         <td><input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} /></td>
                         <td>
                             <button onClick={()=>openModal('editTask', task.id)} 
-                            className={`${task.isReady ? styles.strike : ''} ${styles.taskNameBtn} ` }>
+                            className={`${task.isReady ? styles.strike2 : ''} ${styles.taskNameBtn} ` }>
                                 {task.name}
                             </button>
                         </td>
@@ -173,13 +180,17 @@ export default function Tasks() {
                             {categories.find(category => category.id === task.category)?.name.slice(0,15) ?? 'No category'}
                         </button></td>
                         <td>{pretty(task.dueDate)} </td>
-                        <td ><span className={`${styles.priorityBlock}${pClass}`}>{colors[task.priority]}</span></td>
+                        <td >
+                            <span className={styles.priorityBlock} >
+                                {colors[task.priority]}
+                            </span>
+                        </td>
                         <td className={styles.taskButtons}>
                             <button onClick={()=>openModal('editTask', task.id)} className={styles.taskEditBtn}>
-                                <i class="fa-solid fa-pencil fa-lg"></i>
+                                <i className="fa-solid fa-pencil fa-lg"></i>
                             </button>
                             <button onClick={()=>deleteTask(task.id)} className={styles.taskDeleteBtn}>
-                                <i class="fa-solid fa-trash-can fa-lg"></i>
+                                <i className="fa-solid fa-trash-can fa-lg"></i>
                             </button>
                         </td>
                     </tr>

@@ -1,7 +1,12 @@
 .strike {
-  text-decoration: line-through;
-  color: rgb(140, 140, 140)
+  color: rgb(140, 140, 140);
 }
+
+.strike2 {
+  text-decoration: line-through;
+  color: #8c8c8c
+}
+
 
 .low {
   background-color: green;
@@ -33,7 +38,7 @@ thead  {
 }
 
 tbody tr:nth-child(even) {
- background-color: rgb(246, 246, 246);
+ background-color: rgb(237, 245, 250);
 }
 tbody tr {
   transition: 0.5s ease;
@@ -63,8 +68,10 @@ tbody tr:hover {
 }
 
 .chipsContainer {
-  margin: 0.5em 0;
+  margin: 0.5em 1em;
   padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
   /* background-color: rgb(141, 140, 138); */
 }
 
@@ -85,6 +92,12 @@ tbody tr:hover {
   top:-0.2em;
   background: none;
   border: 0;
+}
+
+.priorityBlock {
+  border: 1px solid rgb(125, 124, 124);
+  border-radius: 5px;
+  padding: 0.3em;
 }
 
 .taskDeleteBtn, .taskEditBtn {
@@ -117,3 +130,4 @@ tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.756);
   color: white;
 } 
+
