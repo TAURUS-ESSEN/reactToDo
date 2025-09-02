@@ -131,62 +131,41 @@ export default function Tasks() {
                 <Chips />
             </div>
 
-        <table className={styles.tasksListeTable}> 
-            <thead>
-                <tr className={`${styles.taskInfo}`}>
-                    <th colSpan={3} className={styles.tasksBlockSorting}>
-                        <button onClick={()=>sortBy('name')}>
-                            Task Name { sortTasks.by !== 'name'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
-                        </button>
-                    </th>
-                    <th className={styles.tasksBlockSorting}>
-                        <button onClick={()=>sortBy('dueDate')}>Task Category</button>
-                    </th>
-                    <th className={styles.tasksBlockSorting}>
-                        <button onClick={()=>sortBy('dueDate')}>
-                            Due Date { sortTasks.by !== 'dueDate'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
-                        </button>
-                    </th>
-                    <th className={styles.tasksBlockSorting}>
-                        <button   onClick={()=>sortBy('priority')}>
-                            Priority { sortTasks.by !== 'priority'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
-                        </button>
-                    </th>
-                    <th></th>
-                </tr>
-            </thead> 
-            <tbody>
+        <ul className={styles.tasksListe}> 
+            {/* TASKS TABLE HEADER */}
+            <li>
+                <div className={`${styles.taskInfo} ${styles.headers}`}>
+                    <span className={styles.tasksBlockSorting}><button onClick={()=>sortBy('name')}>
+                        Task Name { sortTasks.by !== 'name'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
+                    </button></span>
+                    <span className={styles.tasksBlockSorting}><button onClick={()=>sortBy('dueDate')}>Task Category</button></span>
+                    <span className={styles.tasksBlockSorting}><button onClick={()=>sortBy('dueDate')}>Due Date { sortTasks.by !== 'dueDate'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} </button></span>
+                    <span className={styles.tasksBlockSorting}><button   onClick={()=>sortBy('priority')}>Priority { sortTasks.by !== 'priority'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} </button></span>
+                </div>
+            </li>
+            {/* TASKS BODY CONTAINER  */}
 
             {sortedVisible.map(task => { 
                 const pClass = styles[colors[task.priority ?? 2]];
                 return (
-                    <tr key={task.id} className={`${task.isReady ? styles.strike : ''} ` }>
-                        <td className={pClass}></td>
-                        <td><input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} /></td>
-                        <td>
-                            <button onClick={()=>openModal('editTask', task.id)} 
-                            className={`${task.isReady ? styles.strike : ''} ${styles.taskNameBtn} ` }>
-                                {task.name}
-                            </button>
-                        </td>
-                        <td><button onClick={()=>setFilters(prev=>({...prev, category:  task.category}))}>
+                <li key={task.id} className={`${task.isReady ? styles.strike : ''} ` }>
+                    <div className={styles.taskInfo}>
+                        <div className={pClass}>&nbsp;</div>
+                        <input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} />
+                        <span className={styles.taskName}><button onClick={()=>openModal('editTask', task.id)} >{task.name}</button></span>
+                        <span><button onClick={()=>setFilters(prev=>({...prev, category:  task.category}))}>
                             {categories.find(category => category.id === task.category)?.name.slice(0,15) ?? 'No category'}
-                        </button></td>
-                        <td>{pretty(task.dueDate)} </td>
-                        <td ><span className={`${styles.priorityBlock}${pClass}`}>{colors[task.priority]}</span></td>
-                        <td className={styles.taskButtons}>
-                            <button onClick={()=>openModal('editTask', task.id)} className={styles.taskEditBtn}>
-                                <i class="fa-solid fa-pencil fa-lg"></i>
-                            </button>
-                            <button onClick={()=>deleteTask(task.id)} className={styles.taskDeleteBtn}>
-                                <i class="fa-solid fa-trash-can fa-lg"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    )
+                        </button></span>
+                        <span>{pretty(task.dueDate)} </span>
+                        <span>{colors[task.priority]}</span>
+                    </div>
+                    <div className={styles.taskButtons}>
+                        <button onClick={()=>openModal('editTask', task.id)}>Edit</button>
+                        <button onClick={()=>deleteTask(task.id)}>Delete</button>
+                    </div>
+                </li>)
             })}
-            </tbody>
-        </table>
+        </ul>
         </>
     )
 }

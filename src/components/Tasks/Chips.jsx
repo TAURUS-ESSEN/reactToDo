@@ -50,12 +50,10 @@ export default function Chips() {
             chips.map(c=>{
                 return (
                     <>
-                    
                         <span className={styles.chipName}>
                             {DEFAULT[c] ?? String(c)}
                             <button onClick={(e)=>resetCurrentFilter(e.target.value)} value={c} className={styles.deleteChipBtn}>x</button>
                         </span>
-                    
                     </>
                 )
             }) 

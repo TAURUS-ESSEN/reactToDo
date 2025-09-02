@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { downloadJSON } from "../utils/downloadJSON";
 
-export default function Sidebar({setTasks, openModal}) {
+export default function Sidebar({setTasks, openModal, tasks, categories}) {
     const [quickTask, setQuickTask] = useState('');
     const canQuickAdd = quickTask.trim().length > 0;
     const createId = () => Date.now() + Math.floor(Math.random() * 1000);
@@ -29,6 +30,9 @@ export default function Sidebar({setTasks, openModal}) {
                 <button onClick={()=>openModal('addTask')}>Add task</button>
                 <button onClick={()=>openModal('addCategory')}>Add category</button>
                 <button onClick={()=>openModal('showCategories')}>Manage categories</button>
+                <button type='button' 
+                        onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories // добавь сюда свои задачи
+  })}>Export data</button>
             </div>
         </div>
         </>

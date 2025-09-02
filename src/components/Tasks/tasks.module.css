@@ -15,43 +15,42 @@
   background-color: red;
 }
 
-.tasksListe {
-  width: 100%;
-  background-color: white;
-  margin: 0 0;
-  padding: 0.2em;
-}
-
-.tasksListe > li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  border: 1px solid rgb(149, 152, 153);
+.tasksListeTable {
+  margin: 0.2em;
+  /* padding: 0.2em; */
+  border: 1px solid rgb(196, 196, 196);
   border-radius: 5px;
-  margin: 0.3em 0;
-  padding: 0.5em;
 }
 
-.taskInfo {
-  width: 70%;
-  display: flex;
-  gap:1em;
+.tasksListeTable td,.tasksListeTable th {
+  /* border: 1px solid blue; */
+  min-height: 30px;
 }
 
-.taskName {
-  width: 50%;
-  display: flex;
+thead  {
+  width: 100%;
+  background-color: rgb(246, 246, 246);
 }
 
-.taskName > button {
+tbody tr:nth-child(even) {
+ background-color: rgb(246, 246, 246);
+}
+tbody tr {
+  transition: 0.5s ease;
+}
+
+tbody tr:hover {
+  background-color: rgb(226, 250, 250);
+}
+
+.tasksBlockSorting > button {
   background: none;
   border: 0;
   box-shadow: none;
   cursor: pointer;
   font-weight: 600;
   transition: 0.5s ease;
-  text-decoration: underline;
+  min-height: 30px;
 }
 
 .taskName > button:hover {
@@ -59,18 +58,8 @@
   transform: scale(1,1);
 }
 
-.taskButtons button {
-  margin: 0 0.5em;
-  transition: 0.5s ease;
-}
-
-.taskButtons button:hover {
-  background-color: rgb(217, 108, 5);
-  color: white;
-}
-
 .headers {
-  padding-left: 2em ;
+  /* padding-left: 2em ; */
 }
 
 .chipsContainer {
@@ -97,3 +86,34 @@
   background: none;
   border: 0;
 }
+
+.taskDeleteBtn, .taskEditBtn {
+  height: 30px;
+  margin: 0 0.5em;
+  padding: 0.5em;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background: none;
+  transition: 0.5s ease;
+}
+
+.taskNameBtn {
+  border: 0;
+  background: none;
+}
+
+.taskNameBtn:hover {
+  cursor: pointer;
+  font-weight: 700;
+  
+}
+
+.taskDeleteBtn:hover {
+  background-color: rgba(255, 0, 0, 0.756);
+  color: white;
+}
+
+.taskEditBtn:hover {
+  background-color: rgba(0, 0, 0, 0.756);
+  color: white;
+} 

@@ -73,7 +73,7 @@ function App() {
   return (
     <>
       <div className='container'>
-        <Sidebar setTasks={setTasks} openModal={openModal}/>
+        <Sidebar setTasks={setTasks} openModal={openModal} tasks={tasks} categories={categories}/>
         <div className='main' >
           <Header filters={filters} setFilters={setFilters} categories={categories}/>
           <Outlet context={{tasks, setTasks, categories, openModal, filters, setFilters}}/>

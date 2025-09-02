@@ -1,6 +1,13 @@
-import { useState, useEffect } from 'react';
+const DEFAULT_FILTERS = {
+    status: 'all',
+    category: 'all',
+    period: 'all',
+    search: '',
+    priority: 'all',
+}
 
 export default function Header({filters, categories, setFilters}) {
+    const canReset = ()=> Object.entries(DEFAULT_FILTERS).some(([k,v])=>filters[k]!==v)
 
     return (
         <>
@@ -31,7 +38,10 @@ export default function Header({filters, categories, setFilters}) {
             </select>
             <input type='text' onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} value={filters.search} placeholder="search by name"/>
             {/* {filters.status} {filters.category} {filters.period} {filters.search} */}
-            <button onClick={()=>setFilters({status: 'all', category: 'all', period: 'all', search: '', priority: ''})}  >Reset Filters</button>
+            <button onClick={()=>setFilters({ ...DEFAULT_FILTERS})}
+                    disabled={!canReset()}>
+                Reset Filters
+            </button>
         </header>
         </>
     )
