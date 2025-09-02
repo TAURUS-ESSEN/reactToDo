@@ -170,15 +170,19 @@ export default function Tasks() {
                     <tr key={task.id} className={`${task.isReady ? styles.strike : ''} ` }>
                         <td className={pClass}></td>
                         <td><input type='checkbox' onChange={()=>makeComplete(task.id)} checked={task.isReady} /></td>
-                        <td>
+                        <td className={styles.nameTdcontainer}>
                             <button onClick={()=>openModal('editTask', task.id)} 
                             className={`${task.isReady ? styles.strike2 : ''} ${styles.taskNameBtn} ` }>
-                                {task.name}
+                                {task.name.slice(0,50)}{task.name.length> 50 ? '...' : ''} 
                             </button>
                         </td>
-                        <td><button onClick={()=>setFilters(prev=>({...prev, category:  task.category}))}>
-                            {categories.find(category => category.id === task.category)?.name.slice(0,15) ?? 'No category'}
-                        </button></td>
+                        <td>
+                            <button 
+                                onClick={()=>setFilters(prev=>({...prev, category:  task.category}))} 
+                                className={styles.categoryBtn}>
+                                {categories.find(category => category.id === task.category)?.name.slice(0,15) ?? 'No category'}
+                            </button>
+                        </td>
                         <td>{pretty(task.dueDate)} </td>
                         <td >
                             <span className={styles.priorityBlock} >

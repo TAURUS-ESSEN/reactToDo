@@ -2,22 +2,16 @@ import {useOutletContext} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './tasks.module.css';
 
-    // status: 'all',
-    // category: 'all',
-    // period: 'all',
-    // search: '',
-    // priority: 'all',
-
 export default function Chips() {
 
     const {categories, filters, setFilters} = useOutletContext ();
     const [chips, setChips] = useState([])
         const DEFAULT = {
-        status: `Only ${filters.status} tasks`,
+        status: `Status: ${filters.status}`,
         category: 'filter by category',
         period: `${filters.period} tasks`,
         search: `filter by ${filters.search}`,
-        priority: `Priority ${filters.priority}`
+        priority: `Priority: ${filters.priority}`
     }
     function resetCurrentFilter(value) {
         value === 'search'
@@ -52,7 +46,13 @@ export default function Chips() {
                     <>
                         <span className={styles.chipName}>
                             {DEFAULT[c] ?? String(c)}
-                            <button onClick={(e)=>resetCurrentFilter(e.target.value)} value={c} className={styles.deleteChipBtn}>x</button>
+                            <button 
+                                onClick={(e)=>resetCurrentFilter(e.target.value)} 
+                                value={c} 
+                                className={styles.deleteChipBtn}
+                            >
+                                x
+                            </button>
                         </span>
                     </>
                 )

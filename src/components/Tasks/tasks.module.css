@@ -7,7 +7,6 @@
   color: #8c8c8c
 }
 
-
 .low {
   background-color: green;
 }
@@ -21,26 +20,24 @@
 }
 
 .tasksListeTable {
-  margin: 0.2em;
-  /* padding: 0.2em; */
   border: 1px solid rgb(196, 196, 196);
   border-radius: 5px;
 }
 
 .tasksListeTable td,.tasksListeTable th {
-  /* border: 1px solid blue; */
-  min-height: 30px;
+  text-align: left;
 }
 
 thead  {
-  width: 100%;
   background-color: rgb(246, 246, 246);
 }
 
 tbody tr:nth-child(even) {
- background-color: rgb(237, 245, 250);
+  background-color: rgb(237, 245, 250);
 }
+
 tbody tr {
+  height: 35px;
   transition: 0.5s ease;
 }
 
@@ -82,16 +79,28 @@ tbody tr:hover {
 }
 
 .chipName {
-  color: rgb(117, 116, 115);
+  background-color: rgb(243, 242, 242);
+  padding: 0.3em;
+  border: 1px solid rgb(175, 175, 175);
+  border-radius: 5px;
+  color: rgb(1, 1, 1);
   position: relative;
+  box-shadow: 0 0 3px rgb(211, 211, 211);
 }
 
 .deleteChipBtn {
-  position: absolute;
-  right:-1em;
-  top:-0.2em;
-  background: none;
+  margin-left: 0.3em;
+  background-color: rgb(69, 68, 68);
+  border: 1px solid rgb(118, 116, 116);
+  border-radius: 9999px;
   border: 0;
+  color: white;
+}
+
+.deleteChipBtn:hover {
+  cursor: pointer;
+  background-color: #e9630a;
+  color: rgb(0, 0, 0);
 }
 
 .priorityBlock {
@@ -131,3 +140,18 @@ tbody tr:hover {
   color: white;
 } 
 
+.nameTdcontainer {
+  width: 350px;
+}
+
+.categoryBtn {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+.categoryBtn:hover {
+  background-color: #d4d1d1;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
