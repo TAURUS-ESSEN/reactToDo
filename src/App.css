@@ -80,7 +80,7 @@ input::placeholder {
   font-size: 0.8em;
 }
 
-header button:hover {
+header button:enabled:hover {
   background-color: crimson;
   color: white;
 }
@@ -169,3 +169,4 @@ header input:focus, header select:focus {
   background-color: rgba(209, 96, 4, 0.873);
   color: white;
 }
+ 

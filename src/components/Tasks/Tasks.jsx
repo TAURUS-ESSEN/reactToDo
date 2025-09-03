@@ -129,6 +129,22 @@ export default function Tasks() {
         const checked = e.target.checked;
         setTasks(prev => prev.map(t => ({ ...t, isReady: checked })));
     }
+
+    function checkDate(value) {
+        const pad = (n) => String(n).padStart(2, '0');
+        const todayLocalISO = (() => {
+        const d = new Date();
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;})();
+        const dataDate = value;
+        if (dataDate > todayLocalISO) {
+        return ''
+        } else if (dataDate < todayLocalISO) {
+        return 'overdue'
+        } else if (dataDate === todayLocalISO) {
+         return 'today'
+        }
+        }
+    
         
     return (
         <>
@@ -159,7 +175,7 @@ export default function Tasks() {
                             Priority { sortTasks.by !== 'priority'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
                         </button>
                     </th>
-                    <th></th>
+                    <th> </th>
                 </tr>
             </thead> 
             <tbody>
@@ -183,7 +199,9 @@ export default function Tasks() {
                                 {categories.find(category => category.id === task.category)?.name.slice(0,15) ?? 'No category'}
                             </button>
                         </td>
-                        <td>{pretty(task.dueDate)} </td>
+                        <td>
+                            <span className={`${checkDate(task.dueDate) === 'overdue' ? styles.overdue : ''}`}>{pretty(task.dueDate)} {checkDate(task.dueDate) === 'today'? 'today' : ''}</span>
+                        </td>
                         <td >
                             <span className={styles.priorityBlock} >
                                 {colors[task.priority]}
