@@ -1,8 +1,8 @@
-.strike {
+.completed{
   color: rgb(140, 140, 140);
 }
 
-.strike2 {
+.strike {
   text-decoration: line-through;
   color: #8c8c8c
 }
@@ -158,4 +158,12 @@ tbody tr:hover {
 
 .overdue {
   color: red;
+}
+
+th.checkAll {
+  text-align: center;
+  padding: 0;
+  margin: 0 auto;
+  width: 20px;
+  /* background-color: #e9630a; */
 }

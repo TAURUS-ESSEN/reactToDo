@@ -8,7 +8,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
     const task = tasks.find(task=> task.id === modal.taskId);// это текущий таск который мы редактируем
     const [taskName, setTaskName] = useState(task.name); // это редактируемые поля
     const [taskDescription, setTaskDescription] = useState(task.description);
-    const [taskCategory, setTaskCategory] = useState(task.category);
+    const [taskCategory, setTaskCategory] = useState(task.categoryId);
     const [taskPriority, setTaskPriority] = useState(task.priority);
     const [dueDate, setDueDate] = useState(task.dueDate); 
 
@@ -18,7 +18,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
         e.preventDefault(); // не обновляется страница
         setTasks(prev =>
             prev.map(t =>
-            t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, category: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null  } : t
+            t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, categoryId: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null  } : t
             )
         );
         closeModal()
@@ -37,7 +37,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
                 <select onChange={(e)=>{setTaskCategory(e.target.value)}}>
                     <option disabled value='' selected required>Choose Category</option>
                     {categories.map(category => {
-                        return <option key={category.id} value={category.id} selected={task.category === category.id}>{category.name}</option>
+                        return <option key={category.id} value={category.id} selected={task.categoryId === category.id}>{category.name}</option>
                     })}
                 </select>
                   <label>Task Priority</label>

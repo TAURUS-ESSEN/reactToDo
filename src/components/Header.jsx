@@ -21,7 +21,7 @@ export default function Header({filters, categories, setFilters, openModal}) {
                 <option value='all'>All categories</option>
                 <option value="0">No category</option>
                 {categories.map(c=>{
-                    return <option value={c.id}>{c.name.slice(0,15)}</option>
+                    return <option value={c.id} key={c.id}>{c.name.length > 15 ? c.name.slice(0,15)+'...' : c.name}</option>
                 })}
             </select>
             <select onChange={(e)=>setFilters(prev=>({...prev, period:  e.target.value}))} value={filters.period}>
@@ -31,19 +31,24 @@ export default function Header({filters, categories, setFilters, openModal}) {
                 <option value='overdue'>Overdue</option>
             </select>
             <select onChange={(e)=>{setFilters(prev=>({...prev, priority: e.target.value}))}} value={filters.priority}>
-                <option value='all' deselected>All priorities</option>
+                <option value='all'>All priorities</option>
                 <option value='low'>Low</option>
                 <option value='medium'>Medium</option>
                 <option value='high'>High</option>
             </select>
-            <input type='text' onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} value={filters.search} placeholder="search by name"/>
-            {/* {filters.status} {filters.category} {filters.period} {filters.search} */}
+            <input 
+                type='text' 
+                onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} 
+                value={filters.search} 
+                placeholder="search by name"
+                autoComplete="off"
+            />
             <button onClick={()=>setFilters({ ...DEFAULT_FILTERS})} 
                     title = 'Reset filters'
                     disabled={!canReset()} className="resetFiltersBtn">
                 ↻
             </button>
-            <button onClick={()=>openModal('addTask')} className='addNewBtn'>New Task</button>
+            <button onClick={()=>openModal('addTask')} className='addNewBtn' title = 'Add new task'>New task</button>
             
         </header>
         </>

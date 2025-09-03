@@ -1,3 +1,17 @@
+:root {
+  --primary-color: #d3d3d3;
+  --secondary-color:#c95000;
+  --secondary-color-hover:#151515;
+  --sidebar-color: #f2f3f4;
+  --focus-border: #1e90ff;
+  --focus-shadow: #1e90ff;
+  --danger-background: #dc143c;
+  --white-text: #ffffff;
+  --black-text: #000000;
+  --reset-background: #6e6d6d;
+    box-sizing: border-box;
+}
+
 #root {
   margin: 0;
   padding: 0;
@@ -18,6 +32,13 @@
   padding: 0;
 }
 
+main {
+  display: flex;
+  width: 100%;
+  margin-left: 0.5em;
+  flex-direction: column;
+}
+
 header {
   display: flex;
   gap: 1em;
@@ -25,7 +46,7 @@ header {
   padding: 1em;
 
   border-radius: 5px;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--primary-color);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.196);
 }
 
@@ -37,64 +58,66 @@ header {
   padding: 0.5rem;
   
   border-radius: 5px;
-  border: 1px solid rgb(188, 191, 192);
-  background-color: rgb(242, 243, 244);
+  border: 1px solid var(--primary-color);
+  background-color: var(--sidebar-color);
 }
 
 .sidebar input:focus {
   outline: none;
-  border: 1px solid rgb(255, 184, 30);
-  box-shadow: 0 0 5px rgba(238, 138, 7, 0.645);
+  border: 1px solid var(--focus-border);
+  box-shadow: 0 0 5px var(--focus-shadow);
 }
 
-.main {
-  display: flex;
-  width: 100%;
-  margin-left: 0.5em;
-  flex-direction: column;
-}
-
-.footer {
+footer {
   padding: 1em;
   margin-top: 0.3em;
-  border: 1px solid rgb(188, 191, 192);
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
 }
 
 header > select, header > input, header > button  {
-  padding: 0.5em;
-  border: 1px solid lightgray;
+  border: 1px solid var(--primary-color);
   padding: 0.6em;
   border-radius: 5px;
   font-size: 1rem;
-  line-height: 1.2;
-  box-shadow: 0 0 5px rgb(219, 218, 218);
-  transition: 0.4s ease-in-out;
+  box-shadow: 0 0 3px var(--primary-color);
+  transition: 0.5s ease-in-out;
 }
 
-header > select {
-  max-width: 150px;
+button:active {
+  cursor: pointer;
 }
 
 input::placeholder {
   font-size: 0.8em;
 }
 
-header button:enabled:hover {
-  background-color: crimson;
-  color: white;
-}
-
 header input:focus, header select:focus {
   outline: none;
-  border: 1px solid dodgerblue;
-  box-shadow: 0 0 5px dodgerblue;
+  border: 1px solid var(--focus-border);
+  box-shadow: 0 0 5px var(--focus-shadow);
+}
+
+.resetFiltersBtn:enabled:hover {
+  background-color: var(--reset-background);
+  color: var(--white-text);
+}
+
+.addNewBtn {
+  width: 120px;
+  background-color: var(--secondary-color);
+  color: var(--white-text);
+}
+
+.addNewBtn:hover {
+  background-color: var(--secondary-color-hover);
+  color: var(--white-text);
 }
 
 /*        sidebar start       */
 .logoLink {
   text-decoration: none;
-  color: rgb(205, 111, 2);
+  color: var(--secondary-color);
 }
 
 .sidebarButtonsBlock {
@@ -107,15 +130,15 @@ header input:focus, header select:focus {
   min-height: 2.2rem;
   padding: 0.5em;
 
-  background-color: rgba(239, 239, 239, 0.873);
-  border: 1px solid rgb(172, 171, 169);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   transition: 0.5s ease;
 }
 
 .sidebarButtonsBlock> button:hover {
-  background-color: rgba(255, 136, 0, 0.873);
-  color: white;
+  background-color: var(--secondary-color-hover);
+  color: var(--white-text);
 }
 
 .quickAddBlock {
@@ -126,7 +149,7 @@ header input:focus, header select:focus {
 
 .quickAddInput {
   border-radius: 5px 0px 0px 5px;
-  border: 1px solid lightgray;
+  border: 1px solid var(--primary-color);
   padding: 0.5em;
   font-size: 1rem;
   width: 150px;
@@ -138,35 +161,17 @@ header input:focus, header select:focus {
   font-size: 1rem;
   border: 0;
   border-radius: 0px 5px 5px 0px;
-  color: white;
+  color: var(--white-text);
   transition: 0.5s ease;
 }
 
 .quickAddBtn:enabled {
-  background-color: rgba(255, 136, 0, 0.873);
+  background-color: var(--secondary-color);
 }
 
 .quickAddBtn:enabled:hover {
-  background-color: rgba(224, 97, 12, 0.91);
+  background-color: var(--secondary-color-hover);
   cursor: pointer;
 }
 
 /*        sidebar ende        */
-
-.addNewBtn {
-  width: 120px;
-  background-color: rgba(255, 102, 0, 0.873);
-  padding: 0.5em;
-  /* background: none; */
-  border: 1px solid rgb(172, 171, 169);
-  border-radius: 5px;
-  transition: 0.5s ease;
-  min-height: 2.2rem;
-  color: white;
-}
-
-.addNewBtn:hover {
-  background-color: rgba(209, 96, 4, 0.873);
-  color: white;
-}
- 

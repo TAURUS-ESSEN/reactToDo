@@ -4,12 +4,12 @@ import { downloadJSON } from "../utils/downloadJSON";
 
 export default function Sidebar({setTasks, openModal, tasks, categories}) {
     const [quickTask, setQuickTask] = useState('');
-    const canQuickAdd = quickTask.trim().length > 0;
-    const createId = () => Date.now() + Math.floor(Math.random() * 1000);
+    const canQuickAdd = quickTask.trim().length > 1;
+    const genId = () => Date.now() + Math.floor(Math.random() * 1000);
 
     function addQuickTask() {
         if (!canQuickAdd) return;
-        setTasks(prev=>[...prev, {id: createId(), name: quickTask, description: '', isReady: false, priority: 1, category: 0, dueDate: ''}])
+        setTasks(prev=>[...prev, {id: genId(), name: quickTask, description: '', completed: false, priority: 1, category: 0, dueDate: ''}])
         setQuickTask('');
     }
 
@@ -28,12 +28,10 @@ export default function Sidebar({setTasks, openModal, tasks, categories}) {
                 <button onClick={addQuickTask} disabled={!canQuickAdd} className="quickAddBtn">+</button>
             </div>
             <div className="sidebarButtonsBlock">
-                {/* <button onClick={()=>openModal('addTask')}>Add task</button> */}
                 <button onClick={()=>openModal('addCategory')}>Add category</button>
                 <button onClick={()=>openModal('showCategories')}>Manage categories</button>
                 <button type='button' 
-                        onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories // добавь сюда свои задачи
-  })}>Export data</button>
+                        onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories })}>Export data</button>
             </div>
         </div>
         </>

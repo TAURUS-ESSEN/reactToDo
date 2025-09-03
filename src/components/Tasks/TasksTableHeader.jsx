@@ -1,0 +1,34 @@
+import styles from './tasks.module.css'
+
+export default function TasksTableHeader({sortBy,sortTasks,checkAllTasks }) {
+
+    return (
+        <>
+            <thead>
+                <tr className={`${styles.taskInfo}`}>
+                    <th></th>
+                    <th className={styles.checkAll}><input type='checkbox' onChange={(e)=>checkAllTasks(e)}/></th>
+                    <th className={styles.tasksBlockSorting}>
+                        <button onClick={()=>sortBy('name')}>
+                            Task Name { sortTasks.by !== 'name'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
+                        </button>
+                    </th>
+                    <th className={styles.tasksBlockSorting}>
+                        <button onClick={()=>sortBy('dueDate')}>Task Category</button>
+                    </th>
+                    <th className={styles.tasksBlockSorting}>
+                        <button onClick={()=>sortBy('dueDate')}>
+                            Due Date { sortTasks.by !== 'dueDate'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
+                        </button>
+                    </th>
+                    <th className={styles.tasksBlockSorting}>
+                        <button onClick={()=>sortBy('priority')}>
+                            Priority { sortTasks.by !== 'priority'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
+                        </button>
+                    </th>
+                    <th> </th>
+                </tr>
+            </thead>         
+        </>
+    )
+}

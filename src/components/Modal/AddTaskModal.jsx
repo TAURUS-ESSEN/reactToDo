@@ -18,7 +18,7 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
     function onSubmit(e) {
         e.preventDefault()
         if (!canClick) return
-        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), isReady: false, category: categoryId ? Number(categoryId) : 0 , priority: priority, dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null }])
+        setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), completed: false, categoryId: categoryId ? Number(categoryId) : 0 , priority: priority, dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null }])
         setTaskName('');
         setTaskDescription('');
         closeModal();
