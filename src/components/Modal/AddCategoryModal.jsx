@@ -28,7 +28,7 @@ export default function AddCategoryModal({categories, setCategories, closeModal}
                 <form onSubmit={onSubmit} className={styles.createForm}>
                     <label>Enter category name</label>
                     <input type='text' 
-                        onChange={(e) => setCategoryName(e.target.value.trim())} 
+                        onChange={(e) => setCategoryName(e.target.value)} 
                         value={categoryName}
                         // onBlur = {(e) => setCategoryName(e.target.value.trim())} 
                         maxLength={50}

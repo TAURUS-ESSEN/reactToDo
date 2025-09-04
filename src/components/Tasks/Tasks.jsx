@@ -47,6 +47,10 @@ export default function Tasks() {
     };
     const priorityPred = filterByPriority[filters?.priority] ?? filterByStatus.all;
 
+    const dueDatePred =  
+            !filters || filters.dueDate === 'all'
+            ? () => true
+            : (t) => t.dueDate === filters.dueDate;
 
     const categoryPred = 
         !filters || filters.category === 'all'
@@ -84,7 +88,7 @@ export default function Tasks() {
     };
     const datePred = filterByDate[filters?.period] ?? filterByDate.all;
 
-    const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred);
+    const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred).filter(dueDatePred);
 
     // SORTING AREA
 
@@ -130,8 +134,11 @@ export default function Tasks() {
     })();
 
     function checkAllTasks(e) {
-        const checked = e.target.checked;
-        setTasks(prev => prev.map(t => ({ ...t, completed: checked })));
+            const checked = e.target.checked;
+            // visible.map(task => console.log(task) );
+            setTasks(prev => prev.map(t => visible.includes(t) ? ({ ...t, completed: checked }) : t));
+        
+        // setTasks(prev => prev.map(t => ({ ...t, completed: checked })));
     }
 
     function checkDate(value) {
@@ -152,33 +159,50 @@ export default function Tasks() {
         <div className={styles.chipsContainer}>
             <Chips />
         </div>
-
+            
         <table className={styles.tasksListeTable}> 
-            <TasksTableHeader sortBy={sortBy} sortTasks={sortTasks} checkAllTasks={checkAllTasks}/>
+            <TasksTableHeader 
+                sortBy={sortBy} 
+                sortTasks={sortTasks} 
+                checkAllTasks={checkAllTasks}/>
             <tbody>
             {sortedVisible.map(task => { 
                 const pClass = styles[colors[task.priority ?? 2]];
                 return (
                     <tr key={task.id} className={`${task.completed ? styles.completed : ''} ` }>
                         <td className={pClass}></td>
-                        <td><input type='checkbox' onChange={()=>makeCompleted(task.id)} checked={task.completed} /></td>
+                        <td>
+                            <input 
+                                type='checkbox' 
+                                onChange={()=>makeCompleted(task.id)} 
+                                checked={task.completed}
+                                />
+                        </td>
                         <td className={styles.nameTdcontainer}>
-                            <button onClick={()=>openModal('editTask', task.id)} 
-                            className={`${task.completed ? styles.strike : ''} ${styles.taskNameBtn} ` }>
-                                {task.name.slice(0,50)}{task.name.length> 50 ? '...' : ''} 
+                            <button 
+                                onClick={()=>openModal('editTask', task.id)}
+                                className={`${task.completed ? styles.strike : ''} ${styles.taskNameBtn} ` }>
+                                    {task.name.slice(0,50)}{task.name.length> 50 ? '...' : ''} 
                             </button>
                         </td>
                         <td>
                             <button 
                                 onClick={()=>setFilters(prev=>({...prev, category:  task.categoryId}))} 
+                                title = {`show tasks in category`} 
                                 className={styles.categoryBtn}>
-                                {categories.find(category => category.id === task.categoryId)?.name.slice(0,15) ?? 'No category'}
+                                    {categories.find(category => category.id === task.categoryId)?.name.slice(0,15) ?? 'No category'}
                             </button>
                         </td>
                         <td>
-                            <span className={`${checkDate(task.dueDate) === 'overdue' ? styles.overdue : ''}${task.completed ? styles.completed : ''}`}>{pretty(task.dueDate)} {checkDate(task.dueDate) === 'today'? 'today' : ''}</span>
+                            <span 
+                                className={`
+                                    ${checkDate(task.dueDate) === 'overdue' ? styles.overdue : ''}
+                                    ${task.completed ? styles.completed : ''}`
+                            }>
+                                {pretty(task.dueDate)} {checkDate(task.dueDate) === 'today'? 'today' : ''} 
+                            </span>
                         </td>
-                        <td >
+                        <td>
                             <span className={styles.priorityBlock} >
                                 {colors[task.priority]}
                             </span>

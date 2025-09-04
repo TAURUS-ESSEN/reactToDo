@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar'
 import ModalHost from './components/Modal/ModalHost'
 import './App.css'
 import 'react-day-picker/dist/style.css';
+import './calendar.css'
 import { DEFAULT_TASKS, DEFAULT_CATEGORIES } from './data/defaults';
 
 function loadInitialTasks() {
@@ -42,6 +43,7 @@ function App() {
     period: 'all',
     search: '',
     priority: 'all',
+    dueDate: 'all',
   })
 
   const openModal = (modalType, id = null) => setModal({isOpen: true, type: modalType, taskId : id});
@@ -64,6 +66,7 @@ function App() {
             openModal={openModal} 
             tasks={tasks} 
             categories={categories} 
+            setFilters={setFilters} 
           />
           <main>
             <Header 

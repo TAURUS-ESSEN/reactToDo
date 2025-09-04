@@ -1,5 +1,19 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-color: #d3d3d3;
+    --gray-color: #8c8c8c;
+  --secondary-color:#c95000;
+  --secondary-color-hover:#151515;
+  --sidebar-color: #f2f3f4;
+  --focus-border: #1e90ff;
+  --focus-shadow: #1e90ff;
+  --danger-background: #dc143c;
+  --white-text: #ffffff;
+  --black-text: #000000;
+  --reset-background: #6e6d6d;
+  --tr-even: #edf5fa;
+  --tr-hover: #e2fafa;
+    box-sizing: border-box;
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -10,9 +24,9 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
 }
-
+/* 
 a {
   font-weight: 500;
   color: #646cff;
@@ -65,4 +79,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

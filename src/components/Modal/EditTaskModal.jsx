@@ -26,7 +26,6 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
 
     return (
         <>
-
         <Modal title={'Edit Task'} closeModal={closeModal}>
             <form onSubmit={onSubmit} className={styles.form}>
                 <label>Task Name</label>
@@ -40,7 +39,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
                         return <option key={category.id} value={category.id} selected={task.categoryId === category.id}>{category.name}</option>
                     })}
                 </select>
-                  <label>Task Priority</label>
+                <label>Task Priority</label>
                 <select onChange={(e)=>setTaskPriority(e.target.value)}>
                     <option value={1} selected={task.priority===1}>Low</option>
                     <option value={2} selected={task.priority===2}>Middle</option>
@@ -52,15 +51,14 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
                     value={taskDescription}  
                     placeholder='some description'
                 />
-                                <DayPicker
-                                 className={styles.calendar}
-                                mode="single"
-                                selected={dueDate}
-                                onSelect={setDueDate}
-                                weekStartsOn={1}
-                                />
+                    <DayPicker
+                        className={styles.calendar}
+                        mode="single"
+                        selected={dueDate}
+                        onSelect={setDueDate}
+                        weekStartsOn={1}
+                    />
                 <div>
-
                     <button type="button" onClick={closeModal}>Cancel</button>
                     <button type='submit' disabled={!canClick}>Send</button>
                 </div>

@@ -32,13 +32,14 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
                 <input type='text' 
                     onChange={(e)=>setTaskName(e.target.value)} 
                     value={taskName} 
+                    autoFocus
                 />
                 <select onChange={(e)=>{setCategoryId(e.target.value)}}>
                     <option disabled value='' selected required>Choose Category</option>
                     {categories.map(category => {
                         return <option key={category.id} value={category.id}>{category.name}</option>
                     })}
-                </select>{categoryId}
+                </select>
                 <label>Task Description</label>
                 <textarea 
                     onChange={(e)=>setTaskDescription(e.target.value)} 

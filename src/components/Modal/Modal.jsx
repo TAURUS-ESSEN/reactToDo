@@ -16,15 +16,15 @@ export default function Modal({title, children, closeModal}) {
 
     return createPortal(
         <>
-            <div className={styles.overlay} onClick={(e)=> {e.currentTarget === e.target && closeModal()}}>
-                <div className={styles.content}>
+            <div className={styles.modalOverlay} onClick={(e)=> {e.currentTarget === e.target && closeModal()}}>
+                <div className={styles.modalContent}>
                     <div className={styles.modalHeader}>
-                        <h3 className={styles.title}>{title}</h3>
+                        <h3 className={styles.modalTitle}>{title}</h3>
                         <button onClick={()=>closeModal()} >&times;</button>
                     </div>
-                    {children}
+                    <span>{children}</span>
                 </div>
             </div>
         </>
-    ,modalRoot)
+    , modalRoot)
 }

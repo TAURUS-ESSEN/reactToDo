@@ -13,7 +13,8 @@ export default function Chips() {
         category: `Category: ${category?.name ?? 'No category' }`,
         period: `Time: ${filters.period}`,
         search: `Search word: ${filters.search}`,
-        priority: `Priority: ${filters.priority}`
+        priority: `Priority: ${filters.priority}`,
+        dueDate: `due Date: ${pretty(filters.dueDate)}`
     }
 
     function resetCurrentFilter(value) {
@@ -22,7 +23,12 @@ export default function Chips() {
         : setFilters(prev=>({...prev, [value]: 'all'}))
     }
 
-    
+    function pretty(dueDate) {
+        if (!dueDate) return '-';
+            const [y,m,d] = dueDate.split('-');
+        return `${d}.${m}.${y}`;
+    }
+
     useEffect(() => {
         for (let key in filters) {
             if (filters[key] !== 'all' && filters[key] !== '') {

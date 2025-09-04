@@ -7,7 +7,7 @@ export default function TasksTableHeader({sortBy,sortTasks,checkAllTasks }) {
             <thead>
                 <tr className={`${styles.taskInfo}`}>
                     <th></th>
-                    <th className={styles.checkAll}><input type='checkbox' onChange={(e)=>checkAllTasks(e)}/></th>
+                    <th className={styles.checkAll}><input type='checkbox' onChange={(e)=>checkAllTasks(e)} id='checkAll' /></th>
                     <th className={styles.tasksBlockSorting}>
                         <button onClick={()=>sortBy('name')}>
                             Task Name { sortTasks.by !== 'name'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 

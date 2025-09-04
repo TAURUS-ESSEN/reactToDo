@@ -1,15 +1,5 @@
 :root {
-  --primary-color: #d3d3d3;
-  --secondary-color:#c95000;
-  --secondary-color-hover:#151515;
-  --sidebar-color: #f2f3f4;
-  --focus-border: #1e90ff;
-  --focus-shadow: #1e90ff;
-  --danger-background: #dc143c;
-  --white-text: #ffffff;
-  --black-text: #000000;
-  --reset-background: #6e6d6d;
-    box-sizing: border-box;
+
 }
 
 #root {

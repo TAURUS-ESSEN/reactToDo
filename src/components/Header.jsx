@@ -4,10 +4,19 @@ const DEFAULT_FILTERS = {
     period: 'all',
     search: '',
     priority: 'all',
+    dueDate: 'all'
 }
 
 export default function Header({filters, categories, setFilters, openModal}) {
     const canReset = ()=> Object.entries(DEFAULT_FILTERS).some(([k,v])=>filters[k]!==v)
+ 
+
+    function resetAllFilters() {
+        const checkbox = document.getElementById('checkAll')
+        checkbox.checked = false;
+        setFilters({ ...DEFAULT_FILTERS}); 
+    console.log('checkbox', checkbox)
+    }
 
     return (
         <>
@@ -43,7 +52,8 @@ export default function Header({filters, categories, setFilters, openModal}) {
                 placeholder="search by name"
                 autoComplete="off"
             />
-            <button onClick={()=>setFilters({ ...DEFAULT_FILTERS})} 
+            {/* <button onClick={()=>{setFilters({ ...DEFAULT_FILTERS}); resetAllFilters() }}  */}
+            <button onClick={()=>{resetAllFilters()}} 
                     title = 'Reset filters'
                     disabled={!canReset()} className="resetFiltersBtn">
                 ↻
