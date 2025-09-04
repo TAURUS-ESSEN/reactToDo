@@ -16,7 +16,7 @@ export default function TasksTableHeader({sortBy,sortTasks,checkAllTasks }) {
                     <th className={styles.tasksBlockSorting}>
                         <button onClick={()=>sortBy('dueDate')}>Task Category</button>
                     </th>
-                    <th className={styles.tasksBlockSorting}>
+                    <th className={`${styles.tasksBlockSorting} ${styles.dueDateTd}`}>
                         <button onClick={()=>sortBy('dueDate')}>
                             Due Date { sortTasks.by !== 'dueDate'? '↕' : sortTasks.dir === 'asc' ? '▲'  : '▼'} 
                         </button>

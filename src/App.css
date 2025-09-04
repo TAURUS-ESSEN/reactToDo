@@ -1,12 +1,15 @@
-:root {
-
-}
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Combo&family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Metrophobic&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rancho&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 #root {
   margin: 0;
   padding: 0;
   text-align: center;
   box-sizing: border-box;
+  font-family: Metrophobic;
+}
+
+select, button, input {
+  font-family: Metrophobic;
 }
 
 .wrapper {

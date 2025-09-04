@@ -46,7 +46,12 @@ export default function Chips() {
     },[filters])
 
     return (
-    <>  
+    <>   
+        <span className={styles.priorityLegend}>
+            <span className={styles.low}>&nbsp;</span><span>low</span> 
+            <span className={styles.medium}>&nbsp;</span><span>medium</span> 
+            <span className={styles.high}>&nbsp;</span><span>high</span>
+        </span>
     <div className={styles.chipsBlock}>
         {chips.map(c => {
                 return (

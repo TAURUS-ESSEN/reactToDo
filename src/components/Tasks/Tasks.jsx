@@ -142,17 +142,29 @@ export default function Tasks() {
 
     function checkDate(value) {
         const pad = (n) => String(n).padStart(2, '0');
-        const todayLocalISO = (() => {
         const d = new Date();
+
+        const todayLocalISO = (() => {
         return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;})();
+
         const dataDate = value;
 
-        if (dataDate > todayLocalISO) return ''
-        else if (dataDate!== '' && dataDate < todayLocalISO) return 'overdue'
-        else if (dataDate === todayLocalISO) return 'today'
-    }
-    
+        let tomorrow = (() => {
+            let tomorrowDate = new Date(d); 
+            tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+            return tomorrowDate.getFullYear()+'-'+String(tomorrowDate.getMonth() + 1).padStart(2, "0")+'-'+String(tomorrowDate.getDate()).padStart(2, "0")})()
+
+        //         let tomorrowDate = new Date(d);
+        // tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+        // let tomorrow = tomorrowDate.getFullYear()+'-'+String(tomorrowDate.getMonth() + 1).padStart(2, "0")+'-'+String(tomorrowDate.getDate()).padStart(2, "0")
         
+        if (dataDate!== '' && dataDate < todayLocalISO) return 'overdue' // 'overdue'
+        else if (dataDate === todayLocalISO) return 'today'
+        
+        else if (dataDate === tomorrow) return 'tomorrow'
+        else return ''
+    }
+ 
     return (
         <>
         <div className={styles.chipsContainer}>
@@ -192,13 +204,21 @@ export default function Tasks() {
                                     {categories.find(category => category.id === task.categoryId)?.name.slice(0,15) ?? 'No category'}
                             </button>
                         </td>
-                        <td>
+                        <td className={styles.dueDateTd}>
                             <span 
                                 className={`
+                                    
                                     ${checkDate(task.dueDate) === 'overdue' ? styles.overdue : ''}
                                     ${task.completed ? styles.completed : ''}`
                             }>
-                                {pretty(task.dueDate)} {checkDate(task.dueDate) === 'today'? 'today' : ''} 
+                                {pretty(task.dueDate)} 
+                                {(checkDate(task.dueDate) !=='') && (checkDate(task.dueDate) !=='overdue') && (
+                                <span > {checkDate(task.dueDate) === 'today'
+                                    ? <span className={styles.todayHint}>today</span> 
+                                    : checkDate(task.dueDate) === 'tomorrow' 
+                                        ? <span className={styles.tomorrowHint}>tomorrow</span>  : ''} 
+                                </span>
+                                )}
                             </span>
                         </td>
                         <td>
