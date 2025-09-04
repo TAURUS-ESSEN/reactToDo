@@ -6,6 +6,7 @@
   text-align: center;
   box-sizing: border-box;
   font-family: Metrophobic;
+  /* background-image: url('./assets/groovepaper.png'); */
 }
 
 select, button, input {
@@ -16,6 +17,8 @@ select, button, input {
   max-width: 1280px;
   margin: 0 auto;
   border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(192, 190, 190, 0.542);
 }
 
 .container {
@@ -53,6 +56,7 @@ header {
   border-radius: 5px;
   border: 1px solid var(--primary-color);
   background-color: var(--sidebar-color);
+  background-image: url('./assets/groovepaper.png');
 }
 
 .sidebar input:focus {
@@ -66,13 +70,14 @@ footer {
   margin-top: 0.3em;
   border: 1px solid var(--primary-color);
   border-radius: 5px;
+  box-shadow: 0 -1px 2px rgba(211, 210, 210, 0.395);
 }
 
 header > select, header > input, header > button  {
   border: 1px solid var(--primary-color);
   padding: 0.6em;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   box-shadow: 0 0 3px var(--primary-color);
   transition: 0.5s ease-in-out;
 }
@@ -98,6 +103,9 @@ header input:focus, header select:focus {
 
 .addNewBtn {
   width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--secondary-color);
   color: var(--white-text);
 }

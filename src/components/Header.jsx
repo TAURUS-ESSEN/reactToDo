@@ -1,4 +1,5 @@
 import Tasks from "./Tasks/Tasks";
+import styles from './Tasks/tasks.module.css'
 
 const DEFAULT_FILTERS = {
     status: 'all',
@@ -28,25 +29,25 @@ export default function Header({filters, tasks, categories, setFilters, openModa
         <>
         <header>
             <select onChange={(e)=>setFilters(prev=>({...prev, status:  e.target.value}))} value={filters.status}>
-                <option value='all'>All tasks</option>
+                <option value='all'>✅ All tasks</option>
                 <option value='active'>Active</option>
                 <option value='completed'>Completed</option>
             </select>
             <select onChange={(e)=>setFilters(prev=>({...prev, category:  e.target.value}))} value={filters.category}> 
-                <option value='all'>All categories</option>
+                <option value='all'>📂 All categories</option>
                 <option value="0">No category ({calculateTasksInCategory(0)})</option>
                 {categories.map(c=>{
                     return <option value={c.id} key={c.id}>{c.name.length > 15 ? c.name.slice(0,15)+'...' : c.name} ({calculateTasksInCategory(c.id)})</option>
                 })}
             </select>
             <select onChange={(e)=>setFilters(prev=>({...prev, period:  e.target.value}))} value={filters.period}>
-                <option value='all'>All time</option>
+                <option value='all'>⏳ All time</option>
                 <option value='today'>Today</option>
                 <option value='week'>Week</option>
                 <option value='overdue'>Overdue</option>
             </select>
             <select onChange={(e)=>{setFilters(prev=>({...prev, priority: e.target.value}))}} value={filters.priority}>
-                <option value='all'>All priorities</option>
+                <option value='all'>🚩 All priorities</option>
                 <option value='low'>Low</option>
                 <option value='medium'>Medium</option>
                 <option value='high'>High</option>
@@ -64,7 +65,7 @@ export default function Header({filters, tasks, categories, setFilters, openModa
                     disabled={!canReset()} className="resetFiltersBtn">
                 ↻
             </button>
-            <button onClick={()=>openModal('addTask')} className='addNewBtn' title = 'Add new task'>New task</button>
+            <button onClick={()=>openModal('addTask')} className='addNewBtn' title = 'Add new task'>+New task</button>
             
         </header>
         </>

@@ -11,7 +11,8 @@
   --rdp-outline-selected: 2px solid #1d4ed8;
   --rdp-day_button-height: 32px;
   --rdp-day_button-width: 32px;
-  --rdp-day-height: 24px
+  --rdp-day-height: 24px;
+  background-color: white;
   
 
   width: 250px;
