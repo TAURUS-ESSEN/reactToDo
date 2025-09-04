@@ -61,19 +61,19 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
             case ('move'): 
                 setCategories(prev => prev.filter(c => c.id!==id))
                 setTasks(prev => prev.map(t=>
-                t.category === id ? {...t, category: Number(showBlocks.tasksToCategory) } : t 
+                t.categoryId === id ? {...t, categoryId: Number(showBlocks.tasksToCategory) } : t 
             ));
             break;
 
             case ('delete'): 
                 setCategories(prev => prev.filter(c => c.id !== id))
-                setTasks(prev => prev.filter(t => t.category !== id))
+                setTasks(prev => prev.filter(t => t.categoryId !== id))
                 break;
 
             default : 
                 setCategories(prev => prev.filter(c => c.id !== id))
                 setTasks(prev => prev.map(t =>
-                    t.category === id ? {...t, category: null } : t 
+                    t.categoryId === id ? {...t, categoryId: null } : t 
                 ));
                 break;
         }
@@ -84,7 +84,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
         <Modal title={'Manage categories'} closeModal={closeModal}>
             <div className={styles.categoriesListContainer}>
                 {categories.map(c => {
-                    let taskNumbers = tasks.filter(t => t.category === c.id);
+                    let taskNumbers = tasks.filter(t => t.categoryId === c.id);
                     return <li key = {c.id}>
                         <div className = {styles.currentCategoryBlock}>
                             <span className = {styles.categoryNameSpan}> 
