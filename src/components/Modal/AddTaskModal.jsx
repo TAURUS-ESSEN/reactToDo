@@ -48,8 +48,8 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
                 />
                 <label>Priority</label>
                 <select onChange={(e)=>setPriority(e.target.value)}>
-                    <option value={1}>Low</option>
-                    <option value={2} selected>Middle</option>
+                    <option value={1} selected>Low</option>
+                    <option value={2}>Middle</option>
                     <option value={3}>High</option>
                 </select>
                 <label>Due date</label>

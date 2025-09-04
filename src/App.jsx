@@ -70,6 +70,7 @@ function App() {
           />
           <main>
             <Header 
+              tasks = {tasks}
               filters={filters} 
               setFilters={setFilters} 
               categories={categories} 

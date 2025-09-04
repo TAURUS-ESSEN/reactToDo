@@ -87,7 +87,7 @@ export default function Tasks() {
     none: (t) => !t.dueDate, // если у задачи даты нет вообще → подходит под фильтр "без даты"
     };
     const datePred = filterByDate[filters?.period] ?? filterByDate.all;
-
+    
     const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred).filter(dueDatePred);
 
     // SORTING AREA
@@ -117,7 +117,7 @@ export default function Tasks() {
         );
     }
 
-    if (sortTasks.by === 'dueDate') {
+    if ((sortTasks.by === 'dueDate') || (sortTasks.by === '') ) {
         arr.sort((a, b) => {
             const A = a.dueDate ?? ''; // '' если нет даты
             const B = b.dueDate ?? '';
@@ -126,19 +126,18 @@ export default function Tasks() {
             if (!B) return -1;
 
             const res = A.localeCompare(B); // ISO 'YYYY-MM-DD' сортируется корректно
-            return sortTasks.dir === 'asc' ? res : -res;
+            return sortTasks.dir === 'desc' ? -res : res;
         });
     }
   // тут же можно добавить сортировки по дате/приоритету аналогично
+ 
     return arr;
+ 
     })();
 
     function checkAllTasks(e) {
             const checked = e.target.checked;
-            // visible.map(task => console.log(task) );
             setTasks(prev => prev.map(t => visible.includes(t) ? ({ ...t, completed: checked }) : t));
-        
-        // setTasks(prev => prev.map(t => ({ ...t, completed: checked })));
     }
 
     function checkDate(value) {
@@ -176,7 +175,7 @@ export default function Tasks() {
                                 type='checkbox' 
                                 onChange={()=>makeCompleted(task.id)} 
                                 checked={task.completed}
-                                />
+                            />
                         </td>
                         <td className={styles.nameTdcontainer}>
                             <button 

@@ -1,3 +1,5 @@
+import Tasks from "./Tasks/Tasks";
+
 const DEFAULT_FILTERS = {
     status: 'all',
     category: 'all',
@@ -7,7 +9,7 @@ const DEFAULT_FILTERS = {
     dueDate: 'all'
 }
 
-export default function Header({filters, categories, setFilters, openModal}) {
+export default function Header({filters, tasks, categories, setFilters, openModal}) {
     const canReset = ()=> Object.entries(DEFAULT_FILTERS).some(([k,v])=>filters[k]!==v)
  
 
@@ -16,6 +18,10 @@ export default function Header({filters, categories, setFilters, openModal}) {
         checkbox.checked = false;
         setFilters({ ...DEFAULT_FILTERS}); 
     console.log('checkbox', checkbox)
+    }
+
+    function calculateTasksInCategory(id) {
+        return tasks.filter(t=>t.categoryId===id).length
     }
 
     return (
@@ -28,9 +34,9 @@ export default function Header({filters, categories, setFilters, openModal}) {
             </select>
             <select onChange={(e)=>setFilters(prev=>({...prev, category:  e.target.value}))} value={filters.category}> 
                 <option value='all'>All categories</option>
-                <option value="0">No category</option>
+                <option value="0">No category ({calculateTasksInCategory(0)})</option>
                 {categories.map(c=>{
-                    return <option value={c.id} key={c.id}>{c.name.length > 15 ? c.name.slice(0,15)+'...' : c.name}</option>
+                    return <option value={c.id} key={c.id}>{c.name.length > 15 ? c.name.slice(0,15)+'...' : c.name} ({calculateTasksInCategory(c.id)})</option>
                 })}
             </select>
             <select onChange={(e)=>setFilters(prev=>({...prev, period:  e.target.value}))} value={filters.period}>
