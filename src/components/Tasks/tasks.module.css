@@ -217,3 +217,7 @@ th.checkAll {
 .dueDateTd {
   width:170px;
 }
+
+.noTasks td {
+  text-align: center;
+}

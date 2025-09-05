@@ -181,6 +181,11 @@ export default function Tasks() {
                 sortTasks={sortTasks} 
                 checkAllTasks={checkAllTasks}/>
             <tbody>
+                {sortedVisible.length === 0 && (
+                    <tr className={styles.noTasks}>
+                        <td colspan='8'>No tasks found</td>
+                    </tr>
+                )}
             {sortedVisible.map(task => { 
                 const pClass = styles[colors[task.priority ?? 2]];
                 return (
