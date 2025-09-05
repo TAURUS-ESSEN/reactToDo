@@ -4,7 +4,7 @@ import { downloadJSON } from "../utils/downloadJSON";
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function Sidebar({setTasks, setFilters, openModal, tasks, categories}) {
+export default function Sidebar({setTasks, setFilters, openModal, tasks, categories, setToasts}) {
     const [quickTask, setQuickTask] = useState('');
     const canQuickAdd = quickTask.trim().length > 1;
     const genId = () => Date.now() + Math.floor(Math.random() * 1000);
@@ -14,6 +14,7 @@ export default function Sidebar({setTasks, setFilters, openModal, tasks, categor
     function addQuickTask() {
         if (!canQuickAdd) return;
         setTasks(prev=>[...prev, {id: genId(), name: quickTask, description: '', completed: false, priority: 1, category: 0, dueDate: ''}])
+        setToasts(prev=>([...prev, {message: `${quickTask} was added`}]))
         setQuickTask('');
     }
 

@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Sidebar from './components/Sidebar'
 import ModalHost from './components/Modal/ModalHost'
+import Toast from './components/Toast/Toast'
 import './App.css'
 import 'react-day-picker/dist/style.css';
 import './calendar.css'
@@ -37,6 +38,7 @@ function App() {
   const [tasks, setTasks] = useState(loadInitialTasks)
   const [categories, setCategories] = useState(loadInitialCategories)
   const [modal, setModal] = useState({isOpen: false, type: null, taskId:null})
+  const [toasts, setToasts] = useState([]);
   const [filters, setFilters] = useState({
     status: 'all',
     category: 'all',
@@ -57,16 +59,19 @@ function App() {
     localStorage.setItem('toDoCategories', JSON.stringify(categories))
   }, [categories])
 
+  console.log('toasts', toasts)
   return (
     <>
       <div className='wrapper'>
         <div className='container'>
+          <Toast toasts = {toasts} setToasts={setToasts} />
           <Sidebar 
             setTasks={setTasks} 
             openModal={openModal} 
             tasks={tasks} 
             categories={categories} 
-            setFilters={setFilters} 
+            setFilters={setFilters}
+            setToasts={setToasts}
           />
           <main>
             <Header 
@@ -76,7 +81,7 @@ function App() {
               categories={categories} 
               openModal={openModal}
             />
-            <Outlet context={{tasks, setTasks, categories, openModal, filters, setFilters}}/>
+            <Outlet context={{tasks, setTasks, categories, openModal, filters, setFilters, setToasts}}/>
           </main>
         </div>
         <footer>
@@ -92,6 +97,7 @@ function App() {
                 setTasks={setTasks} 
                 categories={categories} 
                 setCategories={setCategories}
+                setToasts={setToasts}
       />
     </>
   )

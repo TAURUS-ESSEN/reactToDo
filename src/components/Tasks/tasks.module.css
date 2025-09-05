@@ -148,7 +148,9 @@ th.checkAll {
 }
 
 .chipName {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.3em;
   background-color: rgb(243, 242, 242);
   border: 1px solid var(--primary-color);
@@ -158,12 +160,14 @@ th.checkAll {
 }
 
 .deleteChipBtn {
+  width: 20px;
+  height: 20px;
   margin-left: 0.3em;
   background-color: rgb(69, 68, 68);
-  border: 1px solid rgb(118, 116, 116);
-  border-radius: 9999px;
   border: 0;
+  border-radius: 9999px;
   color: var(--white-text);
+  transition: 0.3s ease;
 }
 
 .deleteChipBtn:hover {

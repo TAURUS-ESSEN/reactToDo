@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Modal from "./Modal";
 import styles from "./modal.module.css";
 
-export default function ShowCategoriesModal({categories, tasks, setTasks, setCategories, openModal, closeModal}) {
+export default function ShowCategoriesModal({categories, tasks, setTasks, setCategories, openModal, closeModal, setToasts}) {
     const [categoryNewName, setCategoryNewName] = useState({id: null, name: ''});
     const [showBlocks, setShowBlocks] = useState({
         showNameInput: false,
@@ -21,9 +21,14 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
     }
 
     function preDelete(id, taskNumbers) {
-        taskNumbers.length === 0 
-            ? setCategories(prev => prev.filter(ca=>ca.id!==id))
-            : setShowBlocks(prev => ({...prev, showDeleteBlock: true, id: id, hideDeleteButton: true,}))
+        let category = categories.find(c=>c.id===id)
+        if (taskNumbers.length === 0) {
+            setCategories(prev => prev.filter(ca=>ca.id!==id))
+            setToasts(prev=>([...prev, {message: `Category ${category.name} was deleted`}]));
+        }
+        else {
+            setShowBlocks(prev => ({...prev, showDeleteBlock: true, id: id, hideDeleteButton: true,})); 
+        }
     }
 
     function saveData(id) {
@@ -57,6 +62,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
     }
 
     function deleteCategory(id) {
+        const category = categories.find(c => c.id === id);
         switch (showBlocks.tasks) {        
             case ('move'): 
                 setCategories(prev => prev.filter(c => c.id!==id))
@@ -68,6 +74,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
             case ('delete'): 
                 setCategories(prev => prev.filter(c => c.id !== id))
                 setTasks(prev => prev.filter(t => t.categoryId !== id))
+                setToasts(prev=>([...prev, {message: `Category ${category.name} was deleted`}]))
                 break;
 
             default : 
@@ -75,6 +82,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                 setTasks(prev => prev.map(t =>
                     t.categoryId === id ? {...t, categoryId: null } : t 
                 ));
+                setToasts(prev=>([...prev, {message: `Category ${category.name} was deleted`}]))
                 break;
         }
     }
@@ -94,7 +102,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                                         className={styles.categoryNameButton} 
                                         onClick={() => changeVisible(c.id, c.name)} 
                                         title={c.name}
-                                    >{c.name.slice(0,50)}{c.name.length > 40? '...' : ''} <i class="fa-solid fa-pencil fa-2xs"></i></button>
+                                    >{c.name.slice(0,50)}{c.name.length > 40? '...' : ''} <i className="fa-solid fa-pencil fa-2xs"></i></button>
                                     </>
                                 )}
                                 {(showBlocks.showNameInput && categoryNewName.id === c.id) && ( <>

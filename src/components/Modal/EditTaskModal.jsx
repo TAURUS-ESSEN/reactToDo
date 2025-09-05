@@ -4,7 +4,7 @@ import styles from './modal.module.css'
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function EditTaskModal({tasks, setTasks, modal, categories, closeModal}) {
+export default function EditTaskModal({tasks, setTasks, modal, categories, setToasts, closeModal}) {
     const task = tasks.find(task=> task.id === modal.taskId);// это текущий таск который мы редактируем
     const [taskName, setTaskName] = useState(task.name); // это редактируемые поля
     const [taskDescription, setTaskDescription] = useState(task.description);
@@ -21,6 +21,7 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, close
             t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, categoryId: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null  } : t
             )
         );
+        setToasts(prev=>([...prev, {message: `${taskName} was succesfully changed`}]))
         closeModal()
     }
 

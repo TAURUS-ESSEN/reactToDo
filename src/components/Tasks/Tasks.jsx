@@ -9,11 +9,19 @@ const colors = {
 }
 
 export default function Tasks() {
-    const {tasks, setTasks, categories, openModal, filters, setFilters} = useOutletContext();
+    const {tasks, setTasks, categories, openModal, filters, setFilters, setToasts} = useOutletContext();
     const [sortTasks, setSortTasks] = useState({ by: '', dir: ''})
     
     function deleteTask(id) {
         setTasks(prev=>prev.filter(task=>task.id!==id))
+        let currentTask = tasks.find(task=>task.id === id)
+        setToasts(prev=>([...prev, {message: (
+        <>
+            Task <strong>{currentTask.name}</strong> was deleted
+        </>
+        ) 
+    }]))
+        // setToasts(prev=>([...prev, {message: `Task was deleted`}]))
     }
 
     function makeCompleted(id) {
@@ -154,10 +162,6 @@ export default function Tasks() {
             tomorrowDate.setDate(tomorrowDate.getDate() + 1);
             return tomorrowDate.getFullYear()+'-'+String(tomorrowDate.getMonth() + 1).padStart(2, "0")+'-'+String(tomorrowDate.getDate()).padStart(2, "0")})()
 
-        //         let tomorrowDate = new Date(d);
-        // tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-        // let tomorrow = tomorrowDate.getFullYear()+'-'+String(tomorrowDate.getMonth() + 1).padStart(2, "0")+'-'+String(tomorrowDate.getDate()).padStart(2, "0")
-        
         if (dataDate!== '' && dataDate < todayLocalISO) return 'overdue' // 'overdue'
         else if (dataDate === todayLocalISO) return 'today'
         

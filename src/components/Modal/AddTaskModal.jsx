@@ -4,7 +4,7 @@ import {useState} from 'react';
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function AppTaskModal({closeModal, setTasks, categories}) {
+export default function AppTaskModal({closeModal, setTasks, categories, setToasts}) {
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
     const [categoryId, setCategoryId] = useState(null)
@@ -19,6 +19,7 @@ export default function AppTaskModal({closeModal, setTasks, categories}) {
         e.preventDefault()
         if (!canClick) return
         setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), completed: false, categoryId: categoryId ? Number(categoryId) : 0 , priority: priority, dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null }])
+        setToasts(prev=>([...prev, {message: `${taskName} was added`}]))
         setTaskName('');
         setTaskDescription('');
         closeModal();

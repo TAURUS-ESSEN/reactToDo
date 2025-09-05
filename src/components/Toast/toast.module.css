@@ -1,0 +1,23 @@
+.toastContainer {
+    /* width: 120px; */
+    /* height: 40px; */
+    border: 1px ;
+    position: fixed;
+    top:1em;
+    right: 1em;
+    padding: 0.5em;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(2, 132, 2, 0.685);
+}
+
+.toastContainer {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.toastContainer.show {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -2,7 +2,7 @@ import styles from './modal.module.css';
 import Modal from './Modal';
 import { useState } from 'react';
 
-export default function AddCategoryModal({categories, setCategories, closeModal}) {
+export default function AddCategoryModal({categories, setCategories, setToasts, closeModal}) {
     const [categoryName, setCategoryName] = useState('');
     const lenghtOK = categoryName.length > 1;
     const nameExist = categories.some(c => c.name.toLowerCase() === categoryName.toLowerCase());
@@ -13,6 +13,7 @@ export default function AddCategoryModal({categories, setCategories, closeModal}
         e.preventDefault()
         const newCatId = categories[categories.length-1].id + 1;
         setCategories(prev => [...prev, { id:newCatId  , name: categoryName }]);
+        setToasts(prev=>([...prev, {message: `Category ${categoryName} was added`}]))
         setCategoryName('');
         closeModal();
     }
