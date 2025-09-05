@@ -18,7 +18,6 @@ export default function Header({filters, tasks, categories, setFilters, openModa
         const checkbox = document.getElementById('checkAll')
         checkbox.checked = false;
         setFilters({ ...DEFAULT_FILTERS}); 
-    console.log('checkbox', checkbox)
     }
 
     function calculateTasksInCategory(id) {
@@ -52,13 +51,17 @@ export default function Header({filters, tasks, categories, setFilters, openModa
                 <option value='medium'>Medium</option>
                 <option value='high'>High</option>
             </select>
-            <input 
-                type='text' 
-                onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} 
-                value={filters.search} 
-                placeholder="search by name"
-                autoComplete="off"
-            />
+            <span className="searchTask">
+                <input 
+                    type='text' 
+                    onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} 
+                    value={filters.search} 
+                    placeHolder="Search…"
+                    autoComplete="off"
+                />
+                <span className="zoom"><i className="fa-solid fa-magnifying-glass fa-sm"  ></i></span>
+            </span>
+                
             {/* <button onClick={()=>{setFilters({ ...DEFAULT_FILTERS}); resetAllFilters() }}  */}
             <button onClick={()=>{resetAllFilters()}} 
                     title = 'Reset filters'

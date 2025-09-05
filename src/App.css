@@ -73,7 +73,19 @@ footer {
   box-shadow: 0 -1px 2px rgba(211, 210, 210, 0.395);
 }
 
-header > select, header > input, header > button  {
+footer a {
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: 0.5s ease;
+}
+
+footer a:hover {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--secondary-color-hover);
+}
+
+header > select, header > input, header > button, header > span input   {
   border: 1px solid var(--primary-color);
   padding: 0.6em;
   border-radius: 5px;
@@ -108,6 +120,7 @@ header input:focus, header select:focus {
   justify-content: center;
   background-color: var(--secondary-color);
   color: var(--white-text);
+  transition: 0.5s ease;
 }
 
 .addNewBtn:hover {
@@ -176,3 +189,21 @@ header input:focus, header select:focus {
 }
 
 /*        sidebar ende        */
+
+
+.searchTask {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.zoom {
+  position: absolute;
+  top:0.6em;
+  right: 0.5em;
+  color: #a8a8a8;
+}
+
+.searchTask:focus-within .zoom {
+  color: dodgerblue;  
+}
