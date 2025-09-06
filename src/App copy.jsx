@@ -10,22 +10,46 @@ import 'react-day-picker/dist/style.css';
 import './calendar.css'
 import { DEFAULT_TASKS, DEFAULT_CATEGORIES, DEFAULT_TAGS } from './data/defaults';
 
-function loadInitialData(storageKey, defaultValue) {
+function loadInitialTasks() {
   try {
-    const raw = localStorage.getItem(storageKey);
-    if (!raw) return defaultValue;
-    const data = JSON.parse(raw);
-    return Array.isArray(data) ? data : defaultValue;
+    const raw = localStorage.getItem('toDoTasks');
+    if (!raw) return DEFAULT_TASKS
+    const data = JSON.parse(raw)
+    return Array.isArray(data) ? data : DEFAULT_TASKS
   }
   catch {
-    return defaultValue
+    return DEFAULT_TASKS
   }
-} 
+}
+
+function loadInitialCategories() {
+  try {
+    const raw = localStorage.getItem('toDoCategories');
+    if (!raw) return DEFAULT_CATEGORIES;
+    const data = JSON.parse(raw);
+    return Array.isArray(data) ? data : DEFAULT_CATEGORIES;
+  }
+  catch {
+    return DEFAULT_CATEGORIES
+  }
+}
+
+function loadInitialTags() {
+  try {
+    const raw = localStorage.getItem('toDoTags');
+    if (!raw) return DEFAULT_TAGS;
+    const data = JSON.parse(raw);
+    return Array.isArray(data) ? data : DEFAULT_TAGS;
+  }
+  catch {
+    return DEFAULT_TAGS
+  }
+}
 
 function App() {
-  const [tasks, setTasks] = useState(()=>loadInitialData('toDoTasks', DEFAULT_TASKS))
-  const [tags, setTags] = useState(()=>loadInitialData('toDoTags', DEFAULT_TAGS))
-  const [categories, setCategories] = useState(()=>loadInitialData('toDoCategories', DEFAULT_CATEGORIES))
+  const [tasks, setTasks] = useState(loadInitialTasks)
+  const [tags, setTags] = useState(loadInitialTags)
+  const [categories, setCategories] = useState(loadInitialCategories)
   const [modal, setModal] = useState({isOpen: false, type: null, taskId:null})
   const [toasts, setToasts] = useState([]);
   const [filters, setFilters] = useState({

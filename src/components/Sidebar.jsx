@@ -66,7 +66,7 @@ export default function Sidebar({setTasks, filters, setFilters, openModal, tasks
                     <summary>Task tags 
                         <span className="gearTags">
                             <button type='button' onClick={()=>openModal('showTags')} title='Tags management'>
-                                <i className="fa-solid fa-gear fa-sm" ></i>
+                                <i className="fa-solid fa-gear fa-sme" ></i>
                             </button>
                         </span>
                     </summary>

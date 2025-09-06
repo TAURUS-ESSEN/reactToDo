@@ -236,6 +236,7 @@ th.checkAll {
   border: 0;
   border-radius: 5px;
   transition: 0.5s;
+  color: #555454;
 }
 
 .tagBtn:hover {
