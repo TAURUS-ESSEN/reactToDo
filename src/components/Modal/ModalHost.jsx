@@ -8,9 +8,9 @@ export default function ModalHost({modal, closeModal, tasks, setTasks, categorie
     
     switch (modal.type) {
             case 'addTask':
-                return <AddTaskModal modal={modal} closeModal={closeModal} tasks={tasks} categories={categories}  setTasks={setTasks} setToasts={setToasts}/>
+                return <AddTaskModal modal={modal} closeModal={closeModal} tasks={tasks} categories={categories}  setTasks={setTasks} setToasts={setToasts} tags={tags}/>
             case 'editTask':
-                return <EditTaskModal modal={modal} closeModal={closeModal} tasks={tasks} categories={categories}  setTasks={setTasks} setToasts={setToasts}/>
+                return <EditTaskModal modal={modal} closeModal={closeModal} tasks={tasks} categories={categories}  setTasks={setTasks} setToasts={setToasts} tags={tags}/>
             case 'addCategory':
                 return <AddCategoryModal modal={modal} closeModal={closeModal} categories={categories} setCategories={setCategories} setToasts={setToasts}/>
             case 'showCategories':

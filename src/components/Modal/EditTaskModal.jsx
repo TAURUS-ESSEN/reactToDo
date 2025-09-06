@@ -4,13 +4,14 @@ import styles from './modal.module.css'
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function EditTaskModal({tasks, setTasks, modal, categories, setToasts, closeModal}) {
+export default function EditTaskModal({tasks, setTasks, modal, categories, setToasts, tags, closeModal}) {
     const task = tasks.find(task=> task.id === modal.taskId);// это текущий таск который мы редактируем
     const [taskName, setTaskName] = useState(task.name); // это редактируемые поля
     const [taskDescription, setTaskDescription] = useState(task.description);
     const [taskCategory, setTaskCategory] = useState(task.categoryId);
     const [taskPriority, setTaskPriority] = useState(task.priority);
     const [dueDate, setDueDate] = useState(task.dueDate); 
+    const [taskTags, setTaskTags] = useState(task.tags); 
 
     const canClick = taskName.trim().length > 0; //защита от случайного нажатия
 
@@ -18,11 +19,20 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, setTo
         e.preventDefault(); // не обновляется страница
         setTasks(prev =>
             prev.map(t =>
-            t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, categoryId: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null  } : t
+            t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, categoryId: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null, tags: taskTags  } : t
             )
         );
         setToasts(prev=>([...prev, {message: `${taskName} was succesfully changed`}]))
         closeModal()
+    }
+
+    
+    function addTags(id) {
+        //  e.preventDefault()
+        !taskTags.includes(id) 
+        ? setTaskTags(prev => [...prev, id])
+        : setTaskTags(prev => prev.filter(tag=>tag!==id))
+    
     }
 
     return (
@@ -59,6 +69,26 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, setTo
                         onSelect={setDueDate}
                         weekStartsOn={1}
                     />
+                    <div className="tagsDetails">
+                    <details open>
+                        <summary>Task tags ({taskTags.length } from 5)</summary>
+                        {tags.length > 0 && (
+                            <div className="tagsBlock">
+                            {tags.map(tag => {
+                                return <button 
+                                type="button"
+                                        className={`tagBtn ${taskTags.includes(tag.id) ? 'tagEnabled' : ''}`} 
+                                        onClick={()=>addTags(tag.id)}
+                                        key = {tag.id}
+                                        disabled={!taskTags.includes(tag.id) && taskTags.length>=5}
+                                        >#{tag.name}
+                                    </button>
+                            } )}
+                            </div>
+                        )
+                        } 
+                    </details>
+                </div>
                 <div>
                     <button type="button" onClick={closeModal}>Cancel</button>
                     <button type='submit' disabled={!canClick}>Send</button>

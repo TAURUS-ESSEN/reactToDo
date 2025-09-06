@@ -60,6 +60,21 @@ export default function Tasks() {
             ? () => true
             : (t) => t.dueDate === filters.dueDate;
 
+const selectedTagIds = (filters?.tags ?? []).map(Number);
+
+const tagsPred =
+//   selectedTagIds.length === 0
+//     ? () => true
+//     : (t) =>
+//         Array.isArray(t.tags) &&
+//         t.tags.some((id) => selectedTagIds.includes(Number(id)));
+
+selectedTagIds.length === 0
+    ? () => true
+    : (t) =>
+        Array.isArray(t.tags) &&
+        selectedTagIds.every((id) => t.tags.includes(Number(id)));
+
     const categoryPred = 
         !filters || filters.category === 'all'
         ? () => true
@@ -96,7 +111,7 @@ export default function Tasks() {
     };
     const datePred = filterByDate[filters?.period] ?? filterByDate.all;
     
-    const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred).filter(dueDatePred);
+    const visible = tasks.filter(statusPred).filter(categoryPred).filter(datePred).filter(t=>t.name.includes(filters.search)).filter(priorityPred).filter(dueDatePred).filter(tagsPred);
 
     // SORTING AREA
 
@@ -168,11 +183,26 @@ export default function Tasks() {
         else if (dataDate === tomorrow) return 'tomorrow'
         else return ''
     }
+
+    function addTag(id) {
+        console.log(id)
+        if (!filters.tags.includes(id)) {
+            setFilters(prev=>({...prev, tags: [...prev.tags, id]}))
+        }
+        else {
+             setFilters(prev=>({...prev, tags: prev.tags.filter(tag=>tag!==Number(id))}))
+        }
+    }
  
     return (
         <>
         <div className={styles.chipsContainer}>
-            <Chips /><Tags />
+                    <span className={styles.priorityLegend}>
+                        <span className={styles.low}>&nbsp;</span><span>low</span> 
+                        <span className={styles.medium}>&nbsp;</span><span>medium</span> 
+                        <span className={styles.high}>&nbsp;</span><span>high</span>
+                    </span>
+                    <Chips /><Tags />
         </div>
             
         <table className={styles.tasksListeTable}> 
@@ -208,7 +238,12 @@ export default function Tasks() {
                                 <div className={styles.tagsAreaBlock}>
                                     {task.tags?.map(tag => {
                                         let tempTag = tags.find(t => t.id === tag)
-                                        return <button className={styles.tagBtn} key={tag.id}> {'#' + tempTag.name} </button> 
+                                        return <button 
+                                                className={styles.tagBtn}
+                                                onClick={()=>addTag(tempTag.id)}
+                                                key={tag.id}> 
+                                                {'#' + tempTag.name} 
+                                            </button> 
                                     })}
                                 </div>
                                 )

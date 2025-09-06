@@ -119,6 +119,8 @@ function App() {
                 categories={categories} 
                 setCategories={setCategories}
                 setToasts={setToasts}
+                tags={tags}
+                setTags={setTags}
       />
     </>
   )

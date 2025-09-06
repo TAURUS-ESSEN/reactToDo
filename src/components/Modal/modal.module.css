@@ -12,6 +12,9 @@
   border-radius: 5px;
   padding: 0.5em 1em 1em 1em;
   background-color: #ffffff;
+  max-height: 90vh;
+
+overflow-y: auto;
 }
 
 .modalHeader {
