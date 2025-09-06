@@ -59,6 +59,7 @@ function App() {
     search: '',
     priority: 'all',
     dueDate: 'all',
+    filters: []
   })
 
   const openModal = (modalType, id = null) => setModal({isOpen: true, type: modalType, taskId : id});

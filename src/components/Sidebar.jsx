@@ -4,7 +4,7 @@ import { downloadJSON } from "../utils/downloadJSON";
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function Sidebar({setTasks, setFilters, openModal, tasks, categories, setToasts}) {
+export default function Sidebar({setTasks, setFilters, openModal, tasks, categories, setToasts, tags}) {
     const [quickTask, setQuickTask] = useState('');
     const canQuickAdd = quickTask.trim().length > 1;
     const genId = () => Date.now() + Math.floor(Math.random() * 1000);
@@ -50,6 +50,19 @@ export default function Sidebar({setTasks, setFilters, openModal, tasks, categor
                     onSelect={setDueDate}
                     weekStartsOn={1}
                 />                
+            </div>
+            <div className="tagsDetails">
+                <details open>
+                    <summary>Task tags</summary>
+                    {tags.length > 0 && (
+                        <div className="tagsBlock">
+                        {tags.map(tag => {
+                            return <button className="tagBtn">#{tag.name}</button>
+                        } )}
+                        </div>
+                    )
+                    } 
+                </details>
             </div>
         </div>
         </>
