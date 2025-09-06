@@ -190,7 +190,7 @@ selectedTagIds.length === 0
             setFilters(prev=>({...prev, tags: [...prev.tags, id]}))
         }
         else {
-             setFilters(prev=>({...prev, tags: prev.tags.filter(tag=>tag!==Number(id))}))
+            setFilters(prev=>({...prev, tags: prev.tags.filter(tag=>tag!==Number(id))}))
         }
     }
  

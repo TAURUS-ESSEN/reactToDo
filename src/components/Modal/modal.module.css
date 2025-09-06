@@ -122,7 +122,7 @@ overflow-y: auto;
 }
 /*        CATEGORIES    LIST            */
 .categoriesListContainer {
-  width: 600px;
+  width: 400px;
 }
 
 .categoriesListContainer > li {
@@ -146,13 +146,14 @@ overflow-y: auto;
 } 
 
 .categoryNameSpan {
-  width: 400px;
+  width: 300px;
 }
 
 .categoryNameButton {
+  font-size: 1.1em;
   text-align: left;
   border: 0;
-  padding: 0.3;
+  padding: 0.3em;
   background: none;
   /* width: 200px; */
   min-height: 48px;
@@ -168,7 +169,13 @@ overflow-y: auto;
 
 .taskNumberSpan {
   /* color: #6b7280; */
-  font-size: 12px; color: #6B7280; padding: 2px 6px; border-radius: 9999px; background: #F3F4F6;
+  width: 60px;
+  text-align: center;
+  font-size: 12px; 
+  color: #6B7280; 
+  padding: 0.5em; 
+  border-radius: 9999px; 
+  background: #F3F4F6;
 }
 
 
@@ -178,6 +185,10 @@ overflow-y: auto;
 }
 
 .preDeleteButton {
+  width: 80px;
+  padding: 0.5em;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
   background-color: none;
 }
 
@@ -201,6 +212,7 @@ overflow-y: auto;
 }
 
 .addNewButton {
+  /* width: 270px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,6 +220,11 @@ overflow-y: auto;
 }
 
 .addNewButton button {
+  width: 140px;
+  padding: 0.7em;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background-color: none;
   transition: 0.5s;
 }
 
@@ -275,7 +292,7 @@ overflow-y: auto;
 }
 
 .createForm input, .inputCategoryName {
-  width: 250px;
+  width: 180px;
   margin: 0 auto;
   padding: 0.5em;
   font-size: 1em;
@@ -289,6 +306,7 @@ overflow-y: auto;
 
 .buttons > button {
   width: 140px;
+  border-radius: 5px;
   transition: 0.5s;
   min-height: 40px;
   border-radius: 5px;

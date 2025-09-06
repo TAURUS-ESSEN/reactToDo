@@ -102,7 +102,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                                         className={styles.categoryNameButton} 
                                         onClick={() => changeVisible(c.id, c.name)} 
                                         title={c.name}
-                                    >{c.name.slice(0,50)}{c.name.length > 40? '...' : ''} <i className="fa-solid fa-pencil fa-2xs"></i></button>
+                                    >{c.name.slice(0,30)}{c.name.length > 30? '...' : ''} <i className="fa-solid fa-pencil fa-2xs"></i></button>
                                     </>
                                 )}
                                 {(showBlocks.showNameInput && categoryNewName.id === c.id) && ( <>

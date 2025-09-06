@@ -11,7 +11,10 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, setTo
     const [taskCategory, setTaskCategory] = useState(task.categoryId);
     const [taskPriority, setTaskPriority] = useState(task.priority);
     const [dueDate, setDueDate] = useState(task.dueDate); 
-    const [taskTags, setTaskTags] = useState(task.tags); 
+    // const [taskTags, setTaskTags] = useState(task.tags); 
+    
+const [taskTags, setTaskTags] = useState(Array.isArray(task.tags) ? task.tags : []);
+
 
     const canClick = taskName.trim().length > 0; //защита от случайного нажатия
 
@@ -71,16 +74,16 @@ export default function EditTaskModal({tasks, setTasks, modal, categories, setTo
                     />
                     <div className="tagsDetails">
                     <details open>
-                        <summary>Task tags ({taskTags.length } from 5)</summary>
-                        {tags.length > 0 && (
+                        <summary>Task tags ({taskTags?.length } from 5)</summary>
+                        {tags?.length > 0 && (
                             <div className="tagsBlock">
                             {tags.map(tag => {
                                 return <button 
                                 type="button"
-                                        className={`tagBtn ${taskTags.includes(tag.id) ? 'tagEnabled' : ''}`} 
+                                        className={`tagBtn ${taskTags?.includes(tag.id) ? 'tagEnabled' : ''}`} 
                                         onClick={()=>addTags(tag.id)}
                                         key = {tag.id}
-                                        disabled={!taskTags.includes(tag.id) && taskTags.length>=5}
+                                        disabled={!taskTags?.includes(tag.id) && taskTags?.length>=5}
                                         >#{tag.name}
                                     </button>
                             } )}

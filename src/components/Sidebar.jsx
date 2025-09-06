@@ -43,9 +43,12 @@ export default function Sidebar({setTasks, filters, setFilters, openModal, tasks
                 <button onClick={addQuickTask} disabled={!canQuickAdd} className="quickAddBtn">+</button>
             </div>
             <div className="sidebarButtonsBlock">
-                <button onClick={()=>openModal('addCategory')}>Add category</button>
-                <button onClick={()=>openModal('showCategories')}>Manage categories</button>
-                <button onClick={()=>openModal('showTags')}>Manage Tags</button>
+                {/* <div className="categoryBtns"> */}
+                    <button onClick={()=>openModal('addCategory')}>Add category</button>
+                    <button onClick={()=>openModal('showCategories')}>Manage categories</button>
+                    {/* <button onClick={()=>openModal('showCategories')} className="gearBtn"><i className="fa-solid fa-gear" style={{color: '#3b3b3b'}}></i></button> */}
+                {/* </div> */}
+                {/* <button onClick={()=>openModal('showTags')}>Manage Tags</button> */}
                 <button type='button' 
                         onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories })}>Export data</button>
             </div>
@@ -60,7 +63,13 @@ export default function Sidebar({setTasks, filters, setFilters, openModal, tasks
             </div>
             <div className="tagsDetails">
                 <details open>
-                    <summary>Task tags</summary>
+                    <summary>Task tags 
+                        <span className="gearTags">
+                            <button type='button' onClick={()=>openModal('showTags')} title='Tags management'>
+                                <i className="fa-solid fa-gear fa-sm" ></i>
+                            </button>
+                        </span>
+                    </summary>
                     {tags.length > 0 && (
                         <div className="tagsBlock">
                         {tags.map(tag => {

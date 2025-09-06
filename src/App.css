@@ -140,7 +140,7 @@ header input:focus, header select:focus {
   gap:1em;
 }
 
-.sidebarButtonsBlock > button {
+.sidebarButtonsBlock   button {
   min-height: 2.2rem;
   padding: 0.5em;
 
@@ -150,9 +150,20 @@ header input:focus, header select:focus {
   transition: 0.5s ease;
 }
 
-.sidebarButtonsBlock> button:hover {
+.sidebarButtonsBlock  button:hover {
   background-color: var(--secondary-color-hover);
   color: var(--white-text);
+}
+
+.categoryBtns {
+  /* display: flex; */
+  /* gap: 1em */
+}
+
+.gearBtn {
+  background: none  !important;
+  border: 0 !important;;
+
 }
 
 .quickAddBlock {
@@ -230,6 +241,30 @@ header input:focus, header select:focus {
 
 .tagsDetails summary {
   margin: 0.5em 0;
+  position: relative;
+  text-align: left;
+  padding: 0 0.5em;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* padding: 0.3em; */
+}
+
+.gearTags {
+position: absolute;
+top: -0.1em;
+right: 0.3em;
+}
+
+.gearTags > button {
+  border: 0;
+  background: none;
+  transition: 0.5s;
+}
+
+.gearTags > button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  color: var(--secondary-color);
 }
 
 .tagBtn {

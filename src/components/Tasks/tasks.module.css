@@ -25,7 +25,8 @@
 
 .tasksListeTable td,.tasksListeTable th {
   text-align: left;
-  height: 40px;
+  vertical-align: middle;
+  height: 50px;
 }
 
 
@@ -229,12 +230,18 @@ th.checkAll {
   text-align: center;
 }
 
-
 .tagBtn {
   font-size: 0.8em;
   background-color: var(--primary-color);
   border: 0;
   border-radius: 5px;
+  transition: 0.5s;
+}
+
+.tagBtn:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color:white
 }
 
 .tagsAreaBlock {
