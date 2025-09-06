@@ -7,7 +7,8 @@ const DEFAULT_FILTERS = {
     period: 'all',
     search: '',
     priority: 'all',
-    dueDate: 'all'
+    dueDate: 'all',
+    tags: []
 }
 
 export default function Header({filters, tasks, categories, setFilters, openModal}) {

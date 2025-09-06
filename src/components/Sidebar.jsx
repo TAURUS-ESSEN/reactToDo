@@ -67,6 +67,7 @@ export default function Sidebar({setTasks, filters, setFilters, openModal, tasks
                             return <button 
                                     className={`tagBtn ${filters.tags.includes(tag.id) ? 'tagEnabled' : ''}`} 
                                     onClick={()=>addTagToFilters(tag.id)}
+                                    key = {tag.id}
                                     disabled={!filters.tags.includes(tag.id) && filters.tags.length>=5}
                                     >#{tag.name}
                                 </button>

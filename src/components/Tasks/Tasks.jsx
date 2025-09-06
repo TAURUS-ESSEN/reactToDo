@@ -1,6 +1,7 @@
 import { useOutletContext } from 'react-router-dom'
 import { useState } from 'react';
 import Chips from './Chips'
+import Tags from '../Tags/Tags.jsx'
 import styles from './tasks.module.css'
 import TasksTableHeader from './TasksTableHeader';
 
@@ -171,7 +172,7 @@ export default function Tasks() {
     return (
         <>
         <div className={styles.chipsContainer}>
-            <Chips />
+            <Chips /><Tags />
         </div>
             
         <table className={styles.tasksListeTable}> 
@@ -207,7 +208,7 @@ export default function Tasks() {
                                 <div className={styles.tagsAreaBlock}>
                                     {task.tags?.map(tag => {
                                         let tempTag = tags.find(t => t.id === tag)
-                                        return <button className={styles.tagBtn}> {'#' + tempTag.name} </button> 
+                                        return <button className={styles.tagBtn} key={tag.id}> {'#' + tempTag.name} </button> 
                                     })}
                                 </div>
                                 )

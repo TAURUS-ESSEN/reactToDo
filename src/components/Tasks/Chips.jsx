@@ -14,7 +14,8 @@ export default function Chips() {
         period: `Time: ${filters.period}`,
         search: `Search word: ${filters.search.slice(0,15)} ${filters.search.length>15?'...': ''}`,
         priority: `Priority: ${filters.priority}`,
-        dueDate: `due Date: ${pretty(filters.dueDate)}`
+        dueDate: `due Date: ${pretty(filters.dueDate)}`,
+        tags: `#$tags`
     }
 
     function resetCurrentFilter(value) {
@@ -31,22 +32,17 @@ export default function Chips() {
 
     useEffect(() => {
         for (let key in filters) {
-            if (filters[key] !== 'all' && filters[key] !== '') {
+            if (filters[key] !== 'all' && filters[key] !== '' && key !== 'tags' ) {
                 if (!chips.includes(key)) {
                     setChips(prev => ([...prev, key]))
                 }
             }
-            // if (filters[key] ==='all' || filters[key] === '') {
-            //     if (chips.includes(key)) { 
-            //         setChips(prev => prev.filter(c => c !== key))
-            //     }
-            // }
-            else setChips(prev => prev.filter(c => c !== key))
+            else  setChips(prev => prev.filter(c => c !== key))
         }
     },[filters])
 
     return (
-    <>   
+    <>   {chips}
         <span className={styles.priorityLegend}>
             <span className={styles.low}>&nbsp;</span><span>low</span> 
             <span className={styles.medium}>&nbsp;</span><span>medium</span> 

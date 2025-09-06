@@ -1,0 +1,240 @@
+
+.low {
+  background-color: green;
+}
+
+.medium {
+  background-color: #FFBF00;
+}
+
+.high {
+  background-color: red;
+}
+
+.priorityLegend {
+  display: flex;
+  align-items: center;
+  gap:0.5em;
+}
+
+.tasksListeTable {
+  background-color: var(--white-text);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+.tasksListeTable td,.tasksListeTable th {
+  text-align: left;
+  height: 40px;
+}
+
+
+thead {
+  background-color: var(--sidebar-color)
+}
+
+thead { position: relative; }
+thead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--primary-color);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--tr-even);
+}
+
+tbody tr {
+  transition: 0.5s ease;
+}
+
+tbody tr:hover {
+  background-color: var(--tr-hover);
+}
+
+.tasksBlockSorting > button {
+  min-height: 30px;
+
+  font-weight: 600;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.tasksBlockSorting > button:hover {
+  color: var(--secondary-color);
+}
+
+.priorityBlock {
+  padding: 0.3em;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+.taskDeleteBtn, .taskEditBtn {
+  width: 30px;
+  height: 30px;
+  margin: 0 0.5em;
+  padding: 0.5em;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background: none;
+  transition: 0.5s ease;
+}
+
+.taskNameBtn {
+  font-size: 1em;
+  border: 0;
+  background: none;
+}
+
+.taskNameBtn:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.taskDeleteBtn:hover {
+  background-color: var(--danger-background);
+  color: var(--white-text);
+}
+
+.taskEditBtn:hover {
+  background-color: var(--secondary-color-hover);
+  color: var(--white-text);
+} 
+
+.nameTdcontainer {
+  width: 400px;
+}
+
+.categoryBtn {
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 0.5em;
+  transition: 0.5s;
+}
+
+.categoryBtn:hover {
+  background-color: var(--gray-color);
+  cursor: pointer;
+  color: var(--white-text);
+}
+
+.overdue {
+  color: var(--danger-background);
+}
+
+th.checkAll {
+  width: 20px;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.chipsContainer {
+  height: 35px;
+  margin: 0.5em 0.5em;
+  padding: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.chipsBlock {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap:1em;
+}
+
+.chipName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em;
+  background-color: rgb(243, 242, 242);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  color: rgb(1, 1, 1);
+  box-shadow: 0 0 3px rgb(211, 211, 211);
+}
+
+.deleteChipBtn {
+  width: 20px;
+  height: 20px;
+  margin-left: 0.3em;
+  background-color: rgb(69, 68, 68);
+  border: 0;
+  border-radius: 9999px;
+  color: var(--white-text);
+  transition: 0.3s ease;
+}
+
+.deleteChipBtn:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: var(--black-text);
+}
+
+.completed{
+  color: #8c8c8c;
+}
+
+.strike {
+  text-decoration: line-through;
+  color: #8c8c8c
+}
+
+/* .dateHint {
+ 
+  background-color: var(--secondary-color);
+  padding: 0.2em;
+  margin-left: 0.1em;
+  border-radius: 999px;
+  font-size: 0.7em;
+  font-style: italic;
+  color: var(--white-text);
+} */
+
+.todayHint {
+  background-color: #ffa726; /* оранжевый */
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 999px;
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+.tomorrowHint {
+  background-color: #64b5f6; /* голубой */
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 999px;
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+.dueDateTd {
+  width:170px;
+}
+
+.noTasks td {
+  text-align: center;
+}
+
+
+.tagBtn {
+  font-size: 0.8em;
+  background-color: var(--primary-color);
+  border: 0;
+  border-radius: 5px;
+}
+
+.tagsAreaBlock {
+  display: flex;
+  gap: 0.5em;
+}
