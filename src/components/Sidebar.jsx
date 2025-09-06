@@ -4,7 +4,7 @@ import { downloadJSON } from "../utils/downloadJSON";
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function Sidebar({setTasks, setFilters, openModal, tasks, categories, setToasts, tags}) {
+export default function Sidebar({setTasks, filters, setFilters, openModal, tasks, categories, setToasts, tags}) {
     const [quickTask, setQuickTask] = useState('');
     const canQuickAdd = quickTask.trim().length > 1;
     const genId = () => Date.now() + Math.floor(Math.random() * 1000);
@@ -20,6 +20,13 @@ export default function Sidebar({setTasks, setFilters, openModal, tasks, categor
     useEffect(()=>{
         setFilters(prev=>({...prev,  dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : 'all'}))
     },[dueDate])
+
+    function addTagToFilters(id) {
+        filters.tags.includes(id) 
+        ? setFilters(prev => ({...prev, tags: prev.tags.filter(tag => tag !==id )}))
+        : setFilters(prev => ({...prev, tags: [...prev.tags, id]}))
+    }
+        // console.log(filters.tags)
 
     return (
         <>
@@ -57,7 +64,12 @@ export default function Sidebar({setTasks, setFilters, openModal, tasks, categor
                     {tags.length > 0 && (
                         <div className="tagsBlock">
                         {tags.map(tag => {
-                            return <button className="tagBtn">#{tag.name}</button>
+                            return <button 
+                                    className={`tagBtn ${filters.tags.includes(tag.id) ? 'tagEnabled' : ''}`} 
+                                    onClick={()=>addTagToFilters(tag.id)}
+                                    disabled={!filters.tags.includes(tag.id) && filters.tags.length>=5}
+                                    >#{tag.name}
+                                </button>
                         } )}
                         </div>
                     )

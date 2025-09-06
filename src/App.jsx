@@ -59,7 +59,8 @@ function App() {
     search: '',
     priority: 'all',
     dueDate: 'all',
-    filters: []
+    tags: [],
+    // maxTagsNumber: 5,
   })
 
   const openModal = (modalType, id = null) => setModal({isOpen: true, type: modalType, taskId : id});
@@ -86,7 +87,8 @@ function App() {
             setTasks={setTasks} 
             openModal={openModal} 
             tasks={tasks} 
-            categories={categories} 
+            categories={categories}
+            filters={filters} 
             setFilters={setFilters}
             setToasts={setToasts}
             tags={tags}

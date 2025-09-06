@@ -239,7 +239,12 @@ header input:focus, header select:focus {
 }
 
 .tagBtn:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color-hover);
   color: white;
   cursor: pointer;
+}
+
+.tagEnabled {
+    background-color: var(--secondary-color);
+     color: white;
 }
