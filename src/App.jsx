@@ -8,7 +8,7 @@ import Toast from './components/Toast/Toast'
 import './App.css'
 import 'react-day-picker/dist/style.css';
 import './calendar.css'
-import { DEFAULT_TASKS, DEFAULT_CATEGORIES } from './data/defaults';
+import { DEFAULT_TASKS, DEFAULT_CATEGORIES, DEFAULT_TAGS } from './data/defaults';
 
 function loadInitialTasks() {
   try {
@@ -34,8 +34,21 @@ function loadInitialCategories() {
   }
 }
 
+function loadInitialTags() {
+  try {
+    const raw = localStorage.getItem('toDoTags');
+    if (!raw) return DEFAULT_TAGS;
+    const data = JSON.parse(raw);
+    return Array.isArray(data) ? data : DEFAULT_TAGS;
+  }
+  catch {
+    return DEFAULT_TAGS
+  }
+}
+
 function App() {
   const [tasks, setTasks] = useState(loadInitialTasks)
+  const [tags, setTags] = useState(loadInitialTags)
   const [categories, setCategories] = useState(loadInitialCategories)
   const [modal, setModal] = useState({isOpen: false, type: null, taskId:null})
   const [toasts, setToasts] = useState([]);
@@ -56,10 +69,13 @@ function App() {
   }, [tasks])
 
   useEffect(() => {
+    localStorage.setItem('toDoTags', JSON.stringify(tags))
+  }, [tags])
+
+  useEffect(() => {
     localStorage.setItem('toDoCategories', JSON.stringify(categories))
   }, [categories])
 
-  console.log('toasts', toasts)
   return (
     <>
       <div className='wrapper'>
@@ -72,6 +88,8 @@ function App() {
             categories={categories} 
             setFilters={setFilters}
             setToasts={setToasts}
+            tags={tags}
+            setTags={setTags}
           />
           <main>
             <Header 
@@ -81,7 +99,7 @@ function App() {
               categories={categories} 
               openModal={openModal}
             />
-            <Outlet context={{tasks, setTasks, categories, openModal, filters, setFilters, setToasts}}/>
+            <Outlet context={{tasks, setTasks, categories, openModal, filters, setFilters, setToasts, tags}}/>
           </main>
         </div>
         <footer>

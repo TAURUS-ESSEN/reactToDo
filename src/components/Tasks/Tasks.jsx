@@ -9,19 +9,18 @@ const colors = {
 }
 
 export default function Tasks() {
-    const {tasks, setTasks, categories, openModal, filters, setFilters, setToasts} = useOutletContext();
+    const {tasks, setTasks, categories, openModal, filters, setFilters, setToasts, tags} = useOutletContext();
     const [sortTasks, setSortTasks] = useState({ by: '', dir: ''})
     
     function deleteTask(id) {
         setTasks(prev=>prev.filter(task=>task.id!==id))
         let currentTask = tasks.find(task=>task.id === id)
         setToasts(prev=>([...prev, {message: (
-        <>
-            Task <strong>{currentTask.name}</strong> was deleted
-        </>
-        ) 
-    }]))
-        // setToasts(prev=>([...prev, {message: `Task was deleted`}]))
+            <>
+                Task <strong>{currentTask.name}</strong> was deleted
+            </>
+            ) 
+        }]))
     }
 
     function makeCompleted(id) {
@@ -204,6 +203,15 @@ export default function Tasks() {
                                 className={`${task.completed ? styles.strike : ''} ${styles.taskNameBtn} ` }>
                                     {task.name.slice(0,50)}{task.name.length> 50 ? '...' : ''} 
                             </button>
+                            {task.tags?.length > 0 && (
+                                <div className={styles.tagsAreaBlock}>
+                                    {task.tags?.map(tag => {
+                                        let tempTag = tags.find(t => t.id === tag)
+                                        return <button className={styles.tagBtn}> {'#' + tempTag.name} </button> 
+                                    })}
+                                </div>
+                                )
+                            }
                         </td>
                         <td>
                             <button 

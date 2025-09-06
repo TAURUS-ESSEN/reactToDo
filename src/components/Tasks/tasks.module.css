@@ -225,3 +225,16 @@ th.checkAll {
 .noTasks td {
   text-align: center;
 }
+
+
+.tagBtn {
+  font-size: 0.8em;
+  background-color: var(--primary-color);
+  border: 0;
+  border-radius: 5px;
+}
+
+.tagsAreaBlock {
+  display: flex;
+  gap: 0.5em;
+}

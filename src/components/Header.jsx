@@ -56,7 +56,7 @@ export default function Header({filters, tasks, categories, setFilters, openModa
                     type='text' 
                     onChange={(e)=>setFilters(prev=>({...prev, search: e.target.value}))} 
                     value={filters.search} 
-                    placeHolder="Search…"
+                    placeholder="Search…"
                     autoComplete="off"
                 />
                 <span className="zoom"><i className="fa-solid fa-magnifying-glass fa-sm"  ></i></span>

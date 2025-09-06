@@ -9,11 +9,10 @@ export default function Sidebar({setTasks, setFilters, openModal, tasks, categor
     const canQuickAdd = quickTask.trim().length > 1;
     const genId = () => Date.now() + Math.floor(Math.random() * 1000);
     const [dueDate, setDueDate] = useState(null); 
-    console.log('dueDate', dueDate)
 
     function addQuickTask() {
         if (!canQuickAdd) return;
-        setTasks(prev=>[...prev, {id: genId(), name: quickTask, description: '', completed: false, priority: 1, category: 0, dueDate: ''}])
+        setTasks(prev=>[...prev, {id: genId(), name: quickTask, description: '', completed: false, priority: 1, category: 0, dueDate: '', tags: []}])
         setToasts(prev=>([...prev, {message: `${quickTask} was added`}]))
         setQuickTask('');
     }
@@ -39,6 +38,7 @@ export default function Sidebar({setTasks, setFilters, openModal, tasks, categor
             <div className="sidebarButtonsBlock">
                 <button onClick={()=>openModal('addCategory')}>Add category</button>
                 <button onClick={()=>openModal('showCategories')}>Manage categories</button>
+                <button onClick={()=>openModal('showTags')}>Manage Tags</button>
                 <button type='button' 
                         onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories })}>Export data</button>
             </div>
