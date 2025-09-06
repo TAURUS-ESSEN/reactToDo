@@ -197,11 +197,17 @@ header input:focus, header select:focus {
   align-items: center;
 }
 
+.searchTask input{
+  width: 140px;
+  padding-right: 29px;
+}
+
 .zoom {
   position: absolute;
   top:0.6em;
   right: 0.5em;
   color: #a8a8a8;
+  pointer-events: none;
 }
 
 .searchTask:focus-within .zoom {

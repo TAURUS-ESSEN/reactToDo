@@ -12,7 +12,7 @@ export default function Chips() {
         status: `Status: ${filters.status}`,
         category: `Category: ${category?.name ?? 'No category' }`,
         period: `Time: ${filters.period}`,
-        search: `Search word: ${filters.search}`,
+        search: `Search word: ${filters.search.slice(0,15)} ${filters.search.length>15?'...': ''}`,
         priority: `Priority: ${filters.priority}`,
         dueDate: `due Date: ${pretty(filters.dueDate)}`
     }
