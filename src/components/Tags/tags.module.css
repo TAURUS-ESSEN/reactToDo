@@ -235,6 +235,32 @@ th.checkAll {
 }
 
 .tagsAreaBlock {
+  /* width: 300px; */
   display: flex;
   gap: 0.5em;
+}
+
+.tagList {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0.5em 0;
+}
+
+.deleteConfirmationBlock {
+  padding: 0.5em;
+  border: 1px solid gray;
+}
+
+.confirmationButtonsBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+.tagRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
 }

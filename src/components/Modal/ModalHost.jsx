@@ -2,7 +2,7 @@ import AddTaskModal from "./AddTaskModal";
 import AddCategoryModal from "./AddCategoryModal";
 import EditTaskModal from "./EditTaskModal";
 import ShowCategoriesModal from "./ShowCategoriesModal"
-import ShowTagsModal from "./ShowTagsModal"
+import ShowTagsModal from "../Tags/ShowTagsModal"
 
 export default function ModalHost({modal, closeModal, tasks, setTasks, categories, setCategories, setToasts, openModal, tags, setTags}) {
     

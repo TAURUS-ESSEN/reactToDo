@@ -25,8 +25,6 @@ export default function Tags() {
 
     return (
         <>   
-    {console.log(tagChips)}
-    {console.log(filters.tags)}
         <div className={styles.chipsBlock}>
             {tagChips.map(t => {
                     return (
