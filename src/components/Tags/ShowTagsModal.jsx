@@ -1,10 +1,13 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Modal from "../Modal/Modal"
 import styles from './tags.module.css'
 
 export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModal}) {
-    const [tagNewName, setTagNewName] = useState('')
-    const [newTag, setNewTag] = useState('')
+    const [tagNewName, setTagNewName] = useState('');
+    const [newTag, setNewTag] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    let canClick = newTag.length > 2
+
     const [showBlock, setShowBlock] = useState({
         showButton: true,
         showInput: false,
@@ -14,9 +17,12 @@ export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModa
     let affected = []; 
 
     function addNewTag() {
-        let lastId = tags[tags.length-1].id + 1
-        setTags(prev=>([...prev, { id: lastId, name:newTag }]))
-        setNewTag('');
+        const nameExist = tags.some(t => t.name.toLowerCase() === newTag.toLowerCase());
+        if (!nameExist && newTag.length > 2) {
+            let lastId = tags[tags.length - 1].id + 1;
+            setTags(prev => ([...prev, { id: lastId, name:newTag}]));
+            setNewTag('');
+        }
     }
 
     function renameTag(id) {
@@ -31,92 +37,121 @@ export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModa
 
     function deleteTag(id) {
         affected = tasks.filter(task => task.tags.includes(id))
-        if (affected.length === 0 ){
-
+        if (affected.length === 0 ) {
             setTags(prev => prev.filter(t=>t.id !=id))
             setTagNewName('')
-            setShowBlock(prev => ({...prev,         showButton: true, showInput: false, showConfirme: false, id: null}))
+            setShowBlock(prev => ({...prev, showButton: true, showInput: false, showConfirme: false, id: null}))
         }
         else {
-            setShowBlock(prev => ({...prev, showConfirme: true, showButton: false, showInput: true, id:id}))
+            setShowBlock(prev => ({...prev, showConfirme: true, showButton: true, showInput: false, id:id}))
+            setTagNewName(name)
         }
     }
 
     function deleteTagWithTasks(id) {
         setTasks(prev=>(prev.map(task=> {
-        if (task.tags.includes(id)) {
-            return {...task, tags: task.tags.filter(tag=> tag!==id)}
-        }    
-        else return task
-        })))
+            if (task.tags.includes(id)) {
+                return {...task, tags: task.tags.filter(tag=> tag!==id)}
+            }    
+            else return task
+            })))
         setTags(prev => prev.filter(t=>t.id !=id))
         setShowBlock(prev => ({...prev, showButton: true, showInput: false, showConfirme: false, id: null}))
     }
 
-
-    function toggleBlocks(id) {
+    function toggleBlocks(id,name) {
         // setShowBlock(prev => ({...prev, showButton: !prev.showButton , showInput: prev.showInput, id:id}))
         setShowBlock(prev => ({...prev, showButton: false, showInput: true, id:id}))
+        setTagNewName(name)
     }
+
+    useEffect(() => {
+        const nameExist = tags.some(t => t.name.toLowerCase() === newTag.toLowerCase());
+        if (nameExist)  {
+            setErrorMessage('Name already exists') 
+            document.getElementById('addTagBtn').disabled = true
+        }
+        else if (newTag.length < 3 ) {
+            setErrorMessage('Min 3 charachters') 
+            document.getElementById('addTagBtn').disabled = true
+        }
+        else {
+            setErrorMessage('ok!');
+            document.getElementById('addTagBtn').disabled = false
+        }
+    },[newTag])
 
     return (
         <>
         <Modal title="#tags management" closeModal={closeModal}>
-            <div>  
-                <input 
-                    type='text' 
-                    onChange={(e)=>setNewTag(e.target.value.slice(0.15))}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') addNewTag();
-                        if (e.key === 'Escape') {e.stopPropagation(); setNewTag('') };
-                    }}                    
-                    blur = {()=>setNewTag('')}
-                    value={newTag} 
-                    maxLength={20}
-                />
-                <button onClick={addNewTag}>+</button>
-                {
-                    tags.map(t => {
-                        return (
-                            <div className={styles.tagList}>  
-                                <div className={styles.tagRow}>
+            <div className={styles.container}>
+                <div className={styles.newTagBlock}>
+                    <input 
+                        type='text'
+                        className={styles.newTagInput}
+                        onChange={(e)=>setNewTag(e.target.value.slice(0.20))}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') addNewTag();
+                            if (e.key === 'Escape') { e.stopPropagation(); setNewTag('') };
+                        }} 
+                        value={newTag}
+                        maxLength={20}
+                        placeholder='enter tag name without #'
+                        
+                    />
+                    <button onClick={addNewTag} disabled={!canClick} id='addTagBtn'>+Add Tag</button>
+                    <span className={styles.newTagInfoSpan}>{errorMessage}</span>
+                    <hr />
+                </div>
 
+                { tags.map(t => {
+                    let taskNumber = tasks.filter(task => task.tags.includes(t.id)).length
+                        return (
+                            <div>  
+                            <div className={styles.tagRaw}>  
                                     {(showBlock.showButton || showBlock.id != t.id ) && (
-                                        <button 
-                                            onClick={()=>toggleBlocks(t.id)}
-                                        >#{t.name}</button>
+                                        <div className={styles.tagNameButtonBlock}>
+                                            <button onClick={()=>toggleBlocks(t.id, t.name)}>
+                                                #{t.name}
+                                            </button>
+                                            <i className="fa-solid fa-pencil fa-2xs"></i>
+                                        </div>
                                     )}
 
                                     {(!showBlock.showButton && showBlock.id == t.id ) && (
-                                        <>
+                                        <div className={styles.tagNameInputBlock}>
                                         <input 
                                             type='text' 
                                             onChange={(e)=>setTagNewName(e.target.value)} 
                                             autoFocus 
-                                            value={tagNewName === '' ? t.name : tagNewName}
+                                            value={ tagNewName}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') renameTag(t.id);
+                                                if (e.key === 'Escape') {e.stopPropagation(); toggleBlocks(t.id, t.name)};
+                                            }} 
                                         /> 
                                         <button onClick={()=>renameTag(t.id)}>✓</button>
-                                        </>
+                                        {/* <div className={styles.errorMessageArea}>{errorMessage}</div> */}
+                                        </div>
                                     )}
-
-                                    { tasks.filter(task => task.tags.includes(t.id)).length}
-                                    {(!showBlock.showConfirme || showBlock.id !== t.id ) && (
-                                    <button onClick={()=>deleteTag(t.id)}><i className="fa-solid fa-trash-can"></i></button>
-                                    )}
-
+                                    <div className={styles.delBtnAndTasksNumber}>
+                                        <span className={styles.tasksNumberSpan}>{ taskNumber === 1 ? taskNumber +' task' : taskNumber + ' tasks'}</span>
+                                        {(!showBlock.showConfirme || showBlock.id !== t.id ) && (
+                                        <button onClick={()=>deleteTag(t.id)}><i className="fa-solid fa-trash-can fa-lg"></i></button>
+                                        )}
+                                    </div>
+                                    </div>  
                                     {(showBlock.showConfirme && showBlock.id == t.id ) && (
-                                        <>
+                                        <> 
                                             <div className={styles.deleteConfirmationBlock}>
-                                                Delete {t.name} affected { tasks.filter(task => task.tags.includes(t.id)).length} tasks. Want you realy delete this hashtag?
+                                                Delete <span className={styles.grayBg}>#{t.name}</span> affected { tasks.filter(task => task.tags.includes(t.id)).length} tasks. <br /> Want you realy delete this hashtag?
                                                 <div className={styles.confirmationButtonsBlock}>
-                                                    <button onClick={()=>cancelDeleteTag(t.id)}>Cancel</button>
-                                                    <button onClick={()=>deleteTagWithTasks(t.id)}>Delete</button>
+                                                    <button onClick={()=>cancelDeleteTag(t.id)} className={styles.cancelBtn}>Cancel</button>
+                                                    <button onClick={()=>deleteTagWithTasks(t.id)} className={styles.deleteBtn}>Delete</button>
                                                 </div>
                                             </div>
                                         </> 
                                     )}
-
-                                </div>
                             </div>
                         )
                     })
