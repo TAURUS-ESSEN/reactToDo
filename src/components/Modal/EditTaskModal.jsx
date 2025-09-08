@@ -25,7 +25,8 @@ const [taskTags, setTaskTags] = useState(Array.isArray(task.tags) ? task.tags : 
             t.id === modal.taskId ? { ...t, name: taskName, description: taskDescription, categoryId: Number(taskCategory), priority: Number(taskPriority), dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null, tags: taskTags  } : t
             )
         );
-        setToasts(prev=>([...prev, {message: `${taskName} was succesfully changed`}]))
+        const id = Date.now() + Math.random();
+        setToasts(prev=>([...prev, {id, message: `${taskName} was succesfully changed`}]))
         closeModal()
     }
 

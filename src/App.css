@@ -283,3 +283,12 @@ right: 0.3em;
     background-color: var(--secondary-color);
      color: white;
 }
+
+.undoBtn {
+  border-radius: 5px;
+  border: 0;
+}
+
+.undoBtn:hover {
+  cursor: pointer;
+} 

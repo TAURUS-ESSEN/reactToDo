@@ -14,11 +14,17 @@ export default function Tasks() {
     const [sortTasks, setSortTasks] = useState({ by: '', dir: ''})
     
     function deleteTask(id) {
+        const deletedTask = tasks.find(task=>task.id === id);
         setTasks(prev=>prev.filter(task=>task.id!==id))
         let currentTask = tasks.find(task=>task.id === id)
-        setToasts(prev=>([...prev, {message: (
+        const toastId = Date.now() + Math.random();
+        setToasts(prev=>([...prev, {toastId, message: (
             <>
-                Task <strong>{currentTask.name}</strong> was deleted
+                Task <strong>{currentTask.name}</strong> was deleted <button className='undoBtn' onClick={(e)=>{
+                    e.currentTarget.disabled = true;
+                    undo(deletedTask, toastId)
+                    
+                    }}>Undo ↻</button>
             </>
             ) 
         }]))
@@ -32,6 +38,12 @@ export default function Tasks() {
             return task
         }))
     }
+
+function undo(deletedTask, toastId) {
+  setToasts(prev => prev.filter(t => t.toastId !== toastId));  
+  setTasks(prev => [...prev, deletedTask]);
+}
+
 
 // FILTER AREA
     function pretty(dueDate) {
@@ -193,7 +205,8 @@ selectedTagIds.length === 0
             setFilters(prev=>({...prev, tags: prev.tags.filter(tag=>tag!==Number(id))}))
         }
     }
- 
+
+    // console.log('trash', trash)
     return (
         <>
         <div className={styles.chipsContainer}>

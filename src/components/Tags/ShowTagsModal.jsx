@@ -111,10 +111,10 @@ export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModa
                             <div className={styles.tagRaw}>  
                                     {(showBlock.showButton || showBlock.id != t.id ) && (
                                         <div className={styles.tagNameButtonBlock}>
-                                            <button onClick={()=>toggleBlocks(t.id, t.name)}>
-                                                #{t.name}
+                                            <span>#{t.name}</span>
+                                            <button onClick={()=>toggleBlocks(t.id, t.name)} className={styles.renameBtn} title="Rename tag">
+                                                <i className="fa-solid fa-pencil fa-sm"></i>
                                             </button>
-                                            <i className="fa-solid fa-pencil fa-2xs"></i>
                                         </div>
                                     )}
 
@@ -127,10 +127,12 @@ export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModa
                                             value={ tagNewName}
                                             onKeyDown={(e) => {
                                                 if (e.key === 'Enter') renameTag(t.id);
-                                                if (e.key === 'Escape') {e.stopPropagation(); toggleBlocks(t.id, t.name)};
+                                                if (e.key === 'Escape') {
+                                                    e.stopPropagation();  
+                                                    setShowBlock(prev => ({...prev, showButton: true, showInput: false, showConfirme: false, id: null}))};
                                             }} 
                                         /> 
-                                        <button onClick={()=>renameTag(t.id)}>✓</button>
+                                        <button onClick={()=>renameTag(t.id)} title="save changes">✓</button>
                                         {/* <div className={styles.errorMessageArea}>{errorMessage}</div> */}
                                         </div>
                                     )}
@@ -146,8 +148,8 @@ export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModa
                                             <div className={styles.deleteConfirmationBlock}>
                                                 Delete <span className={styles.grayBg}>#{t.name}</span> affected { tasks.filter(task => task.tags.includes(t.id)).length} tasks. <br /> Want you realy delete this hashtag?
                                                 <div className={styles.confirmationButtonsBlock}>
-                                                    <button onClick={()=>cancelDeleteTag(t.id)} className={styles.cancelBtn}>Cancel</button>
-                                                    <button onClick={()=>deleteTagWithTasks(t.id)} className={styles.deleteBtn}>Delete</button>
+                                                    <button onClick={()=>cancelDeleteTag(t.id)} className={styles.cancelBtn} title='cancel delete'>Cancel</button>
+                                                    <button onClick={()=>deleteTagWithTasks(t.id)} className={styles.deleteBtn} title='delete Tag'>Delete</button>
                                                 </div>
                                             </div>
                                         </> 

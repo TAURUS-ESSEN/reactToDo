@@ -20,7 +20,8 @@ export default function AddTaskModal({closeModal, setTasks, categories, setToast
         e.preventDefault()
         if (!canClick) return
         setTasks(prev=>[...prev, {id: createId(), name: taskName.trim(), description: taskDescription.trim(), completed: false, categoryId: categoryId ? Number(categoryId) : 0 , priority: priority, dueDate: dueDate ? format(dueDate, 'yyyy-MM-dd') : null, tags: taskTags }])
-        setToasts(prev=>([...prev, {message: `${taskName} was added`}]))
+        const id = Date.now() + Math.random();
+        setToasts(prev=>([...prev, {id, message: `${taskName} was added`}]))
         setTaskName('');
         setTaskDescription('');
         closeModal();

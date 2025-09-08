@@ -1,23 +1,39 @@
-.toastContainer {
-    /* width: 120px; */
-    /* height: 40px; */
-    border: 1px ;
-    position: fixed;
-    top:1em;
-    right: 1em;
-    padding: 0.5em;
-    border-radius: 5px;
-    color: white;
-    background-color: rgba(2, 132, 2, 0.685);
+.stack {
+  position: fixed;
+  top: 3rem;
+  right: 1rem;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  /* плавность для всего стека, когда появляется/пропадает последний тост */
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .3s ease, transform .3s ease;
+
+  pointer-events: none; /* фон кликается */
+}
+.stack.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.toastContainer {
+/* карточка одного тоста */
+.toast {
+  min-width: 140px;
+  max-width: 160px;
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  background: rgba(0,128,0,.9);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  pointer-events: auto; /* кнопки внутри будут кликабельны, позже пригодится */
+  white-space: pre-line;
     opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(-6px);
+  animation: toastIn .25s ease forwards;
 }
-
-.toastContainer.show {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes toastIn {
+  to { opacity: 1; transform: translateY(0); }
 }

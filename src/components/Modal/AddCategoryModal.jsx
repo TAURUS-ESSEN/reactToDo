@@ -13,7 +13,8 @@ export default function AddCategoryModal({categories, setCategories, setToasts, 
         e.preventDefault()
         const newCatId = categories[categories.length-1].id + 1;
         setCategories(prev => [...prev, { id:newCatId  , name: categoryName }]);
-        setToasts(prev=>([...prev, {message: `Category ${categoryName} was added`}]))
+        const id = Date.now() + Math.random();
+        setToasts(prev=>([...prev, { id, message: <> Category {categoryName} was added </> }]))
         setCategoryName('');
         closeModal();
     }

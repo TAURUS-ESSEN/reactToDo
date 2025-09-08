@@ -24,7 +24,8 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
         let category = categories.find(c=>c.id===id)
         if (taskNumbers.length === 0) {
             setCategories(prev => prev.filter(ca=>ca.id!==id))
-            setToasts(prev=>([...prev, {message: `Category ${category.name} was deleted`}]));
+            const toastId = Date.now() + Math.random();
+            setToasts(prev=>([...prev, {id:toastId, message: <>Category {category.name} was deleted </>}]));
         }
         else {
             setShowBlocks(prev => ({...prev, showDeleteBlock: true, id: id, hideDeleteButton: true,})); 
@@ -63,6 +64,8 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
 
     function deleteCategory(id) {
         const category = categories.find(c => c.id === id);
+                const toastID = Date.now() + Math.random();
+
         switch (showBlocks.tasks) {        
             case ('move'): 
                 setCategories(prev => prev.filter(c => c.id!==id))
@@ -74,7 +77,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
             case ('delete'): 
                 setCategories(prev => prev.filter(c => c.id !== id))
                 setTasks(prev => prev.filter(t => t.categoryId !== id))
-                setToasts(prev=>([...prev, {message: `Category ${category.name} was deleted`}]))
+                setToasts(prev=>([...prev, {id: toastID, message: `Category ${category.name} was deleted`}]))
                 break;
 
             default : 
@@ -82,7 +85,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                 setTasks(prev => prev.map(t =>
                     t.categoryId === id ? {...t, categoryId: null } : t 
                 ));
-                setToasts(prev=>([...prev, {message: `Category ${category.name} was deleted`}]))
+                setToasts(prev=>([...prev, {id: toastID, message: `Category ${category.name} was deleted`}]))
                 break;
         }
     }
