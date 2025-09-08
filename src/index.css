@@ -1,17 +1,22 @@
 :root {
   margin: 0;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
   --primary-color: #d3d3d3;
-    --gray-color: #8c8c8c;
+  --gray-color: #8c8c8c;
+  --lightgray-color: #F3F4F6;
+  --darkgray-color: #545964;
   --secondary-color:#c95000;
   --secondary-color-hover:#151515;
+  --success-background: #026702;
   --sidebar-color: #f2f3f4;
   --focus-border: #1e90ff;
   --focus-shadow: #1e90ff;
   --danger-background: #dc143c;
   --white-text: #ffffff;
   --black-text: #000000;
+  --text-hover: #fff;
+  --danger-text: #dc143c;
   --reset-background: #6e6d6d;
   --tr-even: #edf5fa;
   --tr-hover: #e2fafa;
@@ -30,50 +35,25 @@
   -moz-osx-font-smoothing: grayscale; */
 }
 
+@font-face {
+  font-family: "Metrophobic";
+  src: url("/Fonts/Metrophobic-Regular.woff2") format("woff2"),
+      url("/Fonts/Metrophobic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
   overflow-y: scroll;
-}
-/* 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+    font-family: "Metrophobic", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+select, button, input {
+  font-family: Metrophobic;
 }
 
 @media (prefers-color-scheme: light) {
@@ -88,3 +68,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+button, select, input {
+  /* max-height: 40px;
+  border-radius: 5px;
+  padding: 0.5em;
+  border: 1px solid var(--primary-color);
+  transition: 0.5s; */
+}

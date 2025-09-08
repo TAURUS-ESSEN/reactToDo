@@ -1,13 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Combo&family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Metrophobic&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rancho&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Combo&family=Epunda+Slab:ital,wght@0,300..900;1,300..900&family=Metrophobic&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rancho&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 
 #root {
   margin: 0;
   padding: 0;
   text-align: center;
   box-sizing: border-box;
-  font-family: Metrophobic;
   /* background-image: url('./assets/groovepaper.png'); */
 }
+
+@font-face {
+  font-family: "Metrophobic";
+  src: url("/Fonts/Metrophobic-Regular.woff2") format("woff2"),
+       url("/Fonts/Metrophobic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+  
 
 select, button, input {
   font-family: Metrophobic;

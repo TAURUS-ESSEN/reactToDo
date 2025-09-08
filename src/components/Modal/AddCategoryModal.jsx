@@ -28,7 +28,7 @@ export default function AddCategoryModal({categories, setCategories, setToasts, 
         <>
             <Modal title='Create category' closeModal={closeModal}>
                 <form onSubmit={onSubmit} className={styles.createForm}>
-                    <label>Enter category name</label>
+                    <label>Enter category name:</label>
                     <input type='text' 
                         onChange={(e) => setCategoryName(e.target.value)} 
                         value={categoryName}
@@ -38,12 +38,11 @@ export default function AddCategoryModal({categories, setCategories, setToasts, 
                         required
                         placeholder='min 2 characters'
                     />
-                    <div className={styles.errorMessageArea}>{errorMessage}</div>
-                    <div className={styles.buttons}>
-                        <button type="button" onClick={cancel} className={styles.cancelBtn}>Cancel</button>
-                        <button type='submit' disabled={!canClick} className={styles.addNewBtn}>
-                            <i className="fa-solid fa-plus fa-2xs"></i> 
-                            Add category
+                    <div className={styles.errorMessageBlock}>{errorMessage}</div>
+                    <div className={styles.buttonsBlock}>
+                        <button type="button" onClick={cancel} className={styles.cancelBtn} title='cancel add'>Cancel</button>
+                        <button type='submit' disabled={!canClick} className={styles.addNewBtn} title='add new category'>
+                            +Add category
                         </button>      
                     </div>
                 </form>

@@ -95,6 +95,7 @@ tbody tr:hover {
 .taskNameBtn:hover {
   cursor: pointer;
   font-weight: 700;
+  color: var(--black-text) !important;
 }
 
 .taskDeleteBtn:hover {

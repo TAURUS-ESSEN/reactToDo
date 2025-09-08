@@ -1,5 +1,5 @@
 import {Outlet} from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Sidebar from './components/Sidebar'
@@ -38,8 +38,13 @@ function App() {
     tags: [],
   })
 
-  const openModal = (modalType, id = null) => setModal({isOpen: true, type: modalType, taskId : id});
-  const closeModal = () => setModal({isOpen: false, type: null, taskId:null});
+  const openModal = useCallback((modalType, id = null) => {
+    setModal({isOpen: true, type: modalType, taskId : id});
+  }, []);
+  const closeModal = useCallback(() => {
+    setModal({isOpen: false, type: null, taskId:null});
+  }, []);
+
 
   useEffect(() => {
     localStorage.setItem('toDoTasks', JSON.stringify(tasks))

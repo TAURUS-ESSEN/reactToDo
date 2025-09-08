@@ -163,12 +163,12 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                                 </div>
                                 
                     </div>
-                    <div className={styles.buttons}>
-                        <button onClick={cancelDeleteCategory} className={styles.cancelButton}>Cancel</button>
+                    <div className={styles.buttonsBlock}>
+                        <button onClick={cancelDeleteCategory} className={styles.cancelBtn}>Cancel</button>
                         <button 
                             onClick={()=>deleteCategory(c.id)} 
                             disabled={!showBlocks.canClick} 
-                            className={styles.deleteButton}
+                            className={styles.deleteBtn}
                         >Delete</button>
                     </div>
             </div>
@@ -178,7 +178,11 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
 
                 })}
             </div>
-            <div className={styles.addNewButton}><button onClick={()=>openModal('addCategory')} title="Add new category"><i class="fa-solid fa-plus fa-2xs"></i> Add category</button></div>
+            <div className={styles.addNewBtnBlock}>
+                <button onClick={()=>openModal('addCategory')} title="Add new category" className={styles.addNewBtn}>
+                    +Add category
+                </button>
+            </div>
         </Modal>
         </>
     )
