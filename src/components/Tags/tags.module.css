@@ -1,266 +1,54 @@
+/* 
 
-.low {
-  background-color: green;
-}
-
-.medium {
-  background-color: #FFBF00;
-}
-
-.high {
-  background-color: red;
-}
-
-.priorityLegend {
-  display: flex;
-  align-items: center;
-  gap:0.5em;
-}
-
-.tasksListeTable {
-  background-color: var(--white-text);
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-}
-
-.tasksListeTable td,.tasksListeTable th {
-  text-align: left;
-  height: 40px;
-}
-
-
-thead {
-  background-color: var(--sidebar-color)
-}
-
-thead { position: relative; }
-thead::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 1px;
-  background: var(--primary-color);
-}
-
-tbody tr:nth-child(even) {
-  background-color: var(--tr-even);
-}
-
-tbody tr {
-  transition: 0.5s ease;
-}
-
-tbody tr:hover {
-  background-color: var(--tr-hover);
-}
-
-.tasksBlockSorting > button {
-  min-height: 30px;
-
-  font-weight: 600;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  transition: 0.5s ease;
-}
-
-.tasksBlockSorting > button:hover {
-  color: var(--secondary-color);
-}
-
-.priorityBlock {
-  padding: 0.3em;
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-}
-
-.taskDeleteBtn, .taskEditBtn {
-  width: 30px;
-  height: 30px;
-  margin: 0 0.5em;
-  padding: 0.5em;
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  background: none;
-  transition: 0.5s ease;
-}
-
-.taskNameBtn {
-  font-size: 1em;
-  border: 0;
-  background: none;
-}
-
-.taskNameBtn:hover {
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.taskDeleteBtn:hover {
-  background-color: var(--danger-background);
-  color: var(--white-text);
-}
-
-.taskEditBtn:hover {
-  background-color: var(--secondary-color-hover);
-  color: var(--white-text);
-} 
-
-.nameTdcontainer {
-  width: 400px;
-}
-
-.categoryBtn {
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  padding: 0.5em;
-  transition: 0.5s;
-}
-
-.categoryBtn:hover {
-  background-color: var(--gray-color);
-  cursor: pointer;
-  color: var(--white-text);
-}
-
-.overdue {
-  color: var(--danger-background);
-}
-
-th.checkAll {
-  width: 20px;
-  padding: 0;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.chipsContainer {
+.tagChipsContainer {
   height: 35px;
   margin: 0.5em 0.5em;
   padding: 0.5em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+} */
 
-.chipsBlock {
+.tagChipsBlock {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
-  gap:1em;
+  gap: 1rem;
 }
 
-.chipName {
+.tagChipsName {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.3em;
-  background-color: rgb(243, 242, 242);
+  padding: var(--space-2);
+  background-color: var(--lightgray-color);
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: var(--radius-2);
+
   color: rgb(1, 1, 1);
   box-shadow: 0 0 3px rgb(211, 211, 211);
 }
 
-.deleteChipBtn {
-  width: 20px;
-  height: 20px;
-  margin-left: 0.3em;
-  background-color: rgb(69, 68, 68);
+.tagChipsName button {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: var(--space-1);
+  background-color: var(--darkgray-color);
   border: 0;
   border-radius: 9999px;
   color: var(--white-text);
   transition: 0.3s ease;
+  vertical-align: middle;
 }
 
-.deleteChipBtn:hover {
-  cursor: pointer;
+.tagChipsName button:hover {
   background-color: var(--secondary-color);
   color: var(--black-text);
 }
 
-.completed{
-  color: #8c8c8c;
-}
-
-.strike {
-  text-decoration: line-through;
-  color: #8c8c8c
-}
-
-/* .dateHint {
- 
-  background-color: var(--secondary-color);
-  padding: 0.2em;
-  margin-left: 0.1em;
-  border-radius: 999px;
-  font-size: 0.7em;
-  font-style: italic;
-  color: var(--white-text);
-} */
-
-.todayHint {
-  background-color: #ffa726; /* оранжевый */
-  color: white;
-  padding: 0.2em 0.5em;
-  border-radius: 999px;
-  font-size: 0.7em;
-  font-style: italic;
-}
-
-.tomorrowHint {
-  background-color: #64b5f6; /* голубой */
-  color: white;
-  padding: 0.2em 0.5em;
-  border-radius: 999px;
-  font-size: 0.7em;
-  font-style: italic;
-}
-
-.dueDateTd {
-  width:170px;
-}
-
-.noTasks td {
-  text-align: center;
-}
-
-
-.tagBtn {
-  font-size: 0.8em;
-  background-color: var(--primary-color);
-  border: 0;
-  border-radius: 5px;
-}
-
-.tagsAreaBlock {
-  /* width: 300px; */
-  display: flex;
-  gap: 0.5em;
-}
-
-
-
-
-
-.tagRow {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em 0;
-}
-
-/* .tagRow {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5em 0;
-} */
-
-/* ------------- */
 .container {
-  min-width:320px;
+  min-width: 20rem;
 }
 
 .container input:focus {
@@ -271,31 +59,26 @@ th.checkAll {
 
 .newTagBlock {
   text-align: center;
-  /* margin-bottom: 1em; */
 }
 
 .newTagBlock input, .newTagBlock button  {
-  height: 30px;
-  padding: 0.3em;
-  border-radius: 5px;
-  border: 1px solid var(--secondary-color-hover);
-  /* margin: 0 0.5em; */
-  transition: 0.5s ease;
+  height: 2rem;
+  padding: var(--space-1);
 }
 
 .newTagBlock input {
   width: 65%;
-  margin-right: 0.5em;
+  margin-right: var(--space-2);
 }
 
 .newTagBlock button {
-  height: 40px;
+  height: 2.5rem;
   width: 25%;
 }
 
 .newTagBlock button:enabled {
   background-color: var(--secondary-color-hover);
-  color: white;
+  color: var(--white-text);
 }
 
 .newTagBlock button:hover {
@@ -305,28 +88,27 @@ th.checkAll {
 }
 
 .newTagInfoSpan {
-  height: 15px;
+  height: 1rem;
   display: block;
   text-align: left;
-  font-size: 0.9em;
-  margin: 1em;
+  font-size: 0.9rem;
+  margin: var(--space-3);
   color: var(--black-text);
 }
 
 .tagRaw {
-  min-height: 45px;
-  padding: 0.3em;
+  min-height: 2.5rem;
+  padding: var(--space-1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.2em 0;
+  margin: var(--space-1) 0;
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: var(--radius-1)
 }
 
 .tagNameButtonBlock span {
-  padding: 0.5em;
-  /* border: 1px solid var(--primary-color); */
+  padding: var(--space-2);
   background-color: var(--primary-color);
   border-radius: 99px;
   font-weight: 600;
@@ -334,7 +116,6 @@ th.checkAll {
 .renameBtn {
   background: none;
   border: 0;
-  transition: 0.5s;
 }
 
 .tagNameInputBlock {
@@ -343,14 +124,14 @@ th.checkAll {
 }
 
 .tagNameInputBlock input{
-  height: 30px;
-  padding: 0.3em;
+  height: 2rem;
+  padding: var(--space-1);
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: var(--radius-1)
 }
 
 .tagNameInputBlock button {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   border: 0;
   background: none;
   color: var(--secondary-color);
@@ -360,13 +141,12 @@ th.checkAll {
 .tagNameInputBlock button:hover, .renameBtn:hover {
   color:rgb(5, 86, 48);
   transform: scale(1.2);
-  cursor: pointer;
 }
 
 .delBtnAndTasksNumber {
-  width: 120px;
+  width: 7.5rem;
   display: flex;
-  gap:1em;
+  gap: 1em;
   justify-content: space-between;
   align-items: center;
 }
@@ -376,12 +156,9 @@ th.checkAll {
 }
 
 .delBtnAndTasksNumber button {
-  height: 40px;
-  width:  40px;
+  height: 2.5rem;
+  width:  2.5rem;
   background: none;
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  transition: 0.5s ease;
 }
 
 
@@ -397,16 +174,11 @@ th.checkAll {
 .confirmationButtonsBlock {
   display: flex;
   justify-content: space-between;
-  margin-top: 1em;
+  margin-top: var(--space-3);
 }
 
 .cancelBtn, .deleteBtn {
-  height: 40px;
-  /* width:  40px; */
-  /* background: none; */
-  border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  transition: 0.5s ease;
+  height: 2.5rem;
 }
 
 .cancelBtn:hover {
@@ -420,12 +192,12 @@ th.checkAll {
 }
 
 .deleteConfirmationBlock {
-  padding: 0.5em;
-  border: 1px solid gray;
+  padding:var(--space-2);;
+  border: 1px solid var(--primary-color);
 }
 
 .grayBg {
   background-color: var(--primary-color);
-  border-radius: 5px;
-  padding: 0.3em;
+  border-radius: var(--radius-1);
+  padding: var(--space-1);
 }

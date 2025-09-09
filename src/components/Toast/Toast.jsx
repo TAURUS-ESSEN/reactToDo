@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom"
 import  styles  from './toast.module.css'
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import { useAppContext } from "../../context/AppContext"
 
 export default function Toast() {

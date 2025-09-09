@@ -8,7 +8,7 @@ export default function ShowTagsModal() {
     const [tagNewName, setTagNewName] = useState('');
     const [newTag, setNewTag] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    let canClick = newTag.length > 2
+    const canClick = newTag.length > 2;
 
     const [showBlock, setShowBlock] = useState({
         showButton: true,

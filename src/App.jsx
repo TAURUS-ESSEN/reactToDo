@@ -46,7 +46,6 @@ function App() {
     setModal({isOpen: false, type: null, taskId:null});
   }, []);
 
-
   useEffect(() => {
     localStorage.setItem('toDoTasks', JSON.stringify(tasks))
   }, [tasks]);
@@ -60,17 +59,11 @@ function App() {
   }, [categories]);
 
   const contextValue = useMemo(() => ({
-    tasks, setTasks,
-    tags, setTags,
-    categories, setCategories,
-    filters, setFilters,
-    toasts, setToasts,
-    modal, openModal, closeModal,
+    tasks, setTasks, tags, setTags, categories, setCategories, filters, setFilters,
+    toasts, setToasts, modal, openModal, closeModal,
   }), [
-    tasks, tags, categories,
-    filters,
-    toasts,
-    modal, openModal, closeModal
+    tasks, tags, categories, filters,
+    toasts, modal, openModal, closeModal
   ]);
 
   return (
@@ -85,11 +78,8 @@ function App() {
             <Outlet />
           </main>
         </div>
-        <footer>
           <Footer />
-        </footer>
       </div>
-
       <ModalHost />
       </AppContext.Provider>
     </>

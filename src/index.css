@@ -9,6 +9,7 @@
   --secondary-color:#c95000;
   --secondary-color-hover:#151515;
   --success-background: #026702;
+  --warning-color: #FFBF00;
   --sidebar-color: #f2f3f4;
   --focus-border: #1e90ff;
   --focus-shadow: #1e90ff;
@@ -20,7 +21,21 @@
   --reset-background: #6e6d6d;
   --tr-even: #edf5fa;
   --tr-hover: #e2fafa;
+  --bg-white: #fff;
+  --completed: #8c8c8c;
     box-sizing: border-box;
+
+      /* радиусы */
+  --radius-1: 4px;
+  --radius-2: 8px;
+
+   /* отступы */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 1rem;     /* 16px */
+  --space-4: 1.5rem;   /* 24px */
+  --space-5: 2rem;     /* 32px */
+
   /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -57,7 +72,6 @@ select, button, input {
 }
 
 button, input, select {
-  padding: 0.3em;
   border-radius: 5px;
   border: 1px solid var(--primary-color);
   transition: background-color .2s, border-color .2s, color .2s, transform .2s;

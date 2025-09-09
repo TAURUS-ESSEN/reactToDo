@@ -9,19 +9,20 @@
 }
 
 .modalContent {
-  border-radius: 5px;
-  padding: 0.5em 1em 1em 1em;
+  border-radius: var(--radius-2);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-3);
   max-height: 90vh;
   overflow-y: auto;
-  background-color: #ffffff;
+  background-color: var(--bg-white);
 }
 
 .modalHeader {
   display: flex;
   position: relative;
   justify-content: space-between;
-  margin-bottom: 1em;
-  padding-bottom: 0.5em;
+  margin-bottom: var(--space-2);
+  padding-block-end: var(--space-2); 
   border-bottom: 1px solid var(--primary-color)
 }
 
@@ -47,12 +48,12 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 
-  font-size: 1.5em;
-  right: -0.5em;
-  top: -0.3em;
+  font-size: 1.5rem;
+  right: -0.5rem;
+  top: -0.3rem;
   background: none;
   border: 0;
   cursor: pointer;
@@ -66,9 +67,8 @@
 }
 
 .categoryNameBtn {
-  padding: 0.3em;
-  min-height: 48px;
-  font-size: 1.1em;
+  padding: var(--space-1);
+  font-size: 1.1rem;
   text-align: left;
   border: 0;
   background: none;
@@ -81,7 +81,7 @@
 
 .buttonsBlock {
   display: flex;
-  gap: 1em;
+  gap: 1rem;
   justify-content: space-between;
 }
 
@@ -89,7 +89,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1em;
+  margin-block: var(--space-2);
 }
 
 .addNewBtn:enabled:hover {
@@ -97,13 +97,13 @@
 }
 
 .addNewBtn, .cancelBtn, .deleteBtn {
-  min-width: 140px;
-  height: 40px;
+  min-width: 9rem;
+  height: 2.5rem;
 }
 
 .preDeleteBtn {
-  width: 80px;
-  min-height: 40px;
+  min-width: 5rem;
+  min-height: 2.5rem;
 }
 
 .preDeleteBtn:hover {
@@ -121,7 +121,7 @@
 .saveBtn {
   padding: 0;
   border: 0;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   background: none;
   color: var(--success-background);
 }
@@ -132,38 +132,39 @@
 }
 
 .createForm input, .inputCategoryName, .createForm label {
-  width: 180px;
+  min-width: 9rem;
   margin: 0 auto;
-  padding: 0.5em;
-  font-size: 1em;
+  padding: var(--space-2);
+  font-size: 1rem;
 } 
 
 .errorMessageBlock {
-  margin: 0.5em auto;
+  margin: var(--space-2) auto;
   text-align: center;
-  height: 1em;
+  min-height: 1rem;
   color: var(--danger-text);
 }
 
 /*        CATEGORIES    LIST            */
 .categoriesListContainer {
-  width: 430px;
+  min-width: 30rem;
+  margin: 0 auto;
 }
 
 .categoriesListContainer > li {
   list-style: none;
-  margin: 0.3em 0;
+  margin: var(--space-1) 0;
 }
 
 .currentCategoryBlock {
-  min-height: 40px;
+  min-height: 2.5rem;
   display: flex;
-  gap:1em;
+  gap: 1rem;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em;
+  padding: var(--space-2);
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: var(--radius-2)
 }
 
 .currentCategoryBlock:hover {
@@ -171,34 +172,34 @@
 } 
 
 .categoryNameSpan {
-  width: 320px;
+  min-width: 18rem;
 }
 
 .taskNumberSpan {
-  width: 60px;
-  padding: 0.5em; 
+  width: 4rem;
+  padding: var(--space-2); 
   text-align: center;
-  font-size: 0.7em; 
+  font-size: 0.7rem; 
   border-radius: 9999px; 
   color: var(--darkgray-color); 
   background: var(--lightgray-color);
 }
 
 .deleteCategoryBlock {
-  padding: 1em;
-  border: 1px solid rgb(225, 223, 223);
-  border-radius: 5px;
+  padding: var(--space-3);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-1)
 }
 
 .deleteCategoryBlock select {
-  width: 50%;
+  min-width: 50%;
 }
 
 .radioContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin: 1em;
+  margin: var(--space-2);
 }
 
 .radioLabels {
@@ -212,7 +213,7 @@
 }
 
 .inputCategoryName {
-  margin-right: 0.2em;
+  margin-right: 0.2rem;
 }
 
 /* CALENDAR */
@@ -230,7 +231,7 @@
 
   font-size: 14px;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: var(--radius-2);
   padding: 12px;
   box-shadow: 0 4px 14px rgba(0,0,0,.08);
 }
@@ -243,7 +244,7 @@
 /* стрелки навигации */
 .calendar .rdp-nav_button {
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
+ border-radius: var(--radius-2);
   width: 32px; 
   height: 32px;
 }
@@ -256,7 +257,7 @@
 
 /* ячейки дней */
 .calendar .rdp-day { 
-  border-radius: 8px; 
+  border-radius: var(--radius-2);
 }
 .calendar .rdp-day:hover { 
   background: var(--rdp-background-color); 
@@ -278,10 +279,10 @@
 .form label { margin-top: 8px; font-weight: 600;;}
 .form input, .form select, .form textarea {
   margin-top: 4px; margin-bottom: 8px;
-  padding: 8px; border: 1px solid #d1d5db; border-radius: 8px;
+  padding: var(--space-2); border: 1px solid #d1d5db; border-radius: var(--radius-2);
 }
 .form button {
-  padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 8px;
+  padding: var(--space-2) 12px; border: 1px solid #d1d5db; border-radius: var(--radius-2);
 }
 .form button[type="submit"]:not(:disabled) {
   border-color: #3b82f6;

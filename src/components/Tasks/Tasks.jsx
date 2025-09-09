@@ -206,7 +206,6 @@ selectedTagIds.length === 0
         }
     }
 
-    // console.log('trash', trash)
     return (
         <>
         <div className={styles.chipsContainer}>
@@ -218,7 +217,7 @@ selectedTagIds.length === 0
                     <Chips /><Tags />
         </div>
             
-        <table className={styles.tasksListeTable}> 
+        <table className={styles.tasksListTable}> 
             <TasksTableHeader 
                 sortBy={sortBy} 
                 sortTasks={sortTasks} 

@@ -25,11 +25,11 @@ export default function Tags() {
 
     return (
         <>   
-        <div className={styles.chipsBlock}>
+        <div className={styles.tagChipsBlock}>
             {tagChips.map(t => {
                     return (
                         <>
-                            <span className={styles.chipName}>
+                            <span className={styles.tagChipsName}>
                                 {/* {DEFAULT[c] ?? String(c)} */}
                                 #{t.name}
                                 <button 
