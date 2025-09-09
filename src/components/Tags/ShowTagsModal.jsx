@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react'
 import Modal from "../Modal/Modal"
 import styles from './tags.module.css'
+import { useAppContext } from '../../context/AppContext';
 
-export default function ShowTagsModal({tags, setTags, setTasks, tasks, closeModal}) {
+export default function ShowTagsModal() {
+    const {tags, setTags, setTasks, tasks, closeModal} = useAppContext();
     const [tagNewName, setTagNewName] = useState('');
     const [newTag, setNewTag] = useState('');
     const [errorMessage, setErrorMessage] = useState('');

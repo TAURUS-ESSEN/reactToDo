@@ -47,13 +47,29 @@
 body {
   margin: 0;
   overflow-y: scroll;
-    font-family: "Metrophobic", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Metrophobic", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 select, button, input {
   font-family: Metrophobic;
+}
+
+button, input, select {
+  padding: 0.3em;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  transition: background-color .2s, border-color .2s, color .2s, transform .2s;
+}
+
+button:enabled:hover {
+  color: var(--text-hover);
+}
+
+button {
+  background: none;
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: light) {

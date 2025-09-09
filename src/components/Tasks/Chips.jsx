@@ -1,10 +1,10 @@
-import {useOutletContext} from 'react-router-dom';
+import { useAppContext } from '../../context/AppContext';
 import { useState, useEffect } from 'react';
 import styles from './tasks.module.css';
 
 export default function Chips() {
 
-    const {categories, filters, setFilters} = useOutletContext();
+    const {categories, filters, setFilters} = useAppContext();
     const [chips, setChips] = useState([])
     const category = categories.find(c => c.id === Number(filters.category))
 

@@ -1,8 +1,10 @@
 import {useState} from 'react';
 import Modal from "./Modal";
 import styles from "./modal.module.css";
+import { useAppContext } from '../../context/AppContext';
 
-export default function ShowCategoriesModal({categories, tasks, setTasks, setCategories, openModal, closeModal, setToasts}) {
+export default function ShowCategoriesModal() {
+    const {categories, tasks, setTasks, setCategories, openModal, closeModal, setToasts} = useAppContext()
     const [categoryNewName, setCategoryNewName] = useState({id: null, name: ''});
     const [showBlocks, setShowBlocks] = useState({
         showNameInput: false,
@@ -102,7 +104,7 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                                 {(!showBlocks.showNameInput || categoryNewName.id !== c.id) && ( 
                                     <>
                                     <button 
-                                        className={styles.categoryNameButton} 
+                                        className={styles.categoryNameBtn} 
                                         onClick={() => changeVisible(c.id, c.name)} 
                                         title={c.name}
                                     >{c.name.slice(0,30)}{c.name.length > 30? '...' : ''} <i className="fa-solid fa-pencil fa-2xs"></i></button>
@@ -118,12 +120,13 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                                         }
                                     }
                                     autoFocus
-                                    onChange = {(e) => setCategoryNewName(prev=>({...prev, name: e.target.value}))}
+                                    onChange = {(e) => setCategoryNewName(prev=>({...prev, name: e.target.value.slice(0,25)}))}
                                     onBlur = {() => saveData(c.id)}
+                                    maxLength={25}
                                     value={categoryNewName.name} /> 
                                 <button 
                                     onClick={() => saveData(c.id)} 
-                                    className={ styles.saveButton }
+                                    className={ styles.saveBtn }
                                     title='Rename Category'
                                 >✓</button></>
 
@@ -133,14 +136,14 @@ export default function ShowCategoriesModal({categories, tasks, setTasks, setCat
                             
                             {(!showBlocks.hideDeleteButton || showBlocks.id !== c.id)  && (
                                 <span>
-                                    <button onClick={() => preDelete(c.id, taskNumbers)} className={styles.preDeleteButton} title="Delete Category"><i class="fa-solid fa-trash-can"></i> Delete </button>                                    
+                                    <button onClick={() => preDelete(c.id, taskNumbers)} className={styles.preDeleteBtn} title="Delete Category"><i class="fa-solid fa-trash-can"></i> Delete </button>                                    
                                 </span>
                             )}
                         </div>
 
                         {showBlocks.showDeleteBlock && showBlocks.id===c.id && (
                             <div className={styles.deleteCategoryBlock}>
-                                <div className={styles.header}>Category <strong>{c.name.slice(0,40)}{c.name.length>40?'...' : ''}</strong> is not empty and has {taskNumbers.length} tasks. Choose what to do with them:</div>
+                                <div>Category <strong>{c.name.slice(0,40)}{c.name.length>40?'...' : ''}</strong> is not empty and has {taskNumbers.length} tasks. Choose what to do with them:</div>
                                 <div>
                                 <div className={styles.radioContainer}>
                                     <label className={styles.radioLabels}> Keep tasks (remove category)

@@ -1,10 +1,12 @@
 import {useState} from 'react';
+import { useAppContext } from '../../context/AppContext';
 import Modal from './Modal';
 import styles from './modal.module.css'
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function EditTaskModal({tasks, setTasks, modal, categories, setToasts, tags, closeModal}) {
+export default function EditTaskModal() {
+    const {tasks, setTasks, modal, categories, setToasts, tags, closeModal} = useAppContext();
     const task = tasks.find(task=> task.id === modal.taskId);// это текущий таск который мы редактируем
     const [taskName, setTaskName] = useState(task.name); // это редактируемые поля
     const [taskDescription, setTaskDescription] = useState(task.description);

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useAppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import { downloadJSON } from "../utils/downloadJSON";
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function Sidebar({setTasks, filters, setFilters, openModal, tasks, categories, setToasts, tags}) {
+export default function Sidebar() {
+    const {setTasks, filters, setFilters, openModal, tasks, categories, setToasts, tags} = useAppContext();
     const [quickTask, setQuickTask] = useState('');
     const canQuickAdd = quickTask.trim().length > 1;
     const genId = () => Date.now() + Math.floor(Math.random() * 1000);

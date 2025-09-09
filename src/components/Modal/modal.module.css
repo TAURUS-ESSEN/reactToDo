@@ -11,9 +11,9 @@
 .modalContent {
   border-radius: 5px;
   padding: 0.5em 1em 1em 1em;
-  background-color: #ffffff;
   max-height: 90vh;
   overflow-y: auto;
+  background-color: #ffffff;
 }
 
 .modalHeader {
@@ -25,13 +25,30 @@
   border-bottom: 1px solid var(--primary-color)
 }
 
+.modalTitle {
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContent :is(button:enabled:hover){ 
+  color: var(--text-hover);
+}
+
+.modalHeader button:enabled:hover {
+  color: var(--secondary-color) ;
+}
+
 .modalHeader button {
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 
   font-size: 1.5em;
   right: -0.5em;
@@ -42,38 +59,22 @@
   transition: 0.5s;
 }
 
-.modalHeader button:hover {
-  color: var(--secondary-color) !important;
+.modalContent :is(button, input, select):focus-visible{
+  outline: none;
+  border: 1px solid var(--focus-border);
+  box-shadow: 0 0 5px var(--focus-shadow);
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-}
-/*  BUTTONS START */
-button, input, select {
+.categoryNameBtn {
   padding: 0.3em;
-  border-radius: 5px;
-  border: 1px solid var(--primary-color);
-  background: none;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-button:enabled:hover {
-  color: var(--text-hover);
-}
-
-.categoryNameButton {
+  min-height: 48px;
   font-size: 1.1em;
   text-align: left;
   border: 0;
-  padding: 0.3em;
-  min-height: 48px;
-  box-shadow: none;
+  background: none;
 }
 
-.categoryNameButton:enabled:hover {
+.modalContent .categoryNameBtn:enabled:hover{
   text-decoration: underline;
   color: var(--black-text);
 }
@@ -96,16 +97,16 @@ button:enabled:hover {
 }
 
 .addNewBtn, .cancelBtn, .deleteBtn {
-  width: 140px;
+  min-width: 140px;
   height: 40px;
 }
 
-.preDeleteButton {
+.preDeleteBtn {
   width: 80px;
   min-height: 40px;
 }
 
-.preDeleteButton:hover {
+.preDeleteBtn:hover {
   background-color: var(--secondary-color-hover);
 }
 
@@ -117,25 +118,36 @@ button:enabled:hover {
   background-color: var(--darkgray-color);
 }
 
-.saveButton {
-  color: var(--success-background);
+.saveBtn {
+  padding: 0;
   border: 0;
   font-size: 1.2em;
-  padding: 0;
-  margin-left: 0.2em;
+  background: none;
+  color: var(--success-background);
 }
 
-.saveButton:enabled:hover {
+.saveBtn:enabled:hover {
   color: var(--success-background) !important;
-  transform: scale(1.3);
+  transform: scale(1.18); 
 }
 
+.createForm input, .inputCategoryName, .createForm label {
+  width: 180px;
+  margin: 0 auto;
+  padding: 0.5em;
+  font-size: 1em;
+} 
 
-/*  BUTTONS END */
+.errorMessageBlock {
+  margin: 0.5em auto;
+  text-align: center;
+  height: 1em;
+  color: var(--danger-text);
+}
 
 /*        CATEGORIES    LIST            */
 .categoriesListContainer {
-  width: 400px;
+  width: 430px;
 }
 
 .categoriesListContainer > li {
@@ -144,18 +156,18 @@ button:enabled:hover {
 }
 
 .currentCategoryBlock {
+  min-height: 40px;
   display: flex;
   gap:1em;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgb(225, 223, 223);
-  border-radius: 5px;
   padding: 0.5em;
-  height: 40px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
 }
 
 .currentCategoryBlock:hover {
-  background-color: #f8f9fb;
+  background-color: var(--tr-hover);
 } 
 
 .categoryNameSpan {
@@ -164,35 +176,28 @@ button:enabled:hover {
 
 .taskNumberSpan {
   width: 60px;
+  padding: 0.5em; 
   text-align: center;
   font-size: 0.7em; 
-  color: var(--darkgray-color); 
-  padding: 0.5em; 
   border-radius: 9999px; 
+  color: var(--darkgray-color); 
   background: var(--lightgray-color);
 }
 
-
-.modalTitle {
-  margin: 0;
-}
-
 .deleteCategoryBlock {
+  padding: 1em;
   border: 1px solid rgb(225, 223, 223);
   border-radius: 5px;
-  padding: 1em;
 }
 
 .deleteCategoryBlock select {
   width: 50%;
 }
 
-
 .radioContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  /* align-items: center; */
   margin: 1em;
 }
 
@@ -202,47 +207,15 @@ button:enabled:hover {
 }
 
 .radioLabels:has(> input[type="radio"]:checked){
-    color:#c95c08;
+    color:var(--secondary-color);
     font-weight: 700;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 1em;
-}
-
 .inputCategoryName {
-  margin-right: 0.5em;
+  margin-right: 0.2em;
 }
 
-/* CREATE CATEGORY MODAL */
-.createForm {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  gap: 1em;
-}
-
-.createForm input, .inputCategoryName, .createForm label {
-  width: 180px;
-  margin: 0 auto;
-  padding: 0.5em;
-  font-size: 1em;
-  /* border-radius: 5px; */
-} 
-
-.createForm label {
-  padding: 0;
-}
-
-
-.errorMessageBlock {
-  margin: 0 auto;
-  height: 1em;
-  color: var(--danger-text);
-}
-
-/* SALENDAR */
+/* CALENDAR */
 
 /* контейнер, чтобы календарь не прилипал */
 .calendarWrap { margin: 12px 0 16px; }

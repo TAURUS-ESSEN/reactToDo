@@ -171,7 +171,8 @@ th.checkAll {
 .deleteChipBtn {
   width: 20px;
   height: 20px;
-  margin-left: 0.3em;
+ 
+  /* margin-left: 0.3em; */
   background-color: rgb(69, 68, 68);
   border: 0;
   border-radius: 9999px;

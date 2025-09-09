@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom'
+import { useAppContext } from '../../context/AppContext.jsx';
 import { useState } from 'react';
 import Chips from './Chips'
 import Tags from '../Tags/Tags.jsx'
@@ -10,7 +10,7 @@ const colors = {
 }
 
 export default function Tasks() {
-    const {tasks, setTasks, categories, openModal, filters, setFilters, setToasts, tags} = useOutletContext();
+    const {tasks, setTasks, categories, openModal, filters, setFilters, setToasts, tags} = useAppContext();
     const [sortTasks, setSortTasks] = useState({ by: '', dir: ''})
     
     function deleteTask(id) {

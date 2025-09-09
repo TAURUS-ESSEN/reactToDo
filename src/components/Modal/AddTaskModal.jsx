@@ -1,10 +1,12 @@
 import styles from './modal.module.css'
 import Modal from './Modal';
+import {useAppContext } from '../../context/AppContext';
 import {useState} from 'react';
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-export default function AddTaskModal({closeModal, setTasks, categories, setToasts, tags}) {
+export default function AddTaskModal() {
+    const {closeModal, setTasks, categories, setToasts, tags} = useAppContext();
     const [taskName, setTaskName] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
     const [categoryId, setCategoryId] = useState(null)

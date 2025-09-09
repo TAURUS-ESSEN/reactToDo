@@ -1,10 +1,11 @@
 import { createPortal } from "react-dom"
 import  styles  from './toast.module.css'
 import {useState, useEffect} from 'react'
+import { useAppContext } from "../../context/AppContext"
 
-export default function Toast({toasts, setToasts}) {
+export default function Toast() {
     const toastRoot = document.getElementById('root-toast')
-
+    const {toasts, setToasts} = useAppContext()
     useEffect(() => {
         if (toasts.length === 0) return
         const timer = setTimeout(() => {

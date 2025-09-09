@@ -1,9 +1,9 @@
-import {useOutletContext} from 'react-router-dom';
+import { useAppContext } from '../../context/AppContext';
 import { useState, useEffect } from 'react';
 import styles from './tags.module.css';
 
 export default function Tags() {
-    const { filters, setFilters, tags} = useOutletContext();
+    const { filters, setFilters, tags} = useAppContext();
     const [tagChips, setTagChips] = useState([])
 
     function resetCurrentFilter(value) {

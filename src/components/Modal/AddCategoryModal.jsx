@@ -1,8 +1,10 @@
 import styles from './modal.module.css';
 import Modal from './Modal';
+import { useAppContext } from '../../context/AppContext';
 import { useState } from 'react';
 
-export default function AddCategoryModal({categories, setCategories, setToasts, closeModal}) {
+export default function AddCategoryModal() {
+    const {categories, setCategories, setToasts, closeModal} = useAppContext()
     const [categoryName, setCategoryName] = useState('');
     const lenghtOK = categoryName.length > 1;
     const nameExist = categories.some(c => c.name.toLowerCase() === categoryName.toLowerCase());
@@ -30,18 +32,18 @@ export default function AddCategoryModal({categories, setCategories, setToasts, 
                 <form onSubmit={onSubmit} className={styles.createForm}>
                     <label>Enter category name:</label>
                     <input type='text' 
-                        onChange={(e) => setCategoryName(e.target.value)} 
+                        onChange={(e) => setCategoryName(e.target.value.slice(0,25))} 
                         value={categoryName}
                         // onBlur = {(e) => setCategoryName(e.target.value.trim())} 
-                        maxLength={50}
+                        maxLength={25}
                         autoFocus 
                         required
                         placeholder='min 2 characters'
                     />
                     <div className={styles.errorMessageBlock}>{errorMessage}</div>
                     <div className={styles.buttonsBlock}>
-                        <button type="button" onClick={cancel} className={styles.cancelBtn} title='cancel add'>Cancel</button>
-                        <button type='submit' disabled={!canClick} className={styles.addNewBtn} title='add new category'>
+                        <button type="button" onClick={cancel} className={styles.cancelBtn}>Cancel</button>
+                        <button type='submit' disabled={!canClick} className={styles.addNewBtn}>
                             +Add category
                         </button>      
                     </div>

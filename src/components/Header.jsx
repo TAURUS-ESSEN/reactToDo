@@ -1,5 +1,4 @@
-import Tasks from "./Tasks/Tasks";
-import styles from './Tasks/tasks.module.css'
+import { useAppContext } from '../context/AppContext';
 
 const DEFAULT_FILTERS = {
     status: 'all',
@@ -11,7 +10,8 @@ const DEFAULT_FILTERS = {
     tags: []
 }
 
-export default function Header({filters, tasks, categories, setFilters, openModal}) {
+export default function Header() {
+    const {filters, tasks, categories, setFilters, openModal} = useAppContext();
     const canReset = ()=> Object.entries(DEFAULT_FILTERS).some(([k,v])=>filters[k]!==v)
  
 
