@@ -102,15 +102,17 @@ export default function ShowTagsModal() {
                         
                     />
                     <button onClick={addNewTag} disabled={!canClick} id='addTagBtn'>+Add Tag</button>
+
+                </div>
+                <div>  
                     <span className={styles.newTagInfoSpan}>{errorMessage}</span>
                     <hr />
-                </div>
-
+                </div> 
                 { tags.map(t => {
                     let taskNumber = tasks.filter(task => task.tags.includes(t.id)).length
                         return (
-                            <div>  
-                            <div className={styles.tagRaw}>  
+                            <div className={styles.tagItem} key={t.id}> 
+                            <div className={styles.tagRow}>  
                                     {(showBlock.showButton || showBlock.id != t.id ) && (
                                         <div className={styles.tagNameButtonBlock}>
                                             <span>#{t.name}</span>
@@ -121,7 +123,7 @@ export default function ShowTagsModal() {
                                     )}
 
                                     {(!showBlock.showButton && showBlock.id == t.id ) && (
-                                        <div className={styles.tagNameInputBlock}>
+                                        <div className={styles.tagRenameInputBlock}>
                                         <input 
                                             type='text' 
                                             onChange={(e)=>setTagNewName(e.target.value)} 

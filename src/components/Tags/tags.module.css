@@ -1,14 +1,4 @@
-/* 
-
-.tagChipsContainer {
-  height: 35px;
-  margin: 0.5em 0.5em;
-  padding: 0.5em;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-} */
-
+/* Tag chips over tasks List */
 .tagChipsBlock {
   position: relative;
   z-index: 10;
@@ -22,33 +12,32 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-2);
-  background-color: var(--lightgray-color);
+  background-color: var(--surface-light);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
 
-  color: rgb(1, 1, 1);
-  box-shadow: 0 0 3px rgb(211, 211, 211);
+  color: var(--text-main);
+  box-shadow: 0 0 3px var(--shadow);
 }
 
 .tagChipsName button {
   width: 1.2rem;
   height: 1.2rem;
   margin-left: var(--space-1);
-  background-color: var(--darkgray-color);
+  background-color: var(--surface-dark);
   border: 0;
   border-radius: 9999px;
-  color: var(--white-text);
-  transition: 0.3s ease;
-  vertical-align: middle;
+  color: var(--text-invert);
 }
 
 .tagChipsName button:hover {
   background-color: var(--secondary-color);
-  color: var(--black-text);
+  color: var(--text-main);
 }
 
+/* Tags Modal  */
 .container {
-  min-width: 20rem;
+  min-width: 23rem;
 }
 
 .container input:focus {
@@ -59,31 +48,33 @@
 
 .newTagBlock {
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .newTagBlock input, .newTagBlock button  {
-  height: 2rem;
+  min-height: 2rem;
   padding: var(--space-1);
 }
 
 .newTagBlock input {
-  width: 65%;
+  min-width: 65%;
   margin-right: var(--space-2);
+  font-size: 1.2rem;
 }
 
 .newTagBlock button {
-  height: 2.5rem;
-  width: 25%;
+  height: 2.7rem;
+  min-width: 25%;
 }
 
 .newTagBlock button:enabled {
-  background-color: var(--secondary-color-hover);
-  color: var(--white-text);
+  background-color: var(--third-color);
+  color: var(--text-invert);
 }
 
-.newTagBlock button:hover {
+.newTagBlock button:enabled:hover {
   background-color: var(--secondary-color);
-  color: var(--white-text);
   border: 0;
 }
 
@@ -92,17 +83,19 @@
   display: block;
   text-align: left;
   font-size: 0.9rem;
-  margin: var(--space-3);
-  color: var(--black-text);
+  margin: var(--space-1) var(--space-1);
+  color: var(--text-main);
 }
 
-.tagRaw {
+/*  tags list */
+.tagRow {
   min-height: 2.5rem;
   padding: var(--space-1);
+  margin: var(--space-1) 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: var(--space-1) 0;
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-1)
 }
@@ -113,46 +106,47 @@
   border-radius: 99px;
   font-weight: 600;
 }
-.renameBtn {
-  background: none;
+
+.tagRenameInputBlock button, .renameBtn {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-2);
+  font-size: 1.2rem;
   border: 0;
+  background: transparent;
 }
 
-.tagNameInputBlock {
+.tagRenameInputBlock button {
+  color: var(--success);
+}
+
+.tagRow .tagNameButtonBlock .renameBtn:hover {
+  color: var(--secondary-color);
+}
+
+.tagRenameInputBlock {
   display: flex;
   align-items: center;
 }
 
-.tagNameInputBlock input{
+.tagRenameInputBlock input{
   height: 2rem;
+  font-size: 1.2rem;
   padding: var(--space-1);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-1)
 }
 
-.tagNameInputBlock button {
-  font-size: 1.2rem;
-  border: 0;
-  background: none;
-  color: var(--secondary-color);
-  transition: 0.5s ease;
-}
-
-.tagNameInputBlock button:hover, .renameBtn:hover {
-  color:rgb(5, 86, 48);
+.tagRenameInputBlock button:hover  {
+  color: var(--success-background) !important;
   transform: scale(1.2);
 }
 
 .delBtnAndTasksNumber {
   width: 7.5rem;
   display: flex;
-  gap: 1em;
   justify-content: space-between;
   align-items: center;
-}
-
-.tasksNumberSpan {
-  /* background-color: rgb(163, 155, 155); */
+  gap: 1rem;
 }
 
 .delBtnAndTasksNumber button {
@@ -161,39 +155,19 @@
   background: none;
 }
 
-
 .delBtnAndTasksNumber button:hover {
   background-color: var(--secondary-color);
-  color: var(--white-text)
+  color: var(--text-invert)
 } 
 
-.tagRaw:nth-child(even) {
-  background-color: var(--tr-even);
+.tagItem:nth-child(even) .tagRow {
+  background-color: var(--surface-light);
 }
 
 .confirmationButtonsBlock {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: var(--space-3);
-}
-
-.cancelBtn, .deleteBtn {
-  height: 2.5rem;
-}
-
-.cancelBtn:hover {
-  background-color: var(--secondary-color-hover);
-  color: var(--white-text);
-}
-
-.deleteBtn:hover {
-  background-color: var(--danger-background);
-  color: var(--white-text);
-}
-
-.deleteConfirmationBlock {
-  padding:var(--space-2);;
-  border: 1px solid var(--primary-color);
 }
 
 .grayBg {
@@ -201,3 +175,22 @@
   border-radius: var(--radius-1);
   padding: var(--space-1);
 }
+
+.cancelBtn, .deleteBtn {
+  height: 2.5rem;
+  min-width: 6rem;
+}
+
+.cancelBtn:hover {
+  background-color: var(--third-color);
+}
+
+.deleteBtn:hover {
+  background-color: var(--danger);
+}
+
+.deleteConfirmationBlock {
+  padding:var(--space-2);;
+  border: 1px solid var(--primary-color);
+}
+

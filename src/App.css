@@ -5,7 +5,6 @@
   padding: 0;
   text-align: center;
   box-sizing: border-box;
-  /* background-image: url('./assets/groovepaper.png'); */
 }
 
 @font-face {
@@ -25,9 +24,9 @@ select, button, input {
 .wrapper {
   max-width: 1280px;
   margin: 0 auto;
-  border-radius: 5px;
-  background: white;
-  box-shadow: 0 0 5px rgba(192, 190, 190, 0.542);
+  border-radius: var(--radius-2);
+  background: none;
+  box-shadow: 0 0 5px #c0bebe8a;
 }
 
 .container {
@@ -38,19 +37,19 @@ select, button, input {
 }
 
 main {
-  display: flex;
   width: 100%;
-  margin: 0 0.5em;
+  display: flex;
   flex-direction: column;
+  margin: 0 var(--space-2);
 }
 
 header {
   display: flex;
   gap: 1em;
   justify-content: space-evenly;
-  padding: 1em;
+  padding: var(--space-3);
 
-  border-radius: 5px;
+  border-radius: var(--radius-2);
   border-bottom: 1px solid var(--primary-color);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.196);
 }
@@ -60,11 +59,11 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem;
+  padding: var(--space-2);
   
-  border-radius: 5px;
+  border-radius: var(--radius-1);
   border: 1px solid var(--primary-color);
-  background-color: var(--sidebar-color);
+  background-color: var(--sidebar);
   background-image: url('./assets/groovepaper.png');
 }
 
@@ -75,10 +74,10 @@ header {
 }
 
 footer {
-  padding: 1em;
-  margin-top: 0.3em;
+  padding: var(--space-3);
+  margin-top: var(--space-1);
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: var(--radius-1);
   box-shadow: 0 -1px 2px rgba(211, 210, 210, 0.395);
 }
 
@@ -91,24 +90,19 @@ footer a {
 footer a:hover {
   font-weight: 600;
   text-decoration: none;
-  color: var(--secondary-color-hover);
+  color: var(--third);
 }
 
 header > select, header > input, header > button, header > span input   {
   border: 1px solid var(--primary-color);
-  padding: 0.6em;
-  border-radius: 5px;
+  padding: var(--space-2);
+  border-radius: var(--radius-1);
   font-size: 0.9rem;
   box-shadow: 0 0 3px var(--primary-color);
-  transition: 0.5s ease-in-out;
-}
-
-button:active {
-  cursor: pointer;
 }
 
 input::placeholder {
-  font-size: 0.8em;
+  font-size: 0.8rem;
 }
 
 header input:focus, header select:focus {
@@ -118,26 +112,25 @@ header input:focus, header select:focus {
 }
 
 .resetFiltersBtn:enabled:hover {
-  background-color: var(--reset-background);
-  color: var(--white-text);
+  background-color: var(--resetAndCancel);
+  color: var(--text-invert);
 }
 
 .addNewBtn {
-  width: 120px;
+  width: 7.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--secondary-color);
-  color: var(--white-text);
+  color: var(--text-invert);
   transition: 0.5s ease;
 }
 
 .addNewBtn:hover {
-  background-color: var(--secondary-color-hover);
-  color: var(--white-text);
+  background-color: var(--third-color);
+  color: var(--text-invert);
 }
 
-/*        sidebar start       */
 .logoLink {
   text-decoration: none;
   color: var(--secondary-color);
@@ -146,27 +139,21 @@ header input:focus, header select:focus {
 .sidebarButtonsBlock {
   display: flex;
   flex-direction: column;
-  gap:1em;
+  gap: 1em;
 }
 
 .sidebarButtonsBlock   button {
   min-height: 2.2rem;
-  padding: 0.5em;
+  padding: var(--space-2);
 
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  transition: 0.5s ease;
+  border-radius: var(--radius-1);
 }
 
 .sidebarButtonsBlock  button:hover {
-  background-color: var(--secondary-color-hover);
-  color: var(--white-text);
-}
-
-.categoryBtns {
-  /* display: flex; */
-  /* gap: 1em */
+  background-color: var(--third-color);
+  color: var(--text-invert);
 }
 
 .gearBtn {
@@ -178,24 +165,24 @@ header input:focus, header select:focus {
 .quickAddBlock {
   display: flex;
   justify-content: center;
-  width: 200px;
+  width: 12rem;
 }
 
 .quickAddInput {
   border-radius: 5px 0px 0px 5px;
   border: 1px solid var(--primary-color);
-  padding: 0.5em;
+  padding: var(--space-1);
   font-size: 1rem;
-  width: 150px;
-  min-height: 20px;
+  width: 9rem;
+  min-height: 2rem;
 }
 
 .quickAddBtn {
-  background-color: rgb(103, 102, 102);
+  background-color: var(--gray-color);
   font-size: 1rem;
   border: 0;
   border-radius: 0px 5px 5px 0px;
-  color: var(--white-text);
+  color: var(--text-invert);
   transition: 0.5s ease;
 }
 
@@ -204,12 +191,8 @@ header input:focus, header select:focus {
 }
 
 .quickAddBtn:enabled:hover {
-  background-color: var(--secondary-color-hover);
-  cursor: pointer;
+  background-color: var(--third-color);
 }
-
-/*        sidebar ende        */
-
 
 .searchTask {
   position: relative;
@@ -218,14 +201,14 @@ header input:focus, header select:focus {
 }
 
 .searchTask input{
-  width: 140px;
-  padding-right: 29px;
+  width: 9rem;
+  /* padding-right: 29px; */
 }
 
 .zoom {
   position: absolute;
-  top:0.6em;
-  right: 0.5em;
+  top:0.6rem;
+  right: 0.5rem;
   color: #a8a8a8;
   pointer-events: none;
 }
@@ -235,8 +218,8 @@ header input:focus, header select:focus {
 }
 
 .tagsDetails {
-  width: 250px;
-  border-radius: 5px;
+  width: 15.5rem;
+  border-radius: var(--radius-1);
   border: 1px solid var(--primary-color);
 }
 
@@ -244,15 +227,15 @@ header input:focus, header select:focus {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  padding: 0.3em;
-  gap: 0.3em;
+  padding: var(--space-1);
+  gap: var(--space-1);
 }
 
 .tagsDetails summary {
-  margin: 0.5em 0;
+  margin: var(--space-2) 0;
   position: relative;
   text-align: left;
-  padding: 0 0.5em;
+  padding: 0 var(--space-2);
   /* display: flex; */
   /* justify-content: space-between; */
   /* padding: 0.3em; */
@@ -267,37 +250,29 @@ right: 0.3em;
 .gearTags > button {
   border: 0;
   background: none;
-  transition: 0.5s;
 }
 
 .gearTags > button:hover {
-  cursor: pointer;
   transform: scale(1.2);
   color: var(--secondary-color);
 }
 
 .tagBtn {
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  transition: 0.5s ease;
+  border-radius: var(--radius-2);
 }
 
 .tagBtn:hover {
-  background-color: var(--secondary-color-hover);
-  color: white;
-  cursor: pointer;
+  background-color: var(--third-color);
+  color: var(--text-invert);
 }
 
 .tagEnabled {
     background-color: var(--secondary-color);
-     color: white;
+    color: var(--text-invert);
 }
 
 .undoBtn {
-  border-radius: 5px;
+  border-radius: var(--radius-1);
   border: 0;
 }
-
-.undoBtn:hover {
-  cursor: pointer;
-} 

@@ -36,7 +36,7 @@
 }
 
 .modalContent :is(button:enabled:hover){ 
-  color: var(--text-hover);
+  color: var(--text-invert);
 }
 
 .modalHeader button:enabled:hover {
@@ -76,7 +76,7 @@
 
 .modalContent .categoryNameBtn:enabled:hover{
   text-decoration: underline;
-  color: var(--black-text);
+  color: var(--text-main);
 }
 
 .buttonsBlock {
@@ -107,15 +107,15 @@
 }
 
 .preDeleteBtn:hover {
-  background-color: var(--secondary-color-hover);
+  background-color: var(--third-color);
 }
 
 .deleteBtn:hover {
-  background-color: var(--danger-background);
+  background-color: var(--danger);
 }
 
 .cancelBtn:hover {
-  background-color: var(--darkgray-color);
+  background-color: var(--surface-dark);
 }
 
 .saveBtn {
@@ -123,11 +123,11 @@
   border: 0;
   font-size: 1.2rem;
   background: none;
-  color: var(--success-background);
+  color: var(--success);
 }
 
 .saveBtn:enabled:hover {
-  color: var(--success-background) !important;
+  color: var(--success) !important;
   transform: scale(1.18); 
 }
 
@@ -142,7 +142,7 @@
   margin: var(--space-2) auto;
   text-align: center;
   min-height: 1rem;
-  color: var(--danger-text);
+  color: var(--danger);
 }
 
 /*        CATEGORIES    LIST            */
@@ -181,8 +181,8 @@
   text-align: center;
   font-size: 0.7rem; 
   border-radius: 9999px; 
-  color: var(--darkgray-color); 
-  background: var(--lightgray-color);
+  color: var(--surface-dark); 
+  background: var(--surface-light);
 }
 
 .deleteCategoryBlock {

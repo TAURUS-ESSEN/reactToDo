@@ -3,11 +3,11 @@
 }
 
 .medium {
-  background-color: var(--warning-color);
+  background-color: var(--warning);
 }
 
 .high {
-  background-color: var(--danger-background);
+  background-color: var(--danger);
 }
 
 .priorityLegend {
@@ -17,7 +17,7 @@
 }
 
 .tasksListTable {
-  background-color: var(--white-text);
+  background-color: var(--text-invert);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
 }
@@ -29,7 +29,7 @@
 }
 
 thead {
-  background-color: var(--sidebar-color)
+  background-color: var(--sidebar)
 }
 
 thead { position: relative; }
@@ -90,17 +90,17 @@ tbody tr:hover {
 
 .taskNameBtn:hover {
   font-weight: 700;
-  color: var(--black-text) !important;
+  color: var(--text-main) !important;
 }
 
 .taskDeleteBtn:hover {
-  background-color: var(--danger-background);
-  color: var(--white-text);
+  background-color: var(--danger);
+  color: var(--text-invert);
 }
 
 .taskEditBtn:hover {
-  background-color: var(--secondary-color-hover);
-  color: var(--white-text);
+  background-color: var(--third-color);
+  color: var(--text-invert);
 } 
 
 .nameTdcontainer {
@@ -117,11 +117,11 @@ tbody tr:hover {
 
 .categoryBtn:hover {
   background-color: var(--gray-color);
-  color: var(--white-text);
+  color: var(--text-invert);
 }
 
 .overdue {
-  color: var(--danger-background);
+  color: var(--danger);
 }
 
 th.checkAll {
@@ -154,10 +154,10 @@ th.checkAll {
   padding: var(--space-1);
   align-items: center;
   justify-content: center;
-  background-color: var(--lightgray-color);
+  background-color: var(--surface-light);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-1);
-  color: var(--black-text);
+  color: var(--text-main);
   /* box-shadow: 0 0 3px rgb(211, 211, 211); */
 }
 
@@ -165,17 +165,17 @@ th.checkAll {
   width: 1.2rem;
   height: 1.2rem;
   margin-left: 0.2rem;
-  background-color: var(--darkgray-color);
+  background-color: var(--surface-dark);
   border: 0;
   border-radius: 9999px;
-  color: var(--white-text);
+  color: var(--text-invert);
   transition: 0.3s ease;
   vertical-align: middle;
 }
 
 .chipName button:hover {
   background-color: var(--secondary-color);
-  color: var(--black-text);
+  color: var(--text-main);
 }
 
 
@@ -191,7 +191,7 @@ th.checkAll {
 .todayHint {
   padding: var( --space-1) var( --space-2);
   background-color: var(--secondary-color);
-  color: var(--white-text);
+  color: var(--text-invert);
   font-size: 0.7rem;
   font-style: italic;
   border-radius: 999px;
@@ -202,7 +202,7 @@ th.checkAll {
   font-size: 0.7rem;
   font-style: italic;
   background-color: #64b5f6; /* голубой */
-  color: var(--white-text);
+  color: var(--text-invert);
   border-radius: 999px;
 }
 
@@ -219,14 +219,14 @@ th.checkAll {
   border: 0;
   padding: var(--space-1);
   border-radius: var(--radius-2);
-  color: var(--darkgray-color);
+  color: var(--surface-dark);
   background-color: var(--primary-color);
   transition: 0.5s;
 }
 
 .tagBtn:hover {
   background-color: var(--secondary-color);
-  color:var(--white-text)
+  color:var(--text-invert)
 }
 
 .tagsAreaBlock {
