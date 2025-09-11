@@ -28,7 +28,7 @@ export default function ShowTagsModal() {
     }
 
     function renameTag(id) {
-        setTags(prev=>(prev.map(t=>t.id === id ? {...t, name:tagNewName.slice(0.15)} : t)))
+        setTags(prev=>(prev.map(t=>t.id === id ? {...t, name:tagNewName.slice(0,15)} : t)))
         setShowBlock(prev => ({...prev, showButton: true, showInput: false, id:null}))
         setTagNewName('')
     }
@@ -116,7 +116,7 @@ export default function ShowTagsModal() {
                                     {(showBlock.showButton || showBlock.id != t.id ) && (
                                         <div className={styles.tagNameButtonBlock}>
                                             <span>#{t.name}</span>
-                                            <button onClick={()=>toggleBlocks(t.id, t.name)} className={styles.renameBtn} title="Rename tag">
+                                            <button onClick={()=>toggleBlocks(t.id, t.name)} id={styles.renameBtn} title="Rename tag">
                                                 <i className="fa-solid fa-pencil fa-sm"></i>
                                             </button>
                                         </div>
@@ -136,7 +136,7 @@ export default function ShowTagsModal() {
                                                     setShowBlock(prev => ({...prev, showButton: true, showInput: false, showConfirme: false, id: null}))};
                                             }} 
                                         /> 
-                                        <button onClick={()=>renameTag(t.id)} title="save changes">✓</button>
+                                        <button onClick={()=>renameTag(t.id)} title="save changes" id={styles.saveChangesBtn}>✓</button>
                                         {/* <div className={styles.errorMessageArea}>{errorMessage}</div> */}
                                         </div>
                                     )}

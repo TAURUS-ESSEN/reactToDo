@@ -47,6 +47,8 @@ export default function Sidebar() {
             <div className="sidebarButtonsBlock">
                 {/* <div className="categoryBtns"> */}
                     <button onClick={()=>openModal('addCategory')}>Add category</button>
+                    {/* <button onClick={()=>openModal('taskModal')}>Task Modal</button> */}
+
                     <button onClick={()=>openModal('showCategories')}>Manage categories</button>
                     {/* <button onClick={()=>openModal('showCategories')} className="gearBtn"><i className="fa-solid fa-gear" style={{color: '#3b3b3b'}}></i></button> */}
                 {/* </div> */}

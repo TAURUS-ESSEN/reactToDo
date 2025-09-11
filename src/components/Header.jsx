@@ -69,7 +69,8 @@ export default function Header() {
                     disabled={!canReset()} className="resetFiltersBtn">
                 ↻
             </button>
-            <button onClick={()=>openModal('addTask')} className='addNewBtn' title = 'Add new task'>+New task</button>
+            {/* <button onClick={()=>openModal('addTask')} className='addNewBtn' title = 'Add new task'>+New task</button> */}
+            <button onClick={()=>openModal('taskModal')} className='addNewBtn' title = 'Add new task'>+New task</button>
             
         </header>
         </>

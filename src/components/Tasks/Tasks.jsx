@@ -292,7 +292,10 @@ selectedTagIds.length === 0
                             </span>
                         </td>
                         <td className={styles.taskButtons}>
-                            <button onClick={()=>openModal('editTask', task.id)} className={styles.taskEditBtn}>
+                            {/* <button onClick={()=>openModal('editTask', task.id)} className={styles.taskEditBtn}>
+                                <i className="fa-solid fa-pencil fa-lg"></i>
+                            </button> */}
+                            <button onClick={()=>openModal('taskModal', task.id)} className={styles.taskEditBtn}>
                                 <i className="fa-solid fa-pencil fa-lg"></i>
                             </button>
                             <button onClick={()=>deleteTask(task.id)} className={styles.taskDeleteBtn}>

@@ -13,7 +13,6 @@ export default function AddTaskModal() {
     const [dueDate, setDueDate] = useState(null); 
     const [priority, setPriority] = useState(2);
     const [taskTags, setTaskTags] = useState([])
-    console.log('categoryId', categoryId)
 
     const canClick = taskName.trim().length > 0;
     const createId = () => Date.now() + Math.floor(Math.random() * 1000);

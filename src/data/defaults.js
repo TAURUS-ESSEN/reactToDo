@@ -26,6 +26,6 @@ export const DEFAULT_TASKS = [
   { id: 3, name: 'to complete the authorization module', description: 'some text description', completed: true, categoryId: 2, priority: 1, dueDate: "2025-09-01", tags: [] },
   { id: 4, name: 'to buy a present for Maria', description: 'some text description', completed: false, categoryId: 3, priority: 3, dueDate: tomorrow, tags: [4,6]   },
   { id: 5, name: 'to send the report to the boss', description: 'some text description', completed: false, categoryId: 2, priority: 3, dueDate: "2026-08-31", tags: [] },
-  { id: 6, name: "To pay for my daughter's English lessons", description: 'some text description', completed: false, categoryId: 1, priority: 2, dueDate: "2025-09-31", tags: [5,4] },
+  { id: 6, name: "To pay for my daughter's English lessons", description: 'some text description', completed: false, categoryId: 1, priority: 2, dueDate: "2025-09-30", tags: [5,4] },
   { id: 7, name: "Frank's birthday", description: 'some text description', completed: false, categoryId: 3, priority: 1, dueDate: "2025-09-25", tags: [3,1] },
 ]

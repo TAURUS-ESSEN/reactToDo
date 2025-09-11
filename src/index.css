@@ -88,11 +88,8 @@ body {
   font-style: normal;
 }
 
-select, button, input {
-  font-family: Metrophobic;
-}
-
 button, input, select {
+  font-family: Metrophobic;
   border-radius: 5px;
   border: 1px solid var(--primary-color);
   transition: background-color .2s, border-color .2s, color .2s, transform .2s;
@@ -100,11 +97,11 @@ button, input, select {
 
 button:enabled:hover {
   color: var(--text-invert);
+  cursor: pointer;
 }
 
 button {
   background: none;
-  cursor: pointer;
 }
 
 @media (prefers-color-scheme: light) {
