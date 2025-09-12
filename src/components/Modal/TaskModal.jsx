@@ -41,11 +41,9 @@ export default function TaskModal() {
 
     
     function addTags(id) {
-        //  e.preventDefault()
         !taskTags.includes(id) 
         ? setTaskTags(prev => [...prev, id])
         : setTaskTags(prev => prev.filter(tag=>tag!==id))
-    
     }
 
     return (

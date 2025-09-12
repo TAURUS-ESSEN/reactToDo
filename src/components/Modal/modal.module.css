@@ -93,7 +93,7 @@
 }
 
 .addNewBtn:enabled:hover {
-  background-color: var(--success-background);
+  background-color: var(--success);
 }
 
 .addNewBtn, .cancelBtn, .deleteBtn {

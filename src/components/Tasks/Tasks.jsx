@@ -242,7 +242,7 @@ selectedTagIds.length === 0
                         </td>
                         <td className={styles.nameTdcontainer}>
                             <button 
-                                onClick={()=>openModal('editTask', task.id)}
+                                onClick={()=>openModal('taskModal', task.id)}
                                 className={`${task.completed ? styles.strike : ''} ${styles.taskNameBtn} ` }>
                                     {task.name.slice(0,50)}{task.name.length> 50 ? '...' : ''} 
                             </button>
