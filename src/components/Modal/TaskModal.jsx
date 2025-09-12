@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import { useAppContext } from '../../context/AppContext';
 import Modal from './Modal';
-import styles from './modal.module.css'
 import { DayPicker } from 'react-day-picker';
+import styles from './modal.module.css'
+
 import { format } from 'date-fns';
 
 export default function TaskModal() {
@@ -50,30 +51,43 @@ export default function TaskModal() {
         <>
         <Modal title={ task ? 'Edit Task' : 'Add Task'} closeModal={closeModal}>
             <form onSubmit={onSubmit} className={styles.form}>
-                <label>Task Name</label>
-                <input type='text' 
-                    onChange={(e)=>setTaskName(e.target.value)} 
-                    value={taskName} 
-                    autoFocus
-                />
-                <select onChange={(e)=>{setTaskCategory(e.target.value)}}>
-                    <option disabled value='' selected required>Choose Category</option>
-                    {categories.map(category => {
-                        return <option key={category.id} value={category.id} selected={task ? task.categoryId === category.id : ''}>{category.name}</option>
-                    })}
-                </select>
-                <label>Task Priority</label>
-                <select onChange={(e)=>setTaskPriority(e.target.value)} value={ task ? task.priority : 1 }>
-                    <option value={1}>Low</option>
-                    <option value={2}>Middle</option>
-                    <option value={3}>High</option>
-                </select>
-                <label>Task Description</label>
+                <div className={styles.formSubRow}>
+                    <label>Task Name</label>
+                    <input type='text' 
+                        onChange={(e)=>setTaskName(e.target.value)} 
+                        value={taskName} 
+                        autoFocus
+                    />
+                </div>
+                <div className={styles.formRow}>
+                    <div className={styles.formSubRow}>
+                        <label>Task Category</label>
+                        <select onChange={(e)=>{setTaskCategory(e.target.value)}}>
+                            <option disabled value='' selected required>Choose Category</option>
+                            {categories.map(category => {
+                                return <option key={category.id} value={category.id} selected={task ? task.categoryId === category.id : ''}>{category.name}</option>
+                            })}
+                        </select>
+                    </div>
+                    <div className={styles.formSubRow}>
+                        <label>Task Priority</label>
+                        <select onChange={(e)=>setTaskPriority(e.target.value)} value={taskPriority}>
+                            <option value={1} >Low</option>
+                            <option value={2} >Middle</option>
+                            <option value={3} >High</option>
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.formSubRow}>
+                    <label>Task Description</label>
                 <textarea 
                     onChange={(e)=>setTaskDescription(e.target.value)} 
                     value={taskDescription}  
+                    rows='5'
                     placeholder='some description'
                 />
+                <label>Task Date</label>
+                <div className={styles.calendarDiv}>
                     <DayPicker
                         className={styles.calendar}
                         mode="single"
@@ -81,29 +95,33 @@ export default function TaskModal() {
                         onSelect={setDueDate}
                         weekStartsOn={1}
                     />
-                    <div className="tagsDetails">
-                    <details open>
-                        <summary>Task tags ({taskTags?.length } from 5)</summary>
-                        {tags?.length > 0 && (
-                            <div className="tagsBlock">
-                            {tags.map(tag => {
-                                return <button 
-                                type="button"
-                                        className={`tagBtn ${taskTags?.includes(tag.id) ? 'tagEnabled' : ''}`} 
-                                        onClick={()=>addTags(tag.id)}
-                                        key = {tag.id}
-                                        disabled={!taskTags?.includes(tag.id) && taskTags?.length>=5}
-                                        >#{tag.name}
-                                    </button>
-                            } )}
-                            </div>
-                        )
-                        } 
-                    </details>
+                    </div>
                 </div>
-                <div>
-                    <button type="button" onClick={closeModal}>Cancel</button>
-                    <button type='submit' disabled={!canClick}>Send</button>
+                <div className={styles.formSubRow}>
+                    <div className={styles.formTagsDiv}>
+                        <details open>
+                            <summary>Task tags ({taskTags?.length } from 5)</summary>
+                            {tags?.length > 0 && (
+                                <div className="tagsBlock">
+                                {tags.map(tag => {
+                                    return <button 
+                                    type="button"
+                                            className={`tagBtn ${taskTags?.includes(tag.id) ? 'tagEnabled' : ''}`} 
+                                            onClick={()=>addTags(tag.id)}
+                                            key = {tag.id}
+                                            disabled={!taskTags?.includes(tag.id) && taskTags?.length>=5}
+                                            >#{tag.name}
+                                        </button>
+                                } )}
+                                </div>
+                            )
+                            } 
+                        </details>
+                    </div>
+                </div>
+                <div className={styles.buttonsBlock}>
+                    <button type="button" onClick={closeModal} className={styles.cancelBtn}>Cancel</button>
+                    <button type='submit' disabled={!canClick} className={styles.addNewBtn}>Save</button>
                 </div>
             </form>
         </Modal>

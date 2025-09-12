@@ -1,4 +1,3 @@
-/*  MODAL WINDOW STYLES */
 .modalOverlay {
   position: fixed;
   display: flex;
@@ -28,8 +27,12 @@
 }
 
 .modalTitle {
-  color: var(--secondary-color);
   margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
 
 .modalContent :is(button:enabled:hover){ 
@@ -38,7 +41,6 @@
 
 .modalHeader button:enabled:hover {
   color: var(--secondary-color) ;
-  transform: scale(1.2);
 }
 
 .modalHeader button {
@@ -64,70 +66,6 @@
   box-shadow: 0 0 5px var(--focus-shadow);
 }
 
-/* FORM CONTENT STYLES */
-
-.form {
-  display: flex;
-  flex-direction: column;
-  /* gap: 1rem; */
-  min-width: 20rem;
-  max-width: 23rem;
-  font-size: 1rem;
-}
-
-.formRow {
-  width: 100%;
-  display: flex;
-  gap: 1em;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-}
-
-.formSubRow {
-  width: 100%;
-  display: flex;
-  flex-direction: column  ;
-}
-
-.formTagsDiv {
-  /* max-width: 23rem; */
-  width: 100%;
-  height: auto;
-  margin-top: 1rem;
-  display: flex;
-  /* gap: 1.2rem; */
-  flex-wrap: wrap;
-  border-radius: var(--radius-1);
-  border: 1px solid var(--primary-color);
-}
-
-.formTagsDiv summary {
-  margin: var(--space-2) 0;
-  position: relative;
-  text-align: left;
-  padding: 0 var(--space-2);
-}
-
-
-/* необязательно: чуть привести форму модалки */
-.form label { margin-top: 1rem; font-weight: 600;;}
-.form input, .form select, .form textarea {
-  min-height: 44px;          /* цель 44×44 */
-  padding: 10px 12px;        /* комфортный тап и курсор */
-  font-size: 1rem;           /* без зума на iOS */
-  line-height: 1.5;
-  width: 100%;        
-  padding: var(--space-2); 
-  /* border: 1px solid #d1d5db;  */
-  border-radius: var(--radius-2);
-  box-sizing: border-box;
-}
-.form button {
-  padding: var(--space-2) 12px; 
-  border: 1px solid #d1d5db; 
-  border-radius: var(--radius-2);
-}
-
 .categoryNameBtn {
   padding: var(--space-1);
   font-size: 1.1rem;
@@ -145,7 +83,6 @@
   display: flex;
   gap: 1rem;
   justify-content: space-between;
-  margin-top: 1rem;
 }
 
 .addNewBtnBlock {
@@ -162,7 +99,6 @@
 .addNewBtn, .cancelBtn, .deleteBtn {
   min-width: 9rem;
   height: 2.5rem;
-  border-radius: var(--space-2);
 }
 
 .preDeleteBtn {
@@ -282,23 +218,16 @@
 
 /* CALENDAR */
 
-.calendarDiv {
-  display: flex;
-  justify-content: center;
-  /* width: 33rem; */
-  align-items: center;
-}
-
 /* контейнер, чтобы календарь не прилипал */
 .calendarWrap { margin: 12px 0 16px; }
 
 /* корень DayPicker — на него навесили className={styles.calendar} */
 .calendar {
   /* кастомные css-переменные DayPicker */
-  --rdp-accent-color: var(--secondary-color);        /* цвет выделенной даты */
+  --rdp-accent-color: #3b82f6;        /* цвет выделенной даты */
   --rdp-background-color: #eff6ff;    /* фон при hover */
-  --rdp-outline: 2px solid var(--secondary-color);   /* обводка при focus */
-  --rdp-outline-selected: 2px solid var(--secondary-color);
+  --rdp-outline: 2px solid #3b82f6;   /* обводка при focus */
+  --rdp-outline-selected: 2px solid #1d4ed8;
 
   font-size: 14px;
   border: 1px solid #e5e7eb;
@@ -315,7 +244,6 @@
 /* стрелки навигации */
 .calendar .rdp-nav_button {
   border: 1px solid #e5e7eb;
-   color: var(--secondary-color) !important;
  border-radius: var(--radius-2);
   width: 32px; 
   height: 32px;
@@ -337,7 +265,7 @@
 
 /* выбранный день */
 .calendar .rdp-day_selected {
- outline: 2px solid var(--secondary-color) !important;
+  background: var(--rdp-accent-color);
   color: white;
 }
 
@@ -346,14 +274,16 @@
   outline: 2px solid var(--rdp-accent-color); 
   outline-offset: 2px; 
 }
-/* 
-option[value="1"] {
-  color: green;
-}
-option[value="2"] {
-  color: orange;
-}
-option[value="3"] {
-  color: red;
-} */
 
+/* необязательно: чуть привести форму модалки */
+.form label { margin-top: 8px; font-weight: 600;;}
+.form input, .form select, .form textarea {
+  margin-top: 4px; margin-bottom: 8px;
+  padding: var(--space-2); border: 1px solid #d1d5db; border-radius: var(--radius-2);
+}
+.form button {
+  padding: var(--space-2) 12px; border: 1px solid #d1d5db; border-radius: var(--radius-2);
+}
+.form button[type="submit"]:not(:disabled) {
+  border-color: #3b82f6;
+}

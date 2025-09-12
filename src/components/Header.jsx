@@ -63,13 +63,11 @@ export default function Header() {
                 <span className="zoom"><i className="fa-solid fa-magnifying-glass fa-sm"  ></i></span>
             </span>
                 
-            {/* <button onClick={()=>{setFilters({ ...DEFAULT_FILTERS}); resetAllFilters() }}  */}
             <button onClick={()=>{resetAllFilters()}} 
                     title = 'Reset filters'
                     disabled={!canReset()} className="resetFiltersBtn">
                 ↻
             </button>
-            {/* <button onClick={()=>openModal('addTask')} className='addNewBtn' title = 'Add new task'>+New task</button> */}
             <button onClick={()=>openModal('taskModal')} className='addNewBtn' title = 'Add new task'>+New task</button>
             
         </header>

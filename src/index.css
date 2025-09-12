@@ -57,6 +57,10 @@
   --space-4: 1.5rem;   /* 24px */
   --space-5: 2rem;     /* 32px */
 
+  --shadow-1 : 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-2 : 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-3: 0 0 5px #c0bebe8a;
+
   /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -90,9 +94,10 @@ body {
 
 button, input, select {
   font-family: Metrophobic;
-  border-radius: 5px;
   border: 1px solid var(--primary-color);
+  border-radius: var(--space-2);
   transition: background-color .2s, border-color .2s, color .2s, transform .2s;
+  box-sizing: border-box;
 }
 
 button:enabled:hover {

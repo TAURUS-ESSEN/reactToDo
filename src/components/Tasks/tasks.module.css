@@ -20,6 +20,7 @@
   background-color: var(--text-invert);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
+  box-shadow: 0 0 4px #dedcdc;
 }
 
 .tasksListTable td,.tasksListTable th {
