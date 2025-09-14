@@ -12,7 +12,8 @@
   --rdp-day_button-height: 32px;
   --rdp-day_button-width: 32px;
   --rdp-day-height: 24px;
-  background-color: white;
+  background-color: var(--body-background);
+  /* color: var(--text-main); */
   
 
   width: 250px;
@@ -75,4 +76,8 @@
 .form input, .form select, .form textarea {
   margin-top: 4px; margin-bottom: 8px;
   padding: 8px; border: 1px solid #d1d5db; border-radius: 8px;
+}
+
+body[data-theme="2"] .calendar {
+  color: var(--text-main)
 }

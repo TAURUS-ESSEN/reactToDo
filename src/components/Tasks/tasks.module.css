@@ -17,10 +17,12 @@
 }
 
 .tasksListTable {
-  background-color: var(--text-invert);
+  width: 100%;
+  /* background-color: var(--text-invert); */
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
-  box-shadow: 0 0 4px #dedcdc;
+  /* box-shadow: 0 0 4px #dedcdc; */
+  color: var(--text-main);
 }
 
 .tasksListTable td,.tasksListTable th {
@@ -30,7 +32,7 @@
 }
 
 thead {
-  background-color: var(--sidebar)
+  /* background-color: var(--sidebar) */
 }
 
 thead { position: relative; }
@@ -46,8 +48,14 @@ tbody tr:nth-child(even) {
   background-color: var(--tr-even);
 }
 
+tbody tr:nth-child(odd) {
+  background-color: var(--tr-odd);
+}
+
 tbody tr {
+  /* background-color: #49617b; */
   transition: 0.5s ease;
+  /* color: var(--text-main) */
 }
 
 tbody tr:hover {
@@ -60,6 +68,7 @@ tbody tr:hover {
   background: none;
   border: 0;
   transition: 0.5s ease;
+  color: var(--text-main);
 }
 
 .tasksBlockSorting > button:hover {
@@ -81,12 +90,14 @@ tbody tr:hover {
   border-radius: var(--radius-2);
   background: none;
   transition: 0.5s ease;
+  color: var(--text-main);
 }
 
 .taskNameBtn {
   font-size: 1rem;
   border: 0;
   background: none;
+  color: var(--text-main);
 }
 
 .taskNameBtn:hover {
@@ -113,11 +124,13 @@ tbody tr:hover {
   padding: var(--space-2);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
+  background-color: var(--surface-light);
+  color: var(--text-main);
   transition: 0.5s ease;
 }
 
 .categoryBtn:hover {
-  background-color: var(--gray-color);
+  background-color: var(--secondary-color);
   color: var(--text-invert);
 }
 
@@ -133,6 +146,7 @@ th.checkAll {
 }
 
 .chipsContainer {
+  height: 2.3rem;
   width: 100%;
   margin: var(--space-2);
   padding: var(--space-2);
@@ -178,6 +192,10 @@ th.checkAll {
   color: var(--text-main);
 }
 
+body[data-theme="2"] .chipName button {
+  color: var(--text-black)
+}
+
 .completed{
   color: var(--completed)
 }
@@ -218,12 +236,16 @@ th.checkAll {
   border: 0;
   padding: var(--space-1);
   border-radius: var(--radius-2);
-  color: var(--surface-dark);
+  color: var(--text-main);
   background-color: var(--primary-color);
   transition: 0.5s;
 }
 
-.tagBtn:hover {
+body[data-theme="2"] .tagBtn {
+  background-color: var(--surface-light);
+} 
+
+.tagBtn:hover, body[data-theme="2"] .tagBtn:hover {
   background-color: var(--secondary-color);
   color:var(--text-invert)
 }

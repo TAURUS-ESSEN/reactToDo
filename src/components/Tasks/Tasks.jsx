@@ -216,7 +216,7 @@ selectedTagIds.length === 0
                     </span>
                     <Chips /><Tags />
         </div>
-            
+        <div className='tasksContainer'> 
         <table className={styles.tasksListTable}> 
             <TasksTableHeader 
                 sortBy={sortBy} 
@@ -307,6 +307,7 @@ selectedTagIds.length === 0
             })}
             </tbody>
         </table>
+        </div>
         </>
     )
 }

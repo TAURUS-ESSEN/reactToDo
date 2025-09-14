@@ -149,8 +149,9 @@ header input:focus, header select:focus {
   display: block;
   width: 100%;
   padding: 10px 14px;
-  background: #fff;
+  background: var(--surface-light);
   font-size: 1rem;
+  color: var(--text-main);
 }
 
 .sidebarButtonsBlock  button:hover {
@@ -210,7 +211,7 @@ header input:focus, header select:focus {
 .searchTask:focus-within .zoom {
   color: dodgerblue;  
 }
-
+/*  SIDEBAR TAGS BLOCK */
 .tagsDetails {
   width: 15.5rem;
   border-radius: var(--radius-2);
@@ -233,13 +234,15 @@ header input:focus, header select:focus {
 }
 
 .gearTags {
-position: absolute;
-top: -0.1rem;
-right: 0.3rem;
+  position: absolute;
+  top: -0.1rem;
+  right: 0.3rem;
 }
 
 .gearTags button {
   border: 0;
+  background: none;
+  color: var(--text-main);
 }
 
 .gearTags > button:hover {
@@ -249,6 +252,9 @@ right: 0.3rem;
 
 .tagBtn {
   padding: 0.3rem;
+  background-color: var(--surface-light);
+  color: var(--text-main);
+  border: 1px solid var(--primary-color)
 }
 
 .tagBtn:hover {
@@ -265,3 +271,4 @@ right: 0.3rem;
   border-radius: var(--radius-1);
   border: 0;
 }
+

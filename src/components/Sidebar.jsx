@@ -37,7 +37,6 @@ export default function Sidebar() {
         ? setFilters(prev => ({...prev, tags: prev.tags.filter(tag => tag !==id )}))
         : setFilters(prev => ({...prev, tags: [...prev.tags, id]}))
     }
-        // console.log(filters.tags)
 
     return (
         <>
@@ -65,14 +64,9 @@ export default function Sidebar() {
                 <button onClick={addQuickTask} disabled={!canQuickAdd} className="quickAddBtn">+</button>
             </div>
             <div className="sidebarButtonsBlock">
-                {/* <div className="categoryBtns"> */}
                     <button onClick={()=>openModal('addCategory')}>Add category</button>
-                    {/* <button onClick={()=>openModal('taskModal')}>Task Modal</button> */}
 
                     <button onClick={()=>openModal('showCategories')}>Manage categories</button>
-                    {/* <button onClick={()=>openModal('showCategories')} className="gearBtn"><i className="fa-solid fa-gear" style={{color: '#3b3b3b'}}></i></button> */}
-                {/* </div> */}
-                {/* <button onClick={()=>openModal('showTags')}>Manage Tags</button> */}
                 <button type='button' 
                         onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories })}>Export data</button>
             </div>

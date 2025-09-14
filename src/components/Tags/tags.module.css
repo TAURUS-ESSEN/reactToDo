@@ -15,9 +15,10 @@
   background-color: var(--surface-light);
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
+  height: 1.2rem;
 
   color: var(--text-main);
-  box-shadow: 0 0 3px var(--shadow);
+  box-shadow: 0 0 3px var(--shadow-3);
 }
 
 .tagChipsName button {
@@ -29,6 +30,11 @@
   border-radius: 9999px;
   color: var(--text-invert);
 }
+
+body[data-theme="2"] .tagChipsName button {
+  color: var(--text-black)
+}
+
 
 .tagChipsName button,
 .renameBtn {
