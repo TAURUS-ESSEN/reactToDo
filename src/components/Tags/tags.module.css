@@ -54,32 +54,23 @@
   min-width: 25rem;
 }
 
-.container input:focus {
-  outline: none;
-  border: 1px solid var(--focus-border);
-  box-shadow: 0 0 5px var(--focus-shadow);
-}
-
 .newTagBlock {
-  text-align: center;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .newTagBlock input, .newTagBlock button  {
-  min-height: 2rem;
-  padding: var(--space-1);
+  min-height: 2.2rem;
 }
 
 .newTagBlock input {
-  min-width: 65%;
-  margin-right: var(--space-2);
-  font-size: 1.2rem;
+  min-width: 15rem;
+  padding-left: var(--space-2);
 }
 
-.newTagBlock button {
-  height: 2.7rem;
-  min-width: 25%;
+.newTagBlock button  {
+  min-width: 6rem;
 }
 
 .newTagBlock button:enabled {
@@ -95,7 +86,7 @@
 .newTagInfoSpan {
   height: 1rem;
   display: block;
-  text-align: left;
+  text-align: center;
   font-size: 0.9rem;
   margin: var(--space-1) var(--space-1);
   color: var(--text-main);
@@ -104,14 +95,14 @@
 /*  tags list */
 .tagRow {
   min-height: 2.5rem;
-  padding: var(--space-1);
-  margin: var(--space-1) 0;
+  padding: var(--space-2);
+  margin: var(--space-2) 0;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid var(--primary-color);
-  border-radius: var(--radius-1)
+  border-radius: var(--radius-2)
 }
 
 .tagNameButtonBlock span {
@@ -121,7 +112,7 @@
   font-weight: 600;
 }
 
-.tagRenameInputBlock button, .renameBtn {
+.tagRenameInputBlock button, .tagNameButtonBlock button {
   display: inline-flex;
   padding: var(--space-1) var(--space-2);
   font-size: 1.2rem;
@@ -129,11 +120,15 @@
   background: transparent;
 }
 
+.tagNameButtonBlock button:hover {
+  color: var(--secondary-color) !important;
+}
+
 .tagRenameInputBlock button {
   color: var(--success);
 }
 
-.tagRow .tagNameButtonBlock .renameBtn:enabled:hover {
+.renameBtn:enabled:hover {
   color: var(--secondary-color);
 }
 
@@ -144,10 +139,10 @@
 
 .tagRenameInputBlock input{
   height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: var(--space-1);
   border: 1px solid var(--primary-color);
-  border-radius: var(--radius-1)
+  border-radius: var(--radius-2)
 }
 
 #saveChangesBtn:hover  {

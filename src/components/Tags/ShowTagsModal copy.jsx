@@ -5,32 +5,30 @@ import { useAppContext } from '../../context/AppContext';
 
 export default function ShowTagsModal() {
     const {tags, setTags, setTasks, tasks, closeModal} = useAppContext();
-    const [tagNewName, setTagNewName] = useState(''); // новое имя для переименованного тега
-    const [newTag, setNewTag] = useState(''); //новый тег который в случае проверки добавим в tags
-    const [errorMessage, setErrorMessage] = useState(''); // отвечает за вывод ошибок. надо ли useState вопрос
-    const canClick = newTag.length > 2; // блокировщик кнопки создания нового тага
+    const [tagNewName, setTagNewName] = useState('');
+    const [newTag, setNewTag] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const canClick = newTag.length > 2;
 
-    const [showBlock, setShowBlock] = useState({ //управление показа блоками
-        showButton: true, //изначальное состояние. показыват кнопку с именем тега
-        showInput: false, // показывать ли поле ввода имени для тага. изначально скрыто
-        showConfirme: false, // показать ли блок удаления не пустого тага
-        id: null, // номер текущего тага над которым производятся манипуляции
+    const [showBlock, setShowBlock] = useState({
+        showButton: true,
+        showInput: false,
+        showConfirme: false,
+        id: null,
     })
-    let affected = [];  // сколько задач с этим тагом
+    let affected = []; 
 
-    function addNewTag() { // создаем таг
-        const nameExist = tags.some(t => t.name.toLowerCase() === newTag.toLowerCase()); // если такое имя существует
-        if (!nameExist && newTag.length > 2) { 
+    function addNewTag() {
+        const nameExist = tags.some(t => t.name.toLowerCase() === newTag.toLowerCase());
+        if (!nameExist && newTag.length > 2) {
             let lastId = tags[tags.length - 1].id + 1;
             setTags(prev => ([...prev, { id: lastId, name:newTag}]));
             setNewTag('');
         }
-        else return
     }
 
     function renameTag(id) {
-        const nameExist = tags.some(t => t.name.toLowerCase() === tagNewName.toLowerCase()); 
-        if (!nameExist && tagNewName.length > 2)
+        if (tags.includes(tagNewName))
         setTags(prev=>(prev.map(t=>t.id === id ? {...t, name:tagNewName.slice(0,15)} : t)))
         setShowBlock(prev => ({...prev, showButton: true, showInput: false, id:null}))
         setTagNewName('')
@@ -70,21 +68,20 @@ export default function ShowTagsModal() {
     }
 
     useEffect(() => {
-        const name = newTag ? newTag : tagNewName;
-        const nameExist = tags.some(t => t.name.toLowerCase() === name.toLowerCase());
+        const nameExist = tags.some(t => t.name.toLowerCase() === newTag.toLowerCase());
         if (nameExist)  {
-            setErrorMessage('Name already exists'); 
-            document.getElementById('addTagBtn').disabled = true;
+            setErrorMessage('Name already exists') 
+            document.getElementById('addTagBtn').disabled = true
         }
-        else if (name.length < 3 ) {
-            setErrorMessage('Min 3 charachters'); 
-            document.getElementById('addTagBtn').disabled = true;
+        else if (newTag.length < 3 ) {
+            setErrorMessage('Min 3 charachters') 
+            document.getElementById('addTagBtn').disabled = true
         }
         else {
             setErrorMessage('ok!');
-            document.getElementById('addTagBtn').disabled = false;
+            document.getElementById('addTagBtn').disabled = false
         }
-    },[newTag, tagNewName])
+    },[newTag])
 
     return (
         <>

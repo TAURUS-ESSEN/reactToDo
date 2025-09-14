@@ -1,78 +1,108 @@
 :root {
+  --theme: 1; 
   margin: 0;
   padding: 0;
   line-height: 1.4;
   box-sizing: border-box;
+  
+  /* базовые пять цветов — МЕНЯЕШЬ ТОЛЬКО ИХ */
+  --body-background: #fff;  
+  --color-1: #d3d3d3;  /* нейтральный / границы */
+  --color-2: #c95000;  /* акцент / бренд */
+  --color-3: #000;     /* основной текст */
+  --color-4: #f3f4f6;  /* светлая поверхность */
+  --color-5: #545964;  /* вторичный текст */
 
-  --color-1: #d3d3d3;
-  --color-2: #c95000;
-  --color-3: #000;
-  --color-4: #f3f4f6;
-  --color-5: #545964;
+  background-color: var(--body-background);
 
-  /* алиасы */
-  --primary-color: var(--color-1);
-  --secondary-color: var(--color-2);
-  --third-color: var(--color-3);
-  /* --text-color: var(--color-3); */
-  --surface-light: var(--color-4);
-  --surface-dark: var(--color-5);
+  /* ===== алиасы — ВСЕ тянется из color-1..5 ===== */
+  --primary-color: var(--color-1);     /* акцент */
+  --secondary-color: var(--color-2);   /* вторичный */
+  --third-color: var(--color-3);       /* текстовый/дополнительный */
 
-    /* семантика текста */
-  --text-main: var(--text-main);
-  --text-invert: var(--text-invert);
-
-  --gray-color: #8c8c8c;
   --surface-light: #F3F4F6;
   --surface-dark: #545964;
+
+  --text-main: var(--color-3);
+  --text-invert: #ffffff;
+
+   --gray-color: #8c8c8c;
 
   --success: #026702;
   --warning: #FFBF00;
   --danger: #dc143c;
 
-  --sidebar: #f2f3f4;
+  --sidebar: var(--color-4);
 
-  --text-invert: #ffffff;
-  --text-main: #000;
-  
-  --resetAndCancel: #6e6d6d;
-  --tr-even: #edf5fa;
-  --tr-hover: #e2fafa;
-  --bg-white: #fff;
+  --resetAndCancel: var(--color-5);
+  --tr-even: var(--color-4);
+  --tr-hover: color-mix(in srgb, var(--color-2) 12%, transparent);
+  --bg-white: var(--body-background);
 
-  /* UI-элементы */
-  --completed: #8c8c8c;
-  --shadow: var(--primary-color);
-  --focus-border: #1e90ff;
-  --focus-shadow: #1e90ff;
+  --completed: var(--color-1);
+  --shadow: var(--color-2);
+  --focus-border: var(--color-2);
+  --focus-shadow: color-mix(in srgb, var(--color-2) 40%, transparent);
 
-      /* радиусы */
+  /* радиусы */
   --radius-1: 4px;
   --radius-2: 8px;
 
-   /* отступы */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 1rem;     /* 16px */
-  --space-4: 1.5rem;   /* 24px */
-  --space-5: 2rem;     /* 32px */
+  /* отступы */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
 
   --shadow-1 : 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-2 : 0 4px 12px rgba(0, 0, 0, 0.12);
   --shadow-3: 0 0 5px #c0bebe8a;
+  --shadow-4: 0 0 5px #9695958a;
+}
+body[data-theme="1"] { 
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* ===== ТЁМНАЯ ТЕМА: меняешь только базовые пять ===== */
+body[data-theme="2"] {
+  --body-background: #162238;
+  --color-1: #26323f;
+  --color-2: #ff8a3d;
+  --color-3: #e5e7eb;
+  --color-4: #10151b;
+  --color-5: #727171;
+  
+  --text-main: #ffffff;
+  --text-invert: #ffffff;
+  
+  --surface-light: #F3F4F6;
+  --surface-dark: #545964;
 
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  background-color: var(--body-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+body[data-theme="2"] .wrapper {
+box-shadow: var(--shadow-4);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+}
+
+body[data-theme="1"] header, body[data-theme="1"] .sidebar { 
+  background-image: url('./assets/groovepaper.png');
+}
+
+body[data-theme="2"] header, body[data-theme="2"] .sidebar, body[data-theme="2"] footer { 
+  background-color: #2a3950;
+  box-shadow: var(--shadow-4);
+  border: 1px solid var(--color-5);
+}
+
+body[data-theme="2"] .themeToggler button {
+  color:  var(--text-main) ;
+}
+
+body[data-theme="2"] .themeToggler button:hover, body[data-theme="1"] .themeToggler button:hover  {
+  color:  var(--color-2) ;
 }
 
 @font-face {
@@ -90,9 +120,10 @@ body {
   font-family: "Metrophobic", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: var(--text-main)
 }
 
-button, input, select {
+button, input, select, textarea {
   font-family: Metrophobic;
   border: 1px solid var(--primary-color);
   border-radius: var(--space-2);

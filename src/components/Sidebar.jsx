@@ -11,6 +11,15 @@ export default function Sidebar() {
     const canQuickAdd = quickTask.trim().length > 1;
     const genId = () => Date.now() + Math.floor(Math.random() * 1000);
     const [dueDate, setDueDate] = useState(null); 
+    const [theme, setTheme] = useState(1);
+
+    useEffect(() => {
+        document.body.dataset.theme = theme;
+    }, [theme]);
+
+    function toggleTheme() {
+        setTheme(prev => (prev === 1 ? 2 : 1));
+    }
 
     function addQuickTask() {
         if (!canQuickAdd) return;
@@ -34,6 +43,17 @@ export default function Sidebar() {
         <>
         <div className="sidebar">
             <Link to='/' className="logoLink"><h2>ToDo List</h2></Link>
+            <div className="themeToggler">
+                <span className="themeTogglerSpan">
+                    <button
+                        id="theme-toggle"
+                        className="themeTogglerBtn"
+                        onClick={toggleTheme}
+                    >
+                        {theme === 1 ? <i className="fa-solid fa-moon fa-xl"></i> : <i class="fa-solid fa-sun fa-xl"></i>}
+                    </button>
+                </span>
+            </div>
             <div className="quickAddBlock">
                 <input type='text' 
                     onChange={(e)=>setQuickTask(e.target.value)} 
