@@ -230,20 +230,18 @@ body[data-theme="2"] .chipName button {
 .noTasks td {
   text-align: center;
 }
-
+/* 
 .tagBtn {
   font-size: 0.8rem;
-  border: 0;
   padding: var(--space-1);
-  border-radius: var(--radius-2);
-  color: var(--text-main);
-  background-color: var(--primary-color);
-  transition: 0.5s;
 }
 
 body[data-theme="2"] .tagBtn {
   background-color: var(--surface-light);
+  border: 1px solid var(--border);
+  color: var(--tag-text);
 } 
+
 
 .tagBtn:hover, body[data-theme="2"] .tagBtn:hover {
   background-color: var(--secondary-color);
@@ -253,4 +251,4 @@ body[data-theme="2"] .tagBtn {
 .tagsAreaBlock {
   display: flex;
   gap: 0.5rem;
-}
+} */

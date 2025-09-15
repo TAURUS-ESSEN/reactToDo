@@ -7,6 +7,7 @@
   
   /* базовые пять цветов — МЕНЯЕШЬ ТОЛЬКО ИХ */
   --body-background: #fff;  
+  --color-0: #fff;
   --color-1: #d3d3d3;  /* нейтральный / границы */
   --color-2: #c95000;  /* акцент / бренд */
   --color-3: #000;     /* основной текст */
@@ -14,6 +15,7 @@
   --color-5: #545964;  /* вторичный текст */
 
   background-color: var(--body-background);
+  --modal-background: var(--color-0);
 
   /* ===== алиасы — ВСЕ тянется из color-1..5 ===== */
   --primary-color: var(--color-1);     /* акцент */
@@ -25,6 +27,8 @@
 
   --text-main: var(--color-3);
   --text-invert: #ffffff;
+  --text-black: #000;
+  --text-white: #fff;
 
    --gray-color: #8c8c8c;
 
@@ -39,6 +43,7 @@
   --tr-hover: color-mix(in srgb, var(--color-2) 12%, transparent);
   --bg-white: var(--body-background);
 
+  --tag-text: var(--color-3);
   --completed: var(--color-1);
   --shadow: var(--color-2);
   --focus-border: var(--color-2);
@@ -67,24 +72,29 @@ body[data-theme="1"] {
 body[data-theme="2"] {
   --body-background: #162238;
   --color-1: #26323f;
-  --color-2: #ff8a3d;
+  --color-2: #f86706;
   --color-3: #e5e7eb;
   --color-4: #10151b;
   --color-5: #727171;
   --color-6: #162238;
-  /* --color-5: #435475; */
-  
-  --primary-color: var(--color-5);   
+  --color-7: #50c0f4;
+
+  --modal-background: var(--color-1);
+  /* --modal-background: #2a3950; */
+  --modal-border: var(--color-3);
+  --primary-color: var(--color-5);
+  --secondary-color: var(--color-2);   
   
   --text-main: #ffffff;
   --text-invert: #ffffff;
-  --text-black: #000;
   
   --tr-odd: var(--color-6);
   --tr-even: #2a3950;
+  --border: #363f4c;
   
+  --tag-text: var(--color-7);
   --surface-dark: #F3F4F6;
-  --surface-light: #162238;
+  --surface-light: var(--color-6);
   /* --surface-light: #435475; */
 
   background-color: var(--body-background);
@@ -102,10 +112,8 @@ body[data-theme="1"] header, body[data-theme="1"] .sidebar,  body[data-theme="1"
 
 body[data-theme="2"] header, body[data-theme="2"] .sidebar, body[data-theme="2"] footer, body[data-theme="2"] .tasksContainer{ 
   background-color: #2a3950;
-  box-shadow: var(--shadow-4);
-  /* box-shadow: 0 0 5px red; */
+  box-shadow: none;
   border: 1px solid var(--color-5);
-  /* border: 1px solid red; */
 }
 
 body[data-theme="2"] .themeToggler button {

@@ -1,4 +1,5 @@
-import styles from './tasks.module.css'
+import styles from '../tagsAndTasks.module.css'
+
 
 export default function TasksTableHeader({sortBy,sortTasks,checkAllTasks }) {
 

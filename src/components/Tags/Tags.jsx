@@ -1,6 +1,7 @@
 import { useAppContext } from '../../context/AppContext';
 import { useState, useEffect } from 'react';
-import styles from './tags.module.css';
+// import styles from './tags.module.css';
+import styles from '../tagsAndTasks.module.css';
 
 export default function Tags() {
     const { filters, setFilters, tags} = useAppContext();

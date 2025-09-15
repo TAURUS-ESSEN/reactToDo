@@ -2,7 +2,8 @@ import { useAppContext } from '../../context/AppContext.jsx';
 import { useState } from 'react';
 import Chips from './Chips'
 import Tags from '../Tags/Tags.jsx'
-import styles from './tasks.module.css'
+import styles from '../tagsAndTasks.module.css'
+// import '../Tags/tags.module.css'
 import TasksTableHeader from './TasksTableHeader';
 
 const colors = {

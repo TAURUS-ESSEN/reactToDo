@@ -1,43 +1,37 @@
 /* Tag chips over tasks List */
 .tagChipsBlock {
-  position: relative;
-  z-index: 10;
   display: flex;
-  align-items: center;
   gap: 1rem;
 }
 
 .tagChipsName {
+  height: 1.2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   padding: var(--space-2);
-  background-color: var(--surface-light);
+
   border: 1px solid var(--primary-color);
   border-radius: var(--radius-2);
-  height: 1.2rem;
-
-  color: var(--text-main);
-  box-shadow: 0 0 3px var(--shadow-3);
+  color: var(--tag-text);
+  background-color: var(--surface-light);
 }
 
 .tagChipsName button {
+  display: flex;
   width: 1.2rem;
   height: 1.2rem;
   margin-left: var(--space-1);
   background-color: var(--surface-dark);
   border: 0;
   border-radius: 9999px;
-  color: var(--text-invert);
+  color: var(--text-white);
 }
 
 body[data-theme="2"] .tagChipsName button {
-  color: var(--text-black)
+  background-color: var(--color-1);
 }
 
-
-.tagChipsName button,
-.renameBtn {
+.tagChipsName button, .renameBtn {
   position: relative;        
 }
 
@@ -50,7 +44,7 @@ body[data-theme="2"] .tagChipsName button {
   pointer-events: none;       /* не перехватывать клики */
 }
 
-.tagChipsName button:hover {
+.tagChipsName button:hover, body[data-theme="2"] .tagChipsName button:hover {
   background-color: var(--secondary-color);
   color: var(--text-main);
 }
@@ -217,4 +211,32 @@ body[data-theme="2"] .tagChipsName button {
 .deleteBtn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--focus-border);
+}
+
+
+.tagBtn {
+  font-size: 0.8rem;
+  /* border: 0; */
+  padding: var(--space-1);
+  /* border-radius: var(--radius-2); */
+  /* color: var(--text-main); */
+  /* background-color: var(--primary-color); */
+  /* transition: 0.5s; */
+}
+
+body[data-theme="2"] .tagBtn {
+  background-color: var(--surface-light);
+  border: 1px solid var(--border);
+  color: var(--tag-text);
+} 
+
+
+.tagBtn:hover, body[data-theme="2"] .tagBtn:hover {
+  background-color: var(--secondary-color);
+  color:var(--text-invert)
+}
+
+.tagsAreaBlock {
+  display: flex;
+  gap: 0.5rem;
 }

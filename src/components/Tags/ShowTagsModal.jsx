@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import Modal from "../Modal/Modal"
-import styles from './tags.module.css'
+import styles from '../tagsAndTasks.module.css'
 import { useAppContext } from '../../context/AppContext';
 
 export default function ShowTagsModal() {

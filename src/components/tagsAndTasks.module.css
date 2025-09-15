@@ -1,0 +1,469 @@
+.low {
+  background-color: var(--success);
+}
+
+.medium {
+  background-color: var(--warning);
+}
+
+.high {
+  background-color: var(--danger);
+}
+
+.priorityLegend {
+  display: flex;
+  align-items: center;
+  gap:0.5rem;
+}
+
+.tasksListTable {
+  width: 100%;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2);
+  color: var(--text-main);
+}
+
+.tasksListTable td,.tasksListTable th {
+  text-align: left;
+  vertical-align: middle;
+  height: 3.2rem;
+}
+
+thead { position: relative; }
+thead::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--primary-color);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--tr-even);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--tr-odd);
+}
+
+tbody tr {
+  /* background-color: #49617b; */
+  transition: 0.5s ease;
+  /* color: var(--text-main) */
+}
+
+tbody tr:hover {
+  background-color: var(--tr-hover);
+}
+
+.tasksBlockSorting > button {
+  min-height: 2.5rem;
+  font-weight: 600;
+  background: none;
+  border: 0;
+  transition: 0.5s ease;
+  color: var(--text-main);
+}
+
+.tasksBlockSorting > button:hover {
+  color: var(--secondary-color);
+}
+
+.priorityBlock {
+  padding: var(--space-1);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-1);
+}
+
+.taskDeleteBtn, .taskEditBtn {
+  width: 40px;
+  height: 40px;
+  margin: 0 var(--space-2);
+  padding: var(--space-1);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2);
+  background: none;
+  transition: 0.5s ease;
+  color: var(--text-main);
+}
+
+.taskNameBtn {
+  font-size: 1rem;
+  border: 0;
+  background: none;
+  color: var(--text-main);
+}
+
+.taskNameBtn:hover {
+  font-weight: 700;
+  color: var(--text-main) !important;
+}
+
+.taskDeleteBtn:hover {
+  background-color: var(--danger);
+  color: var(--text-invert);
+}
+
+.taskEditBtn:hover {
+  background-color: var(--third-color);
+  color: var(--text-invert);
+} 
+
+.nameTdcontainer {
+  width: 29rem;
+}
+
+.categoryBtn {
+  min-height: 2.8rem;
+  padding: var(--space-2);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2);
+  background-color: var(--surface-light);
+  color: var(--text-main);
+  transition: 0.5s ease;
+}
+
+.categoryBtn:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-invert);
+}
+
+.overdue {
+  color: var(--danger);
+}
+
+th.checkAll {
+  min-width: 1rem;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.chipsContainer {
+  height: 2.3rem;
+  width: 100%;
+  margin: var(--space-2);
+  padding: var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.chipsBlock {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chipName {
+  display: flex;
+  height: 1.2rem;
+  padding: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-light);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2);
+  color: var(--text-main);
+  box-shadow: var(--shadow-1);
+}
+
+.chipName button {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 0.2rem;
+  background-color: var(--surface-dark);
+  border: 0;
+  border-radius: 9999px;
+  color: var(--text-invert);
+}
+
+.chipName button:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-main);
+}
+
+body[data-theme="2"] .chipName button {
+  color: var(--text-black)
+}
+
+.completed{
+  color: var(--completed)
+}
+
+.strike {
+  text-decoration: line-through;
+  color: var(--completed)
+}
+
+.todayHint {
+  padding: var( --space-1) var( --space-2);
+  background-color: var(--secondary-color);
+  color: var(--text-invert);
+  font-size: 0.7rem;
+  font-style: italic;
+  border-radius: 999px;
+}
+
+.tomorrowHint {
+  padding: var( --space-1) var( --space-2);
+  font-size: 0.7rem;
+  font-style: italic;
+  background-color: #64b5f6; /* голубой */
+  color: var(--text-invert);
+  border-radius: 999px;
+}
+
+.dueDateTd {
+  width:8rem;
+}
+
+.noTasks td {
+  text-align: center;
+}
+
+/*          ***     TAGS     ***         */
+
+/* Tag chips over tasks List */
+.tagChipsBlock {
+  display: flex;
+  gap: 1rem;
+}
+
+.tagChipsName {
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding: var(--space-2);
+
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2);
+  color: var(--tag-text);
+  background-color: var(--surface-light);
+}
+
+.tagChipsName button {
+  display: flex;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: var(--space-1);
+  background-color: var(--surface-dark);
+  border: 0;
+  border-radius: 9999px;
+  color: var(--text-white);
+}
+
+body[data-theme="2"] .tagChipsName button {
+  background-color: var(--color-1);
+}
+
+.tagChipsName button, .renameBtn {
+  position: relative;        
+}
+
+.tagChipsName button::after,
+.renameBtn::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 8px;
+  pointer-events: none;       /* не перехватывать клики */
+}
+
+.tagChipsName button:hover, body[data-theme="2"] .tagChipsName button:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-main);
+}
+
+/***********    Tags  Modal   ************/
+.container {
+  min-width: 25rem;
+}
+
+.newTagBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.newTagBlock input, .newTagBlock button  {
+  min-height: 2.2rem;
+}
+
+.newTagBlock input {
+  min-width: 15rem;
+  padding-left: var(--space-2);
+}
+
+.newTagBlock button  {
+  min-width: 6rem;
+}
+
+.newTagBlock button:enabled {
+  background-color: var(--secondary-color);
+  color: var(--text-invert);
+  border: 0;
+}
+
+.newTagBlock button:enabled:hover {
+  background-color: var(--success);
+  border: 0;
+}
+
+.newTagInfoSpan {
+  height: 1rem;
+  display: block;
+  margin: var(--space-1) var(--space-1);
+
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+/*  tags list */
+.tagRow {
+  min-height: 2.5rem;
+  padding: var(--space-2);
+  margin: var(--space-2) 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2)
+}
+
+.tagNameButtonBlock span {
+  padding: var(--space-2);
+  color: var(--tag-text);
+  /* background-color: var(--primary-color); */
+  border-radius: 99px;
+  font-weight: 600;
+}
+
+.tagRenameInputBlock button, .tagNameButtonBlock button {
+  display: inline-flex;
+  padding: var(--space-1) var(--space-2);
+  font-size: 1.2rem;
+  border: 0;
+  color: var(--text-main);
+  background: transparent;
+}
+
+.tagNameButtonBlock button:hover {
+  color: var(--secondary-color) !important;
+}
+
+.tagRenameInputBlock button {
+  color: var(--success);
+}
+
+.renameBtn:enabled:hover {
+  color: var(--secondary-color);
+}
+
+.tagRenameInputBlock {
+  display: flex;
+  align-items: center;
+}
+
+.tagRenameInputBlock input{
+  height: 2rem;
+  font-size: 1.1rem;
+  padding: var(--space-1);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-2)
+}
+
+#saveChangesBtn:hover  {
+  color: var(--success)  ;
+  transform: scale(1.2);
+}
+
+.delBtnAndTasksNumber {
+  width: 7.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.delBtnAndTasksNumber button {
+  height: 2.5rem;
+  width:  2.5rem;
+  background: none;
+  color: var(--text-main);
+}
+
+.delBtnAndTasksNumber button:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-invert)
+} 
+
+.tagItem:nth-child(even) .tagRow {
+  background-color: var(--surface-light);
+}
+
+.confirmationButtonsBlock {
+  display: flex;
+  justify-content: space-around;
+  margin-top: var(--space-3);
+}
+
+.grayBg {
+  background-color: var(--primary-color);
+  border-radius: var(--radius-1);
+  padding: var(--space-1);
+}
+
+.cancelBtn, .deleteBtn {
+  height: 2.5rem;
+  min-width: 6rem;
+}
+
+.cancelBtn:hover {
+  background-color: var(--resetAndCancel);
+}
+
+.deleteBtn:hover {
+  background-color: var(--danger);
+}
+
+.deleteConfirmationBlock {
+  padding:var(--space-2);;
+  border: 1px solid var(--primary-color);
+}
+
+/* Фокусы для всех интерактивных */
+.tagChipsName button:focus-visible,
+.renameBtn:focus-visible,
+.delBtnAndTasksNumber button:focus-visible,
+.cancelBtn:focus-visible,
+.deleteBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-border);
+}
+
+/****  TAGS FROM TASKS LIST ****/
+.tagBtn {
+  font-size: 0.8rem;
+  padding: var(--space-1);
+}
+
+body[data-theme="2"] .tagBtn {
+  background-color: var(--surface-light);
+  border: 1px solid var(--border);
+  color: var(--tag-text);
+} 
+
+.tagBtn:hover, body[data-theme="2"] .tagBtn:hover {
+  background-color: var(--secondary-color);
+  color:var(--text-invert)
+}
+
+.tagsAreaBlock {
+  display: flex;
+  gap: 0.5rem;
+}

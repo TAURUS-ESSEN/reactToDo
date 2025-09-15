@@ -1,6 +1,6 @@
 import { useAppContext } from '../../context/AppContext';
 import { useState, useEffect } from 'react';
-import styles from './tasks.module.css';
+import styles from '../tagsAndTasks.module.css'
 
 export default function Chips() {
 

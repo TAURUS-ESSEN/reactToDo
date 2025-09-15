@@ -15,7 +15,8 @@
   padding-inline: var(--space-3);
   max-height: 90vh;
   overflow-y: auto;
-  background-color: var(--bg-white);
+  background-color: var(--modal-background);
+  border: 1px solid var(--modal-border);
 }
 
 .modalHeader {
@@ -52,6 +53,7 @@
   font-size: 1.5rem;
   right: -0.5rem;
   top: -0.3rem;
+  color: var(--text-main);
   background: none;
   border: 0;
   cursor: pointer;
