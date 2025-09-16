@@ -23,8 +23,17 @@ export default function Sidebar() {
 
     function addQuickTask() {
         if (!canQuickAdd) return;
-        setTasks(prev=>[...prev, {id: genId(), name: quickTask, description: '', completed: false, priority: 1, category: 0, dueDate: '', tags: []}])
-        setToasts(prev=>([...prev, {message: `${quickTask} was added`}]))
+        setTasks(prev=>[...prev, {
+            id: genId(), 
+            name: quickTask, 
+            description: '', 
+            completed: false, 
+            priority: 1, 
+            categoryId: 0, 
+            dueDate: '', 
+            tags: []
+        }])
+        setToasts(prev=>([...prev, {message: `${quickTask} was added`}]));
         setQuickTask('');
     }
 
@@ -49,26 +58,26 @@ export default function Sidebar() {
                         className="themeTogglerBtn"
                         onClick={toggleTheme}
                     >
-                        {theme === 1 ? <i className="fa-solid fa-moon fa-xl"></i> : <i class="fa-solid fa-sun fa-xl"></i>}
+                        {theme === 1 ? <i className="fa-solid fa-moon fa-xl"></i> : <i className="fa-solid fa-sun fa-xl"></i>}
                     </button>
                 </span>
             </div>
             <div className="quickAddBlock">
                 <input type='text' 
-                    onChange={(e)=>setQuickTask(e.target.value)} 
+                    onChange={(e) => setQuickTask(e.target.value)} 
                     value={quickTask}
                     placeholder="Quick add task"
-                    onKeyDown={(e)=>{if (e.key==='Enter') addQuickTask() }  }
+                    onKeyDown={(e) => { if (e.key === 'Enter') addQuickTask() }  }
                     className="quickAddInput"
                 />
                 <button onClick={addQuickTask} disabled={!canQuickAdd} className="quickAddBtn">+</button>
             </div>
             <div className="sidebarButtonsBlock">
-                    <button onClick={()=>openModal('addCategory')}>Add category</button>
-
-                    <button onClick={()=>openModal('showCategories')}>Manage categories</button>
-                <button type='button' 
-                        onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(),  tasks, categories })}>Export data</button>
+                <button onClick={()=>openModal('addCategory')}>Add category</button>
+                <button onClick={()=>openModal('showCategories')}>Manage categories</button>
+                <button type='button' onClick={() => downloadJSON({ schemaVersion: 1, exportedAt: new Date(), tasks, categories })}>
+                    Export data
+                </button>
             </div>
             <div>
                 <DayPicker
@@ -90,18 +99,17 @@ export default function Sidebar() {
                     </summary>
                     {tags.length > 0 && (
                         <div className="tagsBlock">
-                        {tags.map(tag => {
-                            return <button 
-                                    className={`tagBtn ${filters.tags.includes(tag.id) ? 'tagEnabled' : ''}`} 
-                                    onClick={()=>addTagToFilters(tag.id)}
-                                    key = {tag.id}
-                                    disabled={!filters.tags.includes(tag.id) && filters.tags.length>=5}
-                                    >#{tag.name}
-                                </button>
-                        } )}
+                            {tags.map(tag => {
+                                return <button 
+                                            className={`tagBtn ${filters.tags.includes(tag.id) ? 'tagEnabled' : ''}`} 
+                                            onClick={()=>addTagToFilters(tag.id)}
+                                            key = {tag.id}
+                                            disabled={!filters.tags.includes(tag.id) && filters.tags.length>=5}
+                                            >#{tag.name}
+                                        </button>
+                            } )}
                         </div>
-                    )
-                    } 
+                    )} 
                 </details>
             </div>
         </div>

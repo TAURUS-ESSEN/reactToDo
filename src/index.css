@@ -4,6 +4,7 @@
   padding: 0;
   line-height: 1.4;
   box-sizing: border-box;
+  --transition: 0.3s ease;
   
   /* базовые пять цветов — МЕНЯЕШЬ ТОЛЬКО ИХ */
   --body-background: #fff;  
@@ -23,7 +24,7 @@
   --third-color: var(--color-3);       /* текстовый/дополнительный */
 
   --surface-light: #F3F4F6;
-  --surface-dark: #545964;
+  --surface-dark: #7e7f82;
 
   --text-main: var(--color-3);
   --text-invert: #ffffff;
@@ -66,8 +67,11 @@
   --shadow-4: 0 0 5px #9695958a;
 }
 body[data-theme="1"] { 
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color var(--transition), color var(--transition);
 }
+
+html { scrollbar-gutter: stable both-edges; }
+
 /* ===== ТЁМНАЯ ТЕМА: меняешь только базовые пять ===== */
 body[data-theme="2"] {
   --body-background: #162238;
@@ -80,7 +84,6 @@ body[data-theme="2"] {
   --color-7: #50c0f4;
 
   --modal-background: var(--color-1);
-  /* --modal-background: #2a3950; */
   --modal-border: var(--color-3);
   --primary-color: var(--color-5);
   --secondary-color: var(--color-2);   
@@ -90,38 +93,36 @@ body[data-theme="2"] {
   
   --tr-odd: var(--color-6);
   --tr-even: #2a3950;
+  --tr-hover: #3e5c89;
   --border: #363f4c;
   
   --tag-text: var(--color-7);
-  --surface-dark: #F3F4F6;
+  --surface-dark: var(--color-7);
   --surface-light: var(--color-6);
-  /* --surface-light: #435475; */
 
   background-color: var(--body-background);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body[data-theme="2"] .wrapper {
-box-shadow: var(--shadow-4);
-
+  box-shadow: var(--shadow-4);
 }
 
-body[data-theme="1"] header, body[data-theme="1"] .sidebar,  body[data-theme="1"] thead, body[data-theme="1"] footer { 
+body[data-theme="1"] :is(header, .sidebar, thead, footer) { 
   background-image: url('./assets/groovepaper.png');
 }
 
-body[data-theme="2"] header, body[data-theme="2"] .sidebar, body[data-theme="2"] footer, body[data-theme="2"] .tasksContainer{ 
+body[data-theme="2"] :is(header, .sidebar, thead, footer, .tasksContainer) { 
   background-color: #2a3950;
   box-shadow: none;
   border: 1px solid var(--color-5);
 }
 
-body[data-theme="2"] .themeToggler button {
+.themeToggler button {
   color:  var(--text-main) ;
 }
 
-body[data-theme="2"] .themeToggler button:hover, body[data-theme="1"] .themeToggler button:hover  {
-  color:  var(--color-2) ;
+body[data-theme] .themeToggler button:hover { 
+  color: var(--color-2);
 }
 
 @font-face {
@@ -151,7 +152,6 @@ button, input, select, textarea {
 }
 
 button:enabled:hover {
-  color: var(--text-invert);
   cursor: pointer;
 }
 

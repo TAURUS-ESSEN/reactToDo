@@ -136,7 +136,7 @@ export default function ShowCategoriesModal() {
                             
                             {(!showBlocks.hideDeleteButton || showBlocks.id !== c.id)  && (
                                 <span>
-                                    <button onClick={() => preDelete(c.id, taskNumbers)} className={styles.preDeleteBtn} title="Delete Category"><i class="fa-solid fa-trash-can"></i> Delete </button>                                    
+                                    <button onClick={() => preDelete(c.id, taskNumbers)} className={styles.preDeleteBtn} title="Delete Category"><i class="fa-solid fa-trash-can fa-xl"></i></button>                                    
                                 </span>
                             )}
                         </div>

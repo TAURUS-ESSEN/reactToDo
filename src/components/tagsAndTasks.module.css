@@ -335,6 +335,10 @@ body[data-theme="2"] .tagChipsName button {
   border-radius: var(--radius-2)
 }
 
+.tagRow:hover {
+  background-color: var(--tr-hover);
+} 
+
 .tagNameButtonBlock span {
   padding: var(--space-2);
   color: var(--tag-text);
@@ -406,6 +410,10 @@ body[data-theme="2"] .tagChipsName button {
   background-color: var(--surface-light);
 }
 
+.tagItem:nth-child(even):hover .tagRow {
+  background-color: var(--tr-hover);
+}
+
 .confirmationButtonsBlock {
   display: flex;
   justify-content: space-around;
@@ -421,6 +429,8 @@ body[data-theme="2"] .tagChipsName button {
 .cancelBtn, .deleteBtn {
   height: 2.5rem;
   min-width: 6rem;
+  background-color: var(--surface-light);
+  color: var(--text-main);
 }
 
 .cancelBtn:hover {

@@ -82,7 +82,7 @@ input::placeholder {
   padding-left: var(--space-1);
 }
 
-input:focus-visible, select:focus-visible {
+:is(input, select, button):focus-visible {
   outline: none;
   border: 1px solid var(--focus-border);
   box-shadow: 0 0 5px var(--focus-shadow);
@@ -225,6 +225,8 @@ input:focus-visible, select:focus-visible {
 
 .tagBtn {
   padding: 0.3rem;
+  background-color: var(--surface-dark);
+  color: var(--text-invert)
 }
 
 .tagBtn:hover {
